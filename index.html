@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIXXEN — EU AI Act Compliance Platform</title>
+  <meta name="description" content="AIXXEN helps organisations assess, document and track AI system risk for EU AI Act compliance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --surface-2: #ebebeb;
+      --border: #e0e0e0;
+      --border-dark: #c8c8c8;
+      --text: #6b6b6b;
+      --text-dark: #1a1a1a;
+      --text-mid: #404040;
+      --black: #0a0a0a;
+      --accent: #0a0a0a;
+      --red: #cc0000;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 1rem; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; transition: color .2s; }
+    img { max-width: 100%; display: block; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem; height: 60px;
+    }
+    .nav-logo { font-size: 1rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--black); }
+    .nav-logo span { color: var(--red); }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a { font-size: 0.8125rem; font-weight: 500; color: var(--text-mid); }
+    .nav-links a:hover { color: var(--black); }
+    .nav-badge {
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      background: var(--black); color: #fff; padding: 0.3rem 0.75rem;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 8rem 3rem 5rem; border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .hero-kicker { font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 0.625rem; margin-bottom: 1.5rem; }
+    .hero-kicker::before { content: ''; width: 24px; height: 1px; background: var(--red); }
+    .hero-title { font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.1; color: var(--black); margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+    .hero-sub { font-size: 1.0625rem; color: var(--text); max-width: 28rem; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; align-items: center; gap: 1rem; }
+    .btn-primary { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.5px; background: var(--black); color: #fff; padding: 0.75rem 1.75rem; transition: background .2s; }
+    .btn-primary:hover { background: #2a2a2a; color: #fff; }
+    .btn-outline { font-size: 0.8125rem; font-weight: 500; color: var(--text-mid); border: 1px solid var(--border-dark); padding: 0.75rem 1.75rem; transition: border-color .2s, color .2s; }
+    .btn-outline:hover { border-color: var(--black); color: var(--black); }
+    .hero-img { border: 1px solid var(--border); overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
+    .hero-img img { width: 100%; height: 420px; object-fit: cover; }
+
+    /* LOGOS / TRUST */
+    .trust { padding: 2.5rem 3rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .trust-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+    .trust-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; white-space: nowrap; }
+    .trust-tags { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .trust-tag { font-size: 0.75rem; font-weight: 500; color: #888; padding: 0.35rem 1rem; border: 1px solid var(--border); background: var(--bg); }
+
+    /* PROBLEM */
+    .problem { padding: 6rem 3rem; border-bottom: 1px solid var(--border); }
+    .problem-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 5fr 7fr; gap: 8rem; align-items: start; }
+    .section-kicker { font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 0.625rem; margin-bottom: 1.25rem; }
+    .section-kicker::before { content: ''; width: 20px; height: 1px; background: var(--red); }
+    .section-title { font-size: clamp(1.625rem, 2.5vw, 2.25rem); font-weight: 700; color: var(--black); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+    .section-body { font-size: 0.9375rem; color: var(--text); line-height: 1.8; }
+    .pain-list { display: flex; flex-direction: column; gap: 0; }
+    .pain-item { display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+    .pain-item:first-child { border-top: 1px solid var(--border); }
+    .pain-num { font-size: 0.6875rem; font-weight: 600; color: var(--red); min-width: 1.5rem; padding-top: 0.1rem; }
+    .pain-text { font-size: 0.9375rem; color: var(--text-mid); line-height: 1.65; }
+
+    /* FEATURES */
+    .features { padding: 6rem 3rem; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .features-inner { max-width: 1200px; margin: 0 auto; }
+    .features-header { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: end; margin-bottom: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); background: var(--bg); }
+    .feature-card { padding: 2.5rem 2rem; border-right: 1px solid var(--border); transition: background .2s; }
+    .feature-card:last-child { border-right: none; }
+    .feature-card:hover { background: var(--surface-2); }
+    .feature-img { height: 180px; overflow: hidden; background: var(--surface-2); margin-bottom: 1.75rem; border-bottom: 1px solid var(--border); }
+    .feature-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%) brightness(0.95); transition: transform .5s; }
+    .feature-card:hover .feature-img img { transform: scale(1.03); }
+    .feature-num { font-size: 0.6875rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 0.625rem; }
+    .feature-title { font-size: 1.0625rem; font-weight: 600; color: var(--black); margin-bottom: 0.75rem; line-height: 1.35; }
+    .feature-desc { font-size: 0.875rem; color: var(--text); line-height: 1.75; }
+
+    /* AUDIENCE */
+    .audience { padding: 6rem 3rem; border-bottom: 1px solid var(--border); }
+    .audience-inner { max-width: 1200px; margin: 0 auto; }
+    .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 3rem; background: var(--border); }
+    .who-card { background: var(--bg); padding: 2.5rem 2rem; }
+    .who-role { font-size: 0.6875rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 1rem; }
+    .who-title { font-size: 1.0625rem; font-weight: 600; color: var(--black); margin-bottom: 0.875rem; line-height: 1.3; }
+    .who-desc { font-size: 0.875rem; color: var(--text); line-height: 1.75; }
+
+    /* FOOTER */
+    footer { background: var(--black); color: rgba(255,255,255,0.5); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-size: 0.9375rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+    .footer-logo span { color: var(--red); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.8125rem; color: rgba(255,255,255,0.4); }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { font-size: 0.8125rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hero-inner, .problem-inner, .features-header { grid-template-columns: 1fr; gap: 3rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .features-grid, .audience-grid { grid-template-columns: 1fr; }
+      .feature-card, .who-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .problem, .features, .audience, .trust { padding-left: 1.5rem; padding-right: 1.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <span class="nav-logo">AIXX<span>EN</span></span>
+    <div class="nav-links">
+      <a href="#problem">The Problem</a>
+      <a href="#features">Features</a>
+      <a href="#audience">Who It's For</a>
+    </div>
+    <span class="nav-badge">In Development</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="hero-kicker">EU AI Act Compliance</span>
+        <h1 class="hero-title">Know your AI risk before the regulator does.</h1>
+        <p class="hero-sub">The EU AI Act is in force. Most organisations don't have a clear picture of which AI systems they run, what risks they carry, or what they'd show an auditor today. AIXXEN changes that.</p>
+        <div class="hero-actions">
+          <a href="#features" class="btn-primary">See How It Works</a>
+          <a href="#audience" class="btn-outline">Who It's For</a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="assets/img/Aixer.jpg" alt="AIXXEN compliance platform">
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <div class="trust">
+    <div class="trust-inner">
+      <span class="trust-label">Designed for</span>
+      <div class="trust-tags">
+        <span class="trust-tag">Compliance Teams</span>
+        <span class="trust-tag">IT Governance</span>
+        <span class="trust-tag">Risk Officers</span>
+        <span class="trust-tag">Enterprise IT</span>
+        <span class="trust-tag">Legal &amp; Audit</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="problem" id="problem">
+    <div class="problem-inner">
+      <div>
+        <span class="section-kicker">The Problem</span>
+        <h2 class="section-title">AI compliance is still a spreadsheet nobody trusts</h2>
+        <p class="section-body">The EU AI Act requires organisations to assess, document and monitor their AI systems. In practice, that means someone owns a spreadsheet. It's out of date. Nobody agrees on scope. And if an auditor came tomorrow, you'd be scrambling.</p>
+      </div>
+      <div class="pain-list">
+        <div class="pain-item"><span class="pain-num">01</span><span class="pain-text">No single place to see all the AI systems your organisation actually uses</span></div>
+        <div class="pain-item"><span class="pain-num">02</span><span class="pain-text">Unclear which systems fall under which risk category of the EU AI Act</span></div>
+        <div class="pain-item"><span class="pain-num">03</span><span class="pain-text">No audit trail when something goes wrong or a decision gets challenged</span></div>
+        <div class="pain-item"><span class="pain-num">04</span><span class="pain-text">Compliance effort duplicated across legal, IT and procurement with no shared source</span></div>
+        <div class="pain-item"><span class="pain-num">05</span><span class="pain-text">New AI tools added without any assessment or sign-off process in place</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="features-inner">
+      <div class="features-header">
+        <div>
+          <span class="section-kicker">What AIXXEN Does</span>
+          <h2 class="section-title">One place to assess, track and evidence your AI compliance</h2>
+        </div>
+        <p style="font-size:0.9375rem; color:var(--text); line-height:1.8; align-self:end;">AIXXEN gives compliance, IT and leadership a shared view of AI risk — structured around the EU AI Act, connected to the systems you already use, and ready to evidence any audit.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-img"><img src="assets/img/Matrix.jpg" alt="Risk assessment"></div>
+          <span class="feature-num">01 — Assess</span>
+          <h3 class="feature-title">Understand Your Risk</h3>
+          <p class="feature-desc">A structured assessment for each AI system you use. You get a clear risk rating mapped to EU AI Act categories — without needing a legal team to interpret the regulation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-img"><img src="assets/img/EU.jpg" alt="Connected to your systems"></div>
+          <span class="feature-num">02 — Track</span>
+          <h3 class="feature-title">Stay Connected to Reality</h3>
+          <p class="feature-desc">AIXXEN connects to the tools your IT and architecture teams already maintain. Your AI inventory stays current without manual updates — always a live picture, not a snapshot.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-img"><img src="assets/img/Audit.jpg" alt="Audit trail"></div>
+          <span class="feature-num">03 — Evidence</span>
+          <h3 class="feature-title">Be Ready for Any Audit</h3>
+          <p class="feature-desc">Every assessment, decision and status change is recorded automatically. When a regulator or auditor asks what you did and when, the answer is already there — complete and tamper-evident.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section class="audience" id="audience">
+    <div class="audience-inner">
+      <span class="section-kicker">Who It's For</span>
+      <h2 class="section-title" style="max-width:28rem;">Built for the people who own the compliance problem</h2>
+      <div class="audience-grid">
+        <div class="who-card">
+          <span class="who-role">Compliance &amp; Legal</span>
+          <h3 class="who-title">Stop chasing IT for information</h3>
+          <p class="who-desc">AIXXEN gives you a live view of what AI is deployed, what it does and what risk it carries. You stop depending on email threads and quarterly updates to do your job.</p>
+        </div>
+        <div class="who-card">
+          <span class="who-role">IT &amp; Architecture</span>
+          <h3 class="who-title">Governance that fits how you work</h3>
+          <p class="who-desc">AIXXEN connects to the tools you already use to manage your application landscape. Assessments are triggered by changes, not by someone manually remembering to run one.</p>
+        </div>
+        <div class="who-card">
+          <span class="who-role">Leadership &amp; Board</span>
+          <h3 class="who-title">Know your exposure before it becomes news</h3>
+          <p class="who-desc">A clear, current view of AI risk across the organisation. Not a status update from three months ago — a live picture you can act on before a regulator does it for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">AIXX<span>EN</span></span>
+    <div class="footer-links">
+      <a href="https://icelt.net/software.html#aixer">Built by Philipp Eiselt</a>
+      <a href="https://icelt.net">icelt.net</a>
+    </div>
+    <span class="footer-copy">© 2025–2026 AIXXEN</span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+
+</body>
+</html>
