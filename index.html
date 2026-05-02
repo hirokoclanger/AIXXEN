@@ -79,10 +79,12 @@
     }
 .hero-art img {
   position: absolute;
-  left: 50%;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
-  transform: translateX(-50%);
+  object-fit: cover;
+  object-position: left center;
 }
     .hero-art::after {
       content:''; position:absolute; inset:0;
