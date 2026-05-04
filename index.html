@@ -34,25 +34,26 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: rgba(255,255,255,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: flex-start;
       padding: 0 2.5rem; height: 64px;
     }
     .nav-brand { display: flex; align-items: center; gap: .8rem; }
     .nav-mark { width: 30px; height: 30px; background: #f1f1f1; border: 1px solid var(--border); display:flex; align-items:center; justify-content:center; }
     .nav-mark svg { width: 100%; height: 100%; }
     .nav-word { font-size: .95rem; font-weight: 700; letter-spacing: 4px; color: var(--black); }
-    .nav-links { display: flex; align-items: center; gap: 2.25rem; }
+    .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 2.25rem; }
     .nav-links a { font-size: .8125rem; font-weight: 500; color: #444; }
     .nav-links a:hover { color: var(--black); }
-    .nav-badge {
-      font-size: .6875rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-      background: var(--black); color: #fff; padding: .4rem .9rem;
+    .nav-sales {
+      font-size: .78rem; font-weight: 700; letter-spacing: .4px;
+      background: var(--black); color: #fff; padding: .62rem 1rem; margin-left: auto;
     }
+    .nav-sales:hover { background: #2a2a2a; color: #fff; }
 
     /* ==== HERO ==== */
     .hero {
-      position: relative; min-height: 100vh;
-      padding: 9rem 2.5rem 4rem;
+      position: relative; min-height: 88vh;
+      padding: 7.5rem 2.5rem 3rem;
       display: flex; align-items: center;
       background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
       border-bottom: 1px solid var(--border);
@@ -69,6 +70,11 @@
     .btn-dark:hover { background: #2a2a2a; color: #fff; }
     .btn-outline { background: transparent; color: var(--black); border: 1px solid var(--border-2); }
     .btn-outline:hover { border-color: var(--black); }
+    .buyer-proof { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: .55rem; max-width: 34rem; }
+    .proof-pill {
+      font-size: .72rem; font-weight: 600; color: #444; padding: .4rem .65rem;
+      background: rgba(255,255,255,.75); border: 1px solid var(--border);
+    }
 
     .hero-art {
       position: relative; aspect-ratio: 5/3;
@@ -95,17 +101,6 @@
       font-size: .65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #333;
       padding: .35rem .65rem; background: rgba(255,255,255,.85); border: 1px solid var(--border);
     }
-
-    /* ==== METRIC STRIP ==== */
-    .strip {
-      background: var(--black); color: rgba(255,255,255,.85);
-      padding: 0 2.5rem;
-    }
-    .strip-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
-    .strip-cell { padding: 2rem 1.5rem; border-right: 1px solid rgba(255,255,255,.08); }
-    .strip-cell:last-child { border-right: none; }
-    .strip-num { font-size: 1.85rem; font-weight: 700; letter-spacing: -.02em; color: #fff; line-height: 1; margin-bottom: .35rem; }
-    .strip-lbl { font-size: .75rem; font-weight: 500; letter-spacing: .5px; color: rgba(255,255,255,.55); }
 
     /* ==== SECTION SHARED ==== */
     section { border-bottom: 1px solid var(--border); }
@@ -185,27 +180,10 @@
     .risk-h { font-size: 1.05rem; font-weight: 600; color: var(--black); margin-bottom: .55rem; line-height: 1.3; }
     .risk-d { font-size: .875rem; color: #5b5b5b; line-height: 1.7; }
 
-    .dimensions {
-      margin-top: 3rem; display: grid; grid-template-columns: 4fr 8fr; gap: 4rem; align-items: start;
-    }
-    .dim-side .num { font-size: 4.25rem; font-weight: 700; color: var(--black); letter-spacing: -.03em; line-height: 1; }
-    .dim-side .num-lbl { font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-top: .35rem; }
-    .dim-side .num-desc { margin-top: 1.25rem; font-size: .9375rem; color: #555; line-height: 1.75; max-width: 22rem; }
-    .dim-list { border-top: 1px solid var(--border); }
-    .dim-row {
-      display: grid; grid-template-columns: 3rem 1fr 7rem; gap: 1.25rem; align-items: center;
-      padding: 1.1rem 0; border-bottom: 1px solid var(--border);
-    }
-    .dim-num { font-size: .7rem; font-weight: 700; color: #888; letter-spacing: 1px; }
-    .dim-name { font-size: .95rem; font-weight: 600; color: var(--black); }
-    .dim-bar { height: 6px; background: var(--surface-2); position: relative; }
-    .dim-bar > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--black); }
-
     /* ==== LIFECYCLE TIMELINE ==== */
     .lifecycle { background: var(--surface); padding-bottom: 5.5rem; }
     .lc-rail { margin-top: 1.5rem; position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
     .lc-step { background: var(--bg); padding: 2rem 1.5rem; }
-    .lc-no { font-size: .7rem; font-weight: 700; color: #999; letter-spacing: 1.5px; margin-bottom: .75rem; display: block; }
     .lc-h { font-size: 1rem; font-weight: 600; color: var(--black); margin-bottom: .5rem; }
     .lc-d { font-size: .8125rem; color: #5b5b5b; line-height: 1.7; }
 
@@ -247,23 +225,21 @@
     .integ-kind { display: block; font-size: .68rem; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin-top: .35rem; }
     .integ-foot { margin-top: 2rem; font-size: .9rem; color: #555; max-width: 56rem; }
 
-    /* ==== STACK / SCOPE ==== */
-    .stack { padding-bottom: 5.5rem; }
-    .stack-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 4rem; }
-    .stack-list { display: flex; flex-wrap: wrap; gap: .55rem; }
-    .stack-tag {
-      font-size: .78rem; font-weight: 500; color: #333; padding: .45rem .85rem;
-      background: #fff; border: 1px solid var(--border);
+    /* ==== SALES ==== */
+    .sales { background: #fff; padding-bottom: 5.5rem; }
+    .sales-panel {
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+      border: 1px solid var(--border); background: var(--black); color: rgba(255,255,255,.78);
+      padding: 2.5rem;
     }
-    .stack-tag.k { color: #fff; background: var(--black); border-color: var(--black); }
-
-    /* ==== KEYWORDS BAR ==== */
-    .kw {
-      background: var(--black); color: rgba(255,255,255,.55); padding: 2.5rem 0;
-    }
-    .kw-inner { padding: 0 2.5rem; max-width: 1240px; margin: 0 auto; font-size: .8125rem; line-height: 1.85; }
-    .kw-label { display: block; font-size: .68rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #fff; margin-bottom: .75rem; }
-    .kw-text b { color: rgba(255,255,255,.85); font-weight: 500; }
+    .sales-aside { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .sales-aside h3 { font-size: clamp(1.45rem, 2.5vw, 2.1rem); line-height: 1.12; letter-spacing: -.02em; color: #fff; font-weight: 700; }
+    .sales-aside p { margin-top: 1rem; font-size: .95rem; line-height: 1.8; color: rgba(255,255,255,.62); }
+    .sales-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .btn-light { background: #fff; color: var(--black); }
+    .btn-light:hover { background: #e7e7e7; color: var(--black); }
+    .btn-ghost { border: 1px solid rgba(255,255,255,.32); color: #fff; }
+    .btn-ghost:hover { border-color: #fff; color: #fff; }
 
     /* ==== FOOTER ==== */
     footer { background: #050505; color: rgba(255,255,255,.55); padding: 3rem 2.5rem 2rem; }
@@ -281,21 +257,24 @@
 
     /* ==== RESPONSIVE ==== */
     @media (max-width: 1024px) {
-      .hero-inner, .sec-head, .audit-grid, .stack-grid, .dimensions, .foot-top { grid-template-columns: 1fr; gap: 2.5rem; }
-      .strip-inner, .integ-grid, .lc-rail, .risk-grid { grid-template-columns: 1fr 1fr; }
+      .hero-inner, .sec-head, .audit-grid, .foot-top { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { position: static; transform: none; margin-left: 2rem; gap: 1.25rem; }
+      .integ-grid, .lc-rail, .risk-grid { grid-template-columns: 1fr 1fr; }
       .lc-rail .lc-step { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
       .integ-cell, .risk-cell { border-right: 0; border-bottom: 1px solid var(--border); }
       .slide { grid-template-columns: 1fr; }
       .slide-text { border-right: 0; border-bottom: 1px solid var(--border); padding: 2rem; }
       .slider-stage { aspect-ratio: 3/4; }
       .foot-cols { grid-template-columns: 1fr 1fr; }
+      .sales-panel { align-items: flex-start; }
     }
     @media (max-width: 640px) {
-      nav, .container, .hero, .strip { padding-left: 1.25rem; padding-right: 1.25rem; }
+      nav, .container, .hero { padding-left: 1.25rem; padding-right: 1.25rem; }
       .nav-links { display: none; }
+      .nav-sales { display: none; }
       .hero { padding-top: 7rem; }
-      .strip-inner, .integ-grid, .risk-grid, .lc-rail, .foot-cols { grid-template-columns: 1fr; }
-      .strip-cell, .integ-cell, .risk-cell, .lc-step { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+      .integ-grid, .risk-grid, .lc-rail, .foot-cols { grid-template-columns: 1fr; }
+      .integ-cell, .risk-cell, .lc-step { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.08); }
       .foot-bottom { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -315,7 +294,7 @@
       <a href="#audit">Audit</a>
       <a href="#integrations">Integrations</a>
     </div>
-    <span class="nav-badge">In Development</span>
+    <a class="nav-sales" href="mailto:sales@aixxen.com?subject=Contact%20sales%20about%20AIXXEN">Contact Sales</a>
   </nav>
 
   <!-- ============== HERO ============== -->
@@ -324,30 +303,25 @@
       <div>
         <span class="eyebrow">AI Governance · AI TRiSM · EU AI Act</span>
         <h1 class="h-display">Operationalise the EU AI Act for your <em>entire AI portfolio.</em></h1>
-        <p class="lead">AIXXEN is an AI governance and risk management platform built for enterprise AI portfolios. It addresses what regulators, internal audit, and CIO offices now call AI TRiSM trust, risk, and security management for AI systems.</p>
+        <p class="lead">One inventory, one risk model, one evidence trail for enterprise AI governance.</p>
         <div class="actions">
-          <a href="#platform" class="btn btn-dark">Explore the Platform
+          <a href="mailto:sales@aixxen.com?subject=Contact%20sales%20about%20AIXXEN" class="btn btn-dark">Contact Sales
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
-          <a href="#risk" class="btn btn-outline">Risk Methodology</a>
+          <a href="#platform" class="btn btn-outline">Explore the Platform</a>
+        </div>
+        <div class="buyer-proof" aria-label="Buyer outcomes">
+          <span class="proof-pill">Reduce audit preparation</span>
+          <span class="proof-pill">Prioritise AI investments</span>
+          <span class="proof-pill">Govern GenAI and ML together</span>
         </div>
       </div>
       <div class="hero-art">
         <img src="assets/img/aixxen.jpg" alt="AIXXEN platform">
-        <span class="hero-art-stamp">Enterprise AI Portfolio · v1</span>
+        <span class="hero-art-stamp">Enterprise AI Portfolio</span>
       </div>
     </div>
   </section>
-
-  <!-- ============== METRIC STRIP ============== -->
-  <div class="strip">
-    <div class="strip-inner">
-      <div class="strip-cell"><div class="strip-num">4</div><div class="strip-lbl">EU AI Act risk tiers covered</div></div>
-      <div class="strip-cell"><div class="strip-num">5</div><div class="strip-lbl">Weighted scoring dimensions</div></div>
-      <div class="strip-cell"><div class="strip-num">17</div><div class="strip-lbl">Signed audit event types</div></div>
-      <div class="strip-cell"><div class="strip-num">0–100</div><div class="strip-lbl">Composite risk score</div></div>
-    </div>
-  </div>
 
   <!-- ============== SHOWCASE SLIDER ============== -->
   <section class="showcase" id="platform">
@@ -357,40 +331,40 @@
           <span class="kicker">The Platform</span>
           <h2 class="h-sec">A single source of truth for every AI system you operate.</h2>
         </div>
-        <p class="sec-body">From use-case intake through retirement, AIXXEN classifies, scores, monitors, and evidences every AI system in your enterprise wrapping LLMs, classical ML, computer vision, and agentic & RAG-based systems with the controls regulators now expect.</p>
+        <p class="sec-body">Classify, assess, monitor, and evidence LLM, ML, RAG, and agentic systems from intake to retirement.</p>
       </div>
 
       <div class="slider" id="slider">
         <div class="slider-stage" id="stage">
           <article class="slide is-active">
             <div class="slide-text">
-              <span class="slide-no">01 · Classification</span>
-              <h3 class="slide-title">Every use case mapped to the four EU AI Act risk tiers.</h3>
-              <p class="slide-desc">Intake any AI system and AIXXEN classifies it across all four EU AI Act risk tiers with automatic detection and hard blocking of prohibited AI practices before they enter production.</p>
+              <span class="slide-no">Classification</span>
+              <h3 class="slide-title">Map use cases to the right governance path.</h3>
+              <p class="slide-desc">Risk tiering at intake, including prohibited-practice blocking.</p>
             </div>
             <div class="slide-img"><img src="assets/img/EU.jpg" alt="EU AI Act classification"></div>
           </article>
           <article class="slide">
             <div class="slide-text">
-              <span class="slide-no">02 · Risk Engine</span>
-              <h3 class="slide-title">A weighted 0–100 risk score with drift detection.</h3>
-              <p class="slide-desc">Five-dimension scoring across data quality, model robustness, human oversight, transparency, and societal impact. Trend analysis and drift signals trigger automated mitigation recommendations.</p>
+              <span class="slide-no">Risk Engine</span>
+              <h3 class="slide-title">Risk signals that stay explainable.</h3>
+              <p class="slide-desc">Assessment and review logic designed to evolve with the product.</p>
             </div>
             <div class="slide-img"><img src="assets/img/Matrix.jpg" alt="Risk scoring matrix"></div>
           </article>
           <article class="slide">
             <div class="slide-text">
-              <span class="slide-no">03 · Lifecycle</span>
+              <span class="slide-no">Lifecycle</span>
               <h3 class="slide-title">Built for the model lifecycle from intake to retirement.</h3>
-              <p class="slide-desc">Every model registration, evaluation, incident, and change is captured. Evaluations recur on schedule and on event. Retirement is governed, not forgotten.</p>
+              <p class="slide-desc">Registration, evaluation, incidents, changes, and retirement in one governed flow.</p>
             </div>
-            <div class="slide-img"><img src="assets/img/Aixer.jpg" alt="Lifecycle management"></div>
+            <div class="slide-img"><img src="assets/img/aixxen2.png" alt="Lifecycle management"></div>
           </article>
           <article class="slide">
             <div class="slide-text">
-              <span class="slide-no">04 · Audit Log</span>
+              <span class="slide-no">Audit Log</span>
               <h3 class="slide-title">Append-only audit log with digital signatures.</h3>
-              <p class="slide-desc">17 signed event types give auditors the regulatory provenance trail the AI Act expects tamper-evident, queryable, and exportable.</p>
+              <p class="slide-desc">Tamper-evident records for audits, reviews, and exports.</p>
             </div>
             <div class="slide-img"><img src="assets/img/Audit.jpg" alt="Audit log"></div>
           </article>
@@ -416,46 +390,31 @@
       <div class="sec-head">
         <div>
           <span class="kicker">Risk Methodology</span>
-          <h2 class="h-sec">Classification you can defend. Scoring you can explain.</h2>
+          <h2 class="h-sec">Classification you can defend. Assessment you can explain.</h2>
         </div>
-        <p class="sec-body">AIXXEN classifies enterprise AI use cases across all four EU AI Act risk tiers, with automatic detection and hard blocking of prohibited AI practices. Around that, a weighted risk scoring engine produces a composite 0–100 score with trend analysis, drift signals, and automated mitigation recommendations.</p>
+        <p class="sec-body">EU AI Act tiering with explainable risk assessment.</p>
       </div>
 
       <div class="risk-grid">
         <div class="risk-cell">
           <span class="risk-tag t-prohibited">Prohibited</span>
           <h4 class="risk-h">Banned at intake</h4>
-          <p class="risk-d">Practices the AI Act prohibits are detected and hard-blocked before a use case can be registered.</p>
+          <p class="risk-d">Blocked before registration.</p>
         </div>
         <div class="risk-cell">
           <span class="risk-tag t-high">High Risk</span>
           <h4 class="risk-h">Full controls suite</h4>
-          <p class="risk-d">Conformity assessment templates, technical documentation, human oversight workflows, and post-market monitoring.</p>
+          <p class="risk-d">Controls, documentation, oversight, and monitoring.</p>
         </div>
         <div class="risk-cell">
           <span class="risk-tag t-limited">Limited Risk</span>
           <h4 class="risk-h">Transparency obligations</h4>
-          <p class="risk-d">Disclosure controls, AI-generated content labelling, and user notification standards enforced on deployment.</p>
+          <p class="risk-d">Disclosures, labels, and user notifications.</p>
         </div>
         <div class="risk-cell">
           <span class="risk-tag t-minimal">Minimal Risk</span>
           <h4 class="risk-h">Lightweight registration</h4>
-          <p class="risk-d">Captured in the inventory with proportional controls visible, but not over-governed.</p>
-        </div>
-      </div>
-
-      <div class="dimensions">
-        <div class="dim-side">
-          <div class="num">5</div>
-          <div class="num-lbl">Weighted dimensions</div>
-          <p class="num-desc">Each AI system is evaluated across five dimensions and rolled up into a composite 0–100 score. Weights are configurable per use case so a customer-facing classifier and an internal forecasting model are not scored the same way.</p>
-        </div>
-        <div class="dim-list">
-          <div class="dim-row"><span class="dim-num">01</span><span class="dim-name">Data quality</span><span class="dim-bar"><i style="width: 86%"></i></span></div>
-          <div class="dim-row"><span class="dim-num">02</span><span class="dim-name">Model robustness</span><span class="dim-bar"><i style="width: 72%"></i></span></div>
-          <div class="dim-row"><span class="dim-num">03</span><span class="dim-name">Human oversight</span><span class="dim-bar"><i style="width: 91%"></i></span></div>
-          <div class="dim-row"><span class="dim-num">04</span><span class="dim-name">Transparency</span><span class="dim-bar"><i style="width: 78%"></i></span></div>
-          <div class="dim-row"><span class="dim-num">05</span><span class="dim-name">Societal impact</span><span class="dim-bar"><i style="width: 64%"></i></span></div>
+          <p class="risk-d">Visible without unnecessary process.</p>
         </div>
       </div>
     </div>
@@ -469,14 +428,14 @@
           <span class="kicker">Model Lifecycle</span>
           <h2 class="h-sec">From intake to retirement, captured by design.</h2>
         </div>
-        <p class="sec-body">Every model registration, evaluation, incident, and change is captured in an append-only audit log with digital signatures across 17 event types giving auditors the regulatory provenance trail the AI Act expects.</p>
+        <p class="sec-body">Every important model event is captured, signed, and traceable.</p>
       </div>
       <div class="lc-rail">
-        <div class="lc-step"><span class="lc-no">01</span><h4 class="lc-h">Intake</h4><p class="lc-d">Use case captured, classified against the four EU AI Act risk tiers, and routed to the right governance track.</p></div>
-        <div class="lc-step"><span class="lc-no">02</span><h4 class="lc-h">Registration</h4><p class="lc-d">Model registered with owner, purpose, datasets, deployment surface, and weighted scoring profile.</p></div>
-        <div class="lc-step"><span class="lc-no">03</span><h4 class="lc-h">Evaluation</h4><p class="lc-d">Recurring and event-driven evaluation bias, robustness, drift, and human oversight signals re-scored.</p></div>
-        <div class="lc-step"><span class="lc-no">04</span><h4 class="lc-h">Operation</h4><p class="lc-d">Incidents, change requests, and retraining are tracked, signed, and pushed to ITSM and GRC systems.</p></div>
-        <div class="lc-step"><span class="lc-no">05</span><h4 class="lc-h">Retirement</h4><p class="lc-d">Models are retired through a governed workflow with final attestation and an immutable closing record.</p></div>
+        <div class="lc-step"><h4 class="lc-h">Intake</h4><p class="lc-d">Capture and classify.</p></div>
+        <div class="lc-step"><h4 class="lc-h">Registration</h4><p class="lc-d">Assign owner, purpose, and scope.</p></div>
+        <div class="lc-step"><h4 class="lc-h">Evaluation</h4><p class="lc-d">Assess risk and review controls.</p></div>
+        <div class="lc-step"><h4 class="lc-h">Operation</h4><p class="lc-d">Track change, incidents, and drift.</p></div>
+        <div class="lc-step"><h4 class="lc-h">Retirement</h4><p class="lc-d">Close with final attestation.</p></div>
       </div>
     </div>
   </section>
@@ -489,17 +448,17 @@
           <span class="kicker">Audit & Provenance</span>
           <h2 class="h-sec">An append-only record. Digitally signed. Always exportable.</h2>
         </div>
-        <p class="sec-body">17 signed event types span every governance-relevant action across the platform. Every entry is hash-chained, timestamped, and survives the people who created it exactly what auditors and regulators expect to see.</p>
+        <p class="sec-body">Signed, timestamped records for governance-relevant actions.</p>
       </div>
 
       <div class="audit-grid">
         <div class="audit-copy">
-          <h3>Built for the regulators you actually face.</h3>
-          <p>The audit subsystem is designed to answer the questions your internal audit, conformity assessor, and supervisory authority will ask without a scramble. Provenance is a property of the record, not of the report.</p>
+          <h3>Regulator-ready evidence.</h3>
+          <p>Provenance lives in the record, not in a last-minute report.</p>
           <ul>
-            <li><b>17</b><span>Signed event types covering registration, evaluation, incident, change, and retirement.</span></li>
-            <li><b>∞</b><span>Append-only log entries are hash-chained, never edited, never deleted.</span></li>
-            <li><b>NPV</b><span>Business case module produces 5-year NPV, ROI, and break-even AI gets approved on economics, not hype.</span></li>
+            <li><b>LOG</b><span>Signed event history.</span></li>
+            <li><b>AUDIT</b><span>Append-only evidence trail.</span></li>
+            <li><b>ROI</b><span>Business case support.</span></li>
           </ul>
         </div>
         <aside class="audit-log" aria-label="Sample audit log">
@@ -507,16 +466,16 @@
             <span>Audit Log</span><span>append-only · signed</span>
           </div>
           <div class="audit-log-body">
-            <div class="row"><span class="ts">14:02:11Z</span><span class="ev"><span class="k">model.registered</span> · m_4ab1 · <span class="ok">sig ok</span></span></div>
-            <div class="row"><span class="ts">14:02:14Z</span><span class="ev"><span class="k">classification.set</span> · tier=high</span></div>
-            <div class="row"><span class="ts">14:08:42Z</span><span class="ev"><span class="k">eval.scheduled</span> · cadence=14d</span></div>
-            <div class="row"><span class="ts">14:21:03Z</span><span class="ev"><span class="k">eval.run</span> · score=82 · <span class="ok">pass</span></span></div>
-            <div class="row"><span class="ts">15:10:55Z</span><span class="ev"><span class="k">drift.detected</span> · dim=data_quality · <span class="warn">−9</span></span></div>
-            <div class="row"><span class="ts">15:11:00Z</span><span class="ev"><span class="k">mitigation.proposed</span> · retrain · owner=ml-ops</span></div>
-            <div class="row"><span class="ts">15:42:18Z</span><span class="ev"><span class="k">change.opened</span> · servicenow=CHG0419</span></div>
-            <div class="row"><span class="ts">16:04:33Z</span><span class="ev"><span class="k">incident.opened</span> · sev=2 · oversight</span></div>
-            <div class="row"><span class="ts">16:05:01Z</span><span class="ev"><span class="k">attestation.signed</span> · cio · <span class="ok">sig ok</span></span></div>
-            <div class="row"><span class="ts">17:00:00Z</span><span class="ev"><span class="k">log.export</span> · auditor · range=24h</span></div>
+            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">model.registered</span> · owner assigned · <span class="ok">signed</span></span></div>
+            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">classification.set</span> · governance path selected</span></div>
+            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">eval.scheduled</span> · review cadence defined</span></div>
+            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">eval.run</span> · controls reviewed · <span class="ok">passed</span></span></div>
+            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">drift.detected</span> · data quality · <span class="warn">review</span></span></div>
+            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">mitigation.proposed</span> · owner notified</span></div>
+            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">change.opened</span> · workflow linked</span></div>
+            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">incident.opened</span> · oversight required</span></div>
+            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">attestation.signed</span> · approver · <span class="ok">signed</span></span></div>
+            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">log.export</span> · auditor package</span></div>
           </div>
         </aside>
       </div>
@@ -531,61 +490,41 @@
           <span class="kicker">Integrations</span>
           <h2 class="h-sec">Bidirectional, into the systems your enterprise already runs.</h2>
         </div>
-        <p class="sec-body">Bidirectional integrations with LeanIX (enterprise architecture) and ServiceNow (ITSM and GRC) push AI incidents and change requests into the systems enterprise teams already operate in. The architecture supports MCP-style tool integration for connecting governance data to downstream AI assistants.</p>
+        <p class="sec-body">Connect AI governance to the systems enterprise teams already use.</p>
       </div>
       <div class="integ-grid">
         <div class="integ-cell"><div class="integ-name">LeanIX</div><span class="integ-kind">Enterprise Architecture</span></div>
         <div class="integ-cell"><div class="integ-name">ServiceNow</div><span class="integ-kind">ITSM · GRC</span></div>
-        <div class="integ-cell"><div class="integ-name">MCP</div><span class="integ-kind">Tool Integration</span></div>
+        <div class="integ-cell"><div class="integ-name">AI Assistants</div><span class="integ-kind">Governance Context</span></div>
         <div class="integ-cell"><div class="integ-name">SSO / SCIM</div><span class="integ-kind">Identity</span></div>
       </div>
-      <p class="integ-foot">Designed to wrap around any model class LLMs, classical ML, computer vision, and agentic & RAG-based systems with consistent governance regardless of how the model is built or hosted.</p>
+      <p class="integ-foot">Consistent governance across model classes and hosting patterns.</p>
     </div>
   </section>
 
-  <!-- ============== STACK / SCOPE ============== -->
-  <section class="stack">
+  <!-- ============== SALES CTA ============== -->
+  <section class="sales" id="contact">
     <div class="container">
       <div class="sec-head">
         <div>
-          <span class="kicker">Scope & Stack</span>
-          <h2 class="h-sec">What AIXXEN governs, and what it's built on.</h2>
+          <span class="kicker">Contact</span>
+          <h2 class="h-sec">Talk to sales.</h2>
         </div>
-        <p class="sec-body">Stack: TypeScript, React, Node. AI governance scope covers responsible AI, model risk management, AI assurance, LLM evaluation, prompt and output monitoring, bias and fairness assessment, explainability, and human oversight workflows.</p>
+        <p class="sec-body">For pilots or enterprise review.</p>
       </div>
-      <div class="stack-grid">
-        <div>
-          <h4 style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:1rem;">Stack</h4>
-          <div class="stack-list">
-            <span class="stack-tag k">TypeScript</span><span class="stack-tag k">React</span><span class="stack-tag k">Node</span>
-            <span class="stack-tag">PostgreSQL</span><span class="stack-tag">Event log</span><span class="stack-tag">Digital signatures</span>
+      <div class="sales-panel">
+        <div class="sales-aside">
+          <div>
+            <h3>Start with a short email.</h3>
+            <p>We will route from there.</p>
           </div>
-        </div>
-        <div>
-          <h4 style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:1rem;">Governance scope</h4>
-          <div class="stack-list">
-            <span class="stack-tag">Responsible AI</span>
-            <span class="stack-tag">Model risk management</span>
-            <span class="stack-tag">AI assurance</span>
-            <span class="stack-tag">LLM evaluation</span>
-            <span class="stack-tag">Prompt &amp; output monitoring</span>
-            <span class="stack-tag">Bias &amp; fairness</span>
-            <span class="stack-tag">Explainability</span>
-            <span class="stack-tag">Human oversight</span>
-            <span class="stack-tag">Agentic &amp; RAG oversight</span>
+          <div class="sales-actions">
+            <a class="btn btn-light" href="mailto:sales@aixxen.com?subject=Contact%20sales%20about%20AIXXEN">Contact sales@aixxen.com</a>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- ============== KEYWORDS ============== -->
-  <div class="kw">
-    <div class="kw-inner">
-      <span class="kw-label">Adjacent to</span>
-      <p class="kw-text"><b>EU AI Act · AI governance · AI risk management · AI TRiSM · responsible AI · model risk management · MLOps · LLMOps · AI compliance · AI assurance · AI audit · LLM evaluation · RAG governance · agentic AI oversight · MCP · prompt monitoring · model observability · bias and fairness · explainability · human-in-the-loop · AI red teaming · NIST AI RMF · ISO 42001.</b></p>
-    </div>
-  </div>
 
   <!-- ============== FOOTER ============== -->
   <footer>
@@ -609,15 +548,13 @@
           <div class="foot-col">
             <h4>Enterprise</h4>
             <a href="#integrations">Integrations</a>
-            <span>LeanIX</span>
-            <span>ServiceNow</span>
-            <span>MCP</span>
+       
           </div>
           <div class="foot-col">
-            <h4>Maker</h4>
+            <h4>Contact</h4>
+            <a href="mailto:sales@aixxen.com?subject=Contact%20sales%20about%20AIXXEN">Sales</a>
             <a href="https://icelt.net/software.html#aixxen">Built by Philipp Eiselt</a>
             <a href="https://icelt.net">icelt.net</a>
-            <a href="mailto:eiselt.p@googlemail.com">Contact</a>
           </div>
         </div>
       </div>
