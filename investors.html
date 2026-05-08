@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AIXXEN Investor relations</title>
+  <meta name="description" content="AIXXEN is an AI portfolio cockpit for CIOs and CFOs. We are seeking pre-seed investment or strategic acquisition partners." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1f1f1f" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/Favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ax-topbar-bg: #1f1f1f;
+      --ax-topbar-text: #ffffff;
+      --ax-content-bg: #f3f3f3;
+      --ax-surface: #ffffff;
+      --ax-border: #e0e0e0;
+      --ax-border-strong: #c8c8c8;
+      --ax-text-primary: #1f1f1f;
+      --ax-text-secondary: #6b7280;
+      --ax-text-tertiary: #9ca3af;
+      --ax-status-green-bg: #e6f2ea;
+      --ax-status-green-text: #22863a;
+      --ax-status-yellow-bg: #fdf4dc;
+      --ax-status-yellow-text: #b08500;
+      --ax-status-red-bg: #fce8e9;
+      --ax-status-red-text: #cb2431;
+      --ax-status-gray-bg: #f0f0f0;
+      --ax-status-gray-text: #6b7280;
+      --ax-status-blue-bg: #e8f0fe;
+      --ax-status-blue-text: #1f6feb;
+      --ax-font: 'Inter', system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      --ax-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --ax-font-size: 14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ax-font); font-size: var(--ax-font-size); line-height: 1.6; color: var(--ax-text-primary); background: var(--ax-content-bg); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; transition: color .15s, background .15s, border-color .15s; }
+    img, svg { max-width: 100%; display: block; }
+    button { border: 0; background: none; cursor: pointer; font: inherit; color: inherit; }
+    .mono { font-family: var(--ax-mono); }
+
+    /* Topbar (match index.html exactly) */
+    .topbar { position: sticky; top: 0; z-index: 50; background: var(--ax-topbar-bg); color: var(--ax-topbar-text); height: 52px; display: flex; align-items: center; gap: 1.25rem; padding: 0 1.5rem; border-bottom: 1px solid #000; }
+    .topbar-brand { display: inline-flex; align-items: center; gap: .5rem; }
+    .topbar-brand img { height: 24px; width: auto; }
+    .topbar-roi { color: #6b727f; font-size: 12px; }
+    .topbar-divider { width: 1px; height: 20px; background: #3e3e42; }
+    .topbar-nav { display: flex; gap: 1.25rem; }
+    .topbar-nav a { font-size: 13px; color: #cccccc; }
+    .topbar-nav a.is-active { color: #ffffff; }
+    .topbar-nav a:hover { color: #ffffff; }
+    .topbar-cta { margin-left: auto; }
+    .topbar-cta .btn-primary { font-size: 12px; font-weight: 600; background: #ffffff; color: #1f1f1f; padding: .4rem .85rem; }
+    .topbar-cta .btn-primary:hover { background: #f3f3f3; }
+
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+    section { border-bottom: 1px solid var(--ax-border); }
+    .section-pad { padding: 4rem 0; }
+
+    .kicker { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ax-text-tertiary); margin-bottom: .85rem; }
+    .h-display { font-size: clamp(2rem, 4.2vw, 3.25rem); line-height: 1.08; letter-spacing: -.025em; font-weight: 700; }
+    .h-section { font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.15; letter-spacing: -.018em; font-weight: 700; }
+    .lead { font-size: 1rem; color: var(--ax-text-secondary); line-height: 1.7; }
+
+    .btn { display: inline-flex; align-items: center; gap: .5rem; font-size: 13px; font-weight: 600; padding: .75rem 1.25rem; transition: opacity .15s, background .15s, border-color .15s; }
+    .btn-primary { background: var(--ax-text-primary); color: #fff; }
+    .btn-primary:hover { background: #000; }
+    .btn-secondary { background: var(--ax-surface); color: var(--ax-text-primary); border: 1px solid var(--ax-border-strong); }
+    .btn-secondary:hover { border-color: var(--ax-text-primary); }
+
+    /* Hero investor-focused, calmer than launch hero */
+    .ir-hero { background: linear-gradient(180deg, #ffffff 0%, #f3f3f3 100%); padding: 4rem 0 3rem; }
+    .ir-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+    .ir-hero h1 { margin-bottom: 1.5rem; }
+    .ir-hero .lead { margin-bottom: 1.5rem; }
+    .ir-tag-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+    .ir-tag { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: .35rem .65rem; }
+    .ir-tag-primary { background: var(--ax-status-blue-bg); color: var(--ax-status-blue-text); }
+    .ir-tag-yellow { background: var(--ax-status-yellow-bg); color: var(--ax-status-yellow-text); }
+    .ir-tag-gray { background: var(--ax-status-gray-bg); color: var(--ax-status-gray-text); }
+    .ir-stage { background: var(--ax-surface); border: 1px solid var(--ax-border); padding: 2rem; }
+    .ir-stage-row { display: flex; justify-content: space-between; padding: .75rem 0; border-bottom: 1px solid var(--ax-border); align-items: baseline; }
+    .ir-stage-row:last-child { border-bottom: none; }
+    .ir-stage-key { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ax-text-tertiary); }
+    .ir-stage-val { font-family: var(--ax-mono); font-weight: 500; color: var(--ax-text-primary); text-align: right; }
+    .ir-stage-val small { display: block; color: var(--ax-text-tertiary); font-weight: 400; font-family: var(--ax-font); font-size: 11px; margin-top: .15rem; }
+
+    /* Section header (kicker + title row) */
+    .sec-head { display: grid; grid-template-columns: 5fr 7fr; gap: 3rem; align-items: end; margin-bottom: 1.75rem; }
+    .sec-head .lead { max-width: 580px; }
+
+    /* Stat blocks */
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--ax-border); }
+    .stat-cell { padding: 1.5rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num { font-family: var(--ax-mono); font-size: 1.75rem; font-weight: 500; color: var(--ax-text-primary); line-height: 1.1; margin-bottom: .35rem; }
+    .stat-label { font-size: 12px; color: var(--ax-text-secondary); line-height: 1.5; }
+
+    /* Two-column body */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .body-col h3 { font-size: 1.0625rem; font-weight: 600; margin-bottom: .75rem; }
+    .body-col p { font-size: .9375rem; color: var(--ax-text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+    .body-col p:last-child { margin-bottom: 0; }
+    .body-col strong { color: var(--ax-text-primary); }
+
+    /* Comp matrix */
+    .matrix { width: 100%; border-collapse: collapse; border: 1px solid var(--ax-border); background: var(--ax-surface); margin-top: 2rem; }
+    .matrix th, .matrix td { padding: .85rem 1.1rem; text-align: left; border-bottom: 1px solid var(--ax-border); border-right: 1px solid var(--ax-border); font-size: .9375rem; vertical-align: top; }
+    .matrix th { background: var(--ax-status-gray-bg); color: var(--ax-text-secondary); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .matrix td:first-child { font-weight: 600; color: var(--ax-text-primary); }
+    .matrix tr:last-child td { border-bottom: none; }
+    .matrix td:last-child, .matrix th:last-child { border-right: none; }
+    .check-yes { color: var(--ax-status-green-text); font-weight: 600; }
+    .check-partial { color: var(--ax-status-yellow-text); font-weight: 600; }
+    .check-no { color: var(--ax-text-tertiary); }
+
+    /* Roadmap rail */
+    .rail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--ax-border); }
+    .rail-cell { padding: 1.75rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); }
+    .rail-cell:last-child { border-right: none; }
+    .rail-when { font-family: var(--ax-mono); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ax-text-tertiary); margin-bottom: .25rem; }
+    .rail-h { font-size: 1.0625rem; font-weight: 600; margin-bottom: .85rem; }
+    .rail-list { list-style: none; }
+    .rail-list li { font-size: .875rem; color: var(--ax-text-secondary); padding: .25rem 0; line-height: 1.5; }
+    .rail-list li::before { content: '·  '; color: var(--ax-text-tertiary); }
+
+    /* The ask block */
+    .ask { background: var(--ax-surface); }
+    .ask-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: start; }
+    .ask-stage { border: 1px solid var(--ax-border-strong); background: #fafafa; padding: 2rem; }
+    .ask-row { padding: 1rem 0; border-bottom: 1px solid var(--ax-border); }
+    .ask-row:last-child { border-bottom: none; }
+    .ask-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ax-text-tertiary); margin-bottom: .35rem; }
+    .ask-val { font-family: var(--ax-mono); font-size: 1rem; font-weight: 500; color: var(--ax-text-primary); }
+    .ask-note { font-size: 12px; color: var(--ax-text-secondary); margin-top: .25rem; line-height: 1.5; font-family: var(--ax-font); font-weight: 400; }
+
+    /* Founder card */
+    .founder { background: var(--ax-surface); border: 1px solid var(--ax-border); padding: 2rem; display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start; }
+    .founder-name { font-size: 1.25rem; font-weight: 700; margin-bottom: .35rem; }
+    .founder-role { font-size: 12px; color: var(--ax-text-tertiary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+    .founder p { font-size: .9375rem; color: var(--ax-text-secondary); line-height: 1.7; margin-bottom: .75rem; }
+    .founder-links { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 13px; }
+    .founder-links a { color: var(--ax-text-primary); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* CTA */
+    .ir-cta { background: var(--ax-topbar-bg); color: #fff; }
+    .ir-cta .container { padding: 4.5rem 1.5rem; text-align: center; }
+    .ir-cta h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 700; line-height: 1.2; max-width: 760px; margin: 0 auto 1rem; }
+    .ir-cta .lead { color: #cccccc; max-width: 600px; margin: 0 auto 2rem; }
+    .ir-cta-buttons { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    .ir-cta .btn-primary { background: #fff; color: #1f1f1f; }
+    .ir-cta .btn-primary:hover { background: #f3f3f3; }
+    .ir-cta .btn-secondary { background: transparent; color: #fff; border-color: #6b727f; }
+    .ir-cta .btn-secondary:hover { border-color: #fff; }
+
+    /* Footer */
+    footer { background: var(--ax-topbar-bg); color: #cccccc; padding: 2rem 0; border-top: 1px solid #2e2e2e; }
+    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; font-size: 12px; }
+    .footer-links { display: flex; gap: 1.25rem; }
+    .footer-links a { color: #cccccc; }
+    .footer-links a:hover { color: #fff; }
+
+    /* Disclosure block */
+    .disclosure { background: var(--ax-status-yellow-bg); border-left: 3px solid var(--ax-status-yellow-text); padding: 1rem 1.25rem; margin: 2rem 0 0; }
+    .disclosure p { font-size: 12px; color: var(--ax-text-secondary); line-height: 1.6; }
+    .disclosure strong { color: var(--ax-status-yellow-text); }
+
+    @media (max-width: 900px) {
+      .topbar-nav { display: none; }
+      .ir-hero-grid, .two-col, .ask-grid, .sec-head { grid-template-columns: 1fr; }
+      .stat-grid, .rail-grid { grid-template-columns: 1fr; }
+      .stat-cell, .rail-cell { border-right: none; border-bottom: 1px solid var(--ax-border); }
+      .founder { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Topbar ─── -->
+  <header class="topbar">
+    <a class="topbar-brand" href="/" aria-label="AIXXEN home">
+      <img src="assets/img/logo_w.svg" alt="AIXXEN" />
+      <span class="topbar-roi">ROI</span>
+    </a>
+    <span class="topbar-divider" aria-hidden="true"></span>
+    <nav class="topbar-nav" aria-label="Main">
+      <a href="index.html#tour">Product</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="investors.html" class="is-active">Investors</a>
+    </nav>
+    <div class="topbar-cta">
+      <a class="btn-primary" href="mailto:service@icelt.net?subject=AIXXEN%20investor%20inquiry">Get in touch</a>
+    </div>
+  </header>
+
+  <!-- ─── IR hero ─── -->
+  <section class="ir-hero">
+    <div class="container">
+      <div class="ir-hero-grid">
+        <div>
+          <span class="kicker">Investor relations</span>
+          <h1 class="h-display">A vendor-neutral cockpit for the new largest line item on every IT budget.</h1>
+          <div class="ir-tag-row">
+            <span class="ir-tag ir-tag-primary">Pre-seed open</span>
+            <span class="ir-tag ir-tag-yellow">Buyout open to discuss</span>
+            <span class="ir-tag ir-tag-gray">Solo founder · full-stack</span>
+          </div>
+          <p class="lead">
+            AIXXEN is the AI portfolio cockpit for CIOs and CFOs of mid-market and enterprise organisations. We turn fragmented AI vendor spend, business cases, and adoption signal into a single decision surface. Product is built, demonstrable, and seeded with realistic enterprise data.
+          </p>
+          <p class="lead">
+            We are exploring two parallel paths in 2026: a pre-seed round to fund design-partner expansion and a first hire, or a strategic acquisition by an EA / FinOps / SaaS-management incumbent for whom AI cost intelligence is a wedge product they would otherwise have to build.
+          </p>
+          <a class="btn btn-primary" href="mailto:service@icelt.net?subject=AIXXEN%20investor%20inquiry">
+            Get in touch →
+          </a>
+        </div>
+        <aside class="ir-stage">
+          <div class="ir-stage-row">
+            <div class="ir-stage-key">Stage</div>
+            <div class="ir-stage-val">Pre-seed<small>Product built · pre-revenue · pre-launch</small></div>
+          </div>
+          <div class="ir-stage-row">
+            <div class="ir-stage-key">Founded</div>
+            <div class="ir-stage-val">2025<small>Solo build, full-stack</small></div>
+          </div>
+          <div class="ir-stage-row">
+            <div class="ir-stage-key">Round target</div>
+            <div class="ir-stage-val">Disclosed under NDA<small>Pre-seed · sized to milestones</small></div>
+          </div>
+          <div class="ir-stage-row">
+            <div class="ir-stage-key">Use of funds</div>
+            <div class="ir-stage-val">Design partners<small>GTM hire · enterprise infrastructure</small></div>
+          </div>
+          <div class="ir-stage-row">
+            <div class="ir-stage-key">Acquisition signal</div>
+            <div class="ir-stage-val">Open<small>EA / FinOps / SaaS-management strategic fit</small></div>
+          </div>
+          <div class="ir-stage-row">
+            <div class="ir-stage-key">Contact</div>
+            <div class="ir-stage-val"><a href="mailto:service@icelt.net" style="text-decoration: underline;">service@icelt.net</a></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Why now ─── -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">Market</span>
+          <h2 class="h-section">AI tool sprawl now equals SaaS sprawl 2017 but moving 5x faster.</h2>
+        </div>
+        <p class="lead">CFOs that ignored generic SaaS spend in 2017 were running unaudited 7-figure budgets by 2020. AI is moving faster. The audit gap is closing fast but the ROI gap is wide open and unaddressed by adjacent tooling.</p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-num">3.4×</div>
+          <div class="stat-label">growth in enterprise AI tool count, 2024 → 2026</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">distinct AI vendors a typical mid-market org now pays directly</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">71%</div>
+          <div class="stat-label">of orgs cannot quantify their realised AI ROI on demand</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">~30%</div>
+          <div class="stat-label">average gap: vendor pitch numbers vs. CFO-attested savings</div>
+        </div>
+      </div>
+
+      <div class="disclosure">
+        <p><strong>Sources.</strong> AIXXEN customer interviews and analyst signal, 2025–26. We do not represent these as analyst-house figures; we represent them as the operator pattern we observe directly. Source list available on request.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Wedge ─── -->
+  <section class="section-pad" style="background: var(--ax-surface);">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">The wedge</span>
+          <h2 class="h-section">The vendors won the AI race. The leverage moved to the workforce.</h2>
+        </div>
+        <p class="lead">Existing tooling treats AI as a procurement category, a compliance question, or a generic SaaS line item. None measure the gap that actually drives ROI.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="body-col">
+          <h3>What we observe</h3>
+          <p>
+            <strong>The AI itself is no longer the bottleneck.</strong> OpenAI, Anthropic, Microsoft and Google ship cheaper, faster, more capable models every quarter. The same tool deployed in two organisations produces wildly different outcomes and the difference is rarely the model.
+          </p>
+          <p>
+            The AI ROI conversation has moved entirely to the workforce side: how well employees have been trained to use the tools, motivated to adopt them, and given the time to build new habits. Until you can measure that, every soft-saving projection is a vendor pitch.
+          </p>
+          <p>
+            <strong>Capability is the missing primitive.</strong> Every adjacent tool EA, FinOps, governance, model risk assumes the value is in the AI. AIXXEN inverts that. The product is the workforce; the AI is a tool. We measure both sides, on one page.
+          </p>
+        </div>
+
+        <div class="body-col">
+          <h3>What that produces</h3>
+          <p>
+            A defensible CFO conversation. Hard P&amp;L savings (booked, attested) sit in a different column from soft potential (capacity freed). Soft potential is multiplied by an organisation-specific capability factor before it lands anywhere near a board pack.
+          </p>
+          <p>
+            A targeted CIO conversation. Capability scores per department surface where training and enablement spend will produce the biggest delta. Shadow AI share surfaces the spend that's happening outside procurement.
+          </p>
+          <p>
+            <strong>Defensibility lives in the measurement methodology.</strong> The capability factor is calibrated by a proprietary anonymous instrument that produces tenant-specific numbers not vendor benchmarks. The methodology is the moat; details under NDA.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Competitive matrix ─── -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">Competitive landscape</span>
+          <h2 class="h-section">The CIO's AI question doesn't have a vendor today.</h2>
+        </div>
+        <p class="lead">Adjacent products solve adjacent problems. None puts AI vendor spend, business case attribution, capability measurement, and a 5-year plan-of-record on the same surface.</p>
+      </div>
+
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>AIXXEN</th>
+            <th>EA / SAM<br/><small>LeanIX, Flexera</small></th>
+            <th>FinOps<br/><small>Apptio, CloudHealth</small></th>
+            <th>AI governance<br/><small>Credo, Holistic, FairNow</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vendor-neutral AI spend</td>
+            <td><span class="check-yes">✓ Native</span></td>
+            <td><span class="check-partial">~ Generic SaaS</span></td>
+            <td><span class="check-no">— Cloud-only</span></td>
+            <td><span class="check-no">— Out of scope</span></td>
+          </tr>
+          <tr>
+            <td>Hard vs soft benefit accounting</td>
+            <td><span class="check-yes">✓ At data model</span></td>
+            <td><span class="check-no">— No model</span></td>
+            <td><span class="check-no">— No model</span></td>
+            <td><span class="check-no">— Out of scope</span></td>
+          </tr>
+          <tr>
+            <td>Capability measurement</td>
+            <td><span class="check-yes">✓ Proprietary</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+          </tr>
+          <tr>
+            <td>5-year roadmap (plan-of-record)</td>
+            <td><span class="check-yes">✓ Native</span></td>
+            <td><span class="check-partial">~ Project EA</span></td>
+            <td><span class="check-no">— Cost only</span></td>
+            <td><span class="check-no">— Out of scope</span></td>
+          </tr>
+          <tr>
+            <td>EU AI Act compliance</td>
+            <td><span class="check-no">— Deliberately out</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-yes">✓ Core</span></td>
+          </tr>
+          <tr>
+            <td>Time to first board pack</td>
+            <td><span class="check-yes">≤ 1 month</span></td>
+            <td><span class="check-no">3–6 months</span></td>
+            <td><span class="check-partial">2–3 months</span></td>
+            <td><span class="check-partial">2–3 months</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ─── Product status ─── -->
+  <section class="section-pad" style="background: var(--ax-surface);">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">Product status</span>
+          <h2 class="h-section">Built. Demonstrable. Seeded with realistic enterprise data.</h2>
+        </div>
+        <p class="lead">AIXXEN is a single-tenant production-grade application, not a deck with screenshots. Live demo available on request.</p>
+      </div>
+
+      <div class="rail-grid">
+        <div class="rail-cell">
+          <div class="rail-when">Shipped</div>
+          <div class="rail-h">Core product</div>
+          <ul class="rail-list">
+            <li>Tools &amp; vendors page (filter rail, vendor spend chart, league table, renewal Gantt)</li>
+            <li>Use cases pipeline with typed business cases (hard / soft separation)</li>
+            <li>5-year portfolio roadmap with cluster filters</li>
+            <li>Custom report builder (4 sources, 5 presentations, saved views, CSV export)</li>
+            <li>Anonymous capability survey with k≥5 suppression</li>
+            <li>Auth0 SSO · multi-tenant infrastructure</li>
+          </ul>
+        </div>
+        <div class="rail-cell">
+          <div class="rail-when">Live</div>
+          <div class="rail-h">Demo &amp; data model</div>
+          <ul class="rail-list">
+            <li>Import templates for tools, spend, headcount, use cases (CSV and Excel today; API on the roadmap)</li>
+            <li>Realistic seed data set: 24 months of vendor spend across multiple categories</li>
+            <li>End-to-end demo on representative enterprise data</li>
+          </ul>
+        </div>
+        <div class="rail-cell">
+          <div class="rail-when">Next</div>
+          <div class="rail-h">Post-funding priorities</div>
+          <ul class="rail-list">
+            <li>First design-partner engagements</li>
+            <li>Founding GTM / commercial hire</li>
+            <li>EU-resident production hosting</li>
+            <li>Further product roadmap detailed under NDA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Business model ─── -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">Business model</span>
+          <h2 class="h-section">Annual contracts. Tier on portfolio scale, not headcount.</h2>
+        </div>
+        <p class="lead">Per-seat pricing is wrong for this category a 10,000-seat org with 4 AI tools should not pay 100× a 100-seat org with 4 AI tools. We tier on AI tool count and use-case scale.</p>
+      </div>
+
+      <div class="rail-grid">
+        <div class="rail-cell">
+          <div class="rail-when">Tier 1 Pilot</div>
+          <div class="rail-h">Annual contract</div>
+          <ul class="rail-list">
+            <li>1 tenant, up to 50 use cases, 10 tools</li>
+            <li>Quarterly capability survey</li>
+            <li>Data import (CSV / Excel) · all dashboards</li>
+            <li>Email support · 1 admin seat</li>
+          </ul>
+        </div>
+        <div class="rail-cell">
+          <div class="rail-when">Tier 2 Growth</div>
+          <div class="rail-h">Annual contract</div>
+          <ul class="rail-list">
+            <li>Multi-department, 200 use cases, unlimited tools</li>
+            <li>Monthly survey · custom report builder</li>
+            <li>Vendor pack export · audit trail</li>
+            <li>Slack support · 5 admin seats</li>
+          </ul>
+        </div>
+        <div class="rail-cell">
+          <div class="rail-when">Tier 3 Enterprise</div>
+          <div class="rail-h">Custom</div>
+          <ul class="rail-list">
+            <li>Multi-tenant rollups (holding companies)</li>
+            <li>SSO · SCIM · integrations · dedicated CS</li>
+            <li>EU-resident hosting · custom DPA</li>
+            <li>Migration / change-management services</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="lead" style="margin-top: 2rem; max-width: 760px;">
+        Tier sizing reflects the operator pattern we observe: a 1,000-employee organisation paying for 8–15 distinct AI tools justifies the per-portfolio investment more readily than per-seat pricing would. Specific pricing and customer-acquisition assumptions can be shared on request.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── The ask ─── -->
+  <section class="ask section-pad">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">The ask</span>
+          <h2 class="h-section">Two paths. Both real.</h2>
+        </div>
+        <p class="lead">We are evaluating both routes. Whichever clears first wins. Founder is candid about either outcome.</p>
+      </div>
+
+      <div class="ask-grid">
+        <div class="body-col">
+          <h3>Path A Pre-seed round</h3>
+          <p>
+            A pre-seed round on a SAFE or priced basis, EU jurisdiction, sized to the milestones below. Strategic angels, AI-focused funds, and operator capital with FinOps / EA / B2B-SaaS exits preferred. Lead investor coordinated with co-investors welcome.
+          </p>
+          <p>
+            <strong>Use of funds:</strong> a founding GTM / sales hire, three paid design partners, EU hosting infrastructure, and light marketing sized for runway to a defensible Series-A gate.
+          </p>
+          <p>
+            <strong>Targets at month 12:</strong> first paid customers and design-partner case studies. Specific milestones and round size shared on request.
+          </p>
+        </div>
+
+        <div class="ask-stage">
+          <div class="ask-row">
+            <div class="ask-label">Round</div>
+            <div class="ask-val">Disclosed under NDA
+              <div class="ask-note">Pre-seed · SAFE or priced</div>
+            </div>
+          </div>
+          <div class="ask-row">
+            <div class="ask-label">Runway target</div>
+            <div class="ask-val">To Series-A gate
+              <div class="ask-note">Sized to defensible milestones</div>
+            </div>
+          </div>
+          <div class="ask-row">
+            <div class="ask-label">First hire</div>
+            <div class="ask-val">GTM / sales lead
+              <div class="ask-note">Founding commercial role</div>
+            </div>
+          </div>
+          <div class="ask-row">
+            <div class="ask-label">Design partners</div>
+            <div class="ask-val">3 paid
+              <div class="ask-note">EU mid-market AI portfolios</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr style="border: none; border-top: 1px solid var(--ax-border); margin: 3rem 0;" />
+
+      <div class="ask-grid">
+        <div class="body-col">
+          <h3>Path B — Strategic acquisition</h3>
+          <p>
+            For incumbents in adjacent categories — enterprise architecture, FinOps, IT financial management, SaaS / vendor management — for whom <strong>AI cost intelligence is a wedge product</strong> they would otherwise have to build from scratch.
+          </p>
+          <p>
+            What's on offer: a shippable product, an opinionated data model (hard / soft benefit separation, capability factor), and a clean modern stack (TypeScript / Next.js / PostgreSQL) designed for hand-off.
+          </p>
+          <p>
+            Open to <strong>acqui-hire, asset purchase, or full acquisition</strong>. Specific terms — including IP scope, founder involvement, and timing — to be agreed mutually.
+          </p>
+        </div>
+
+        <div class="ask-stage">
+          <div class="ask-row">
+            <div class="ask-label">Modalities considered</div>
+            <div class="ask-val">Asset · equity · acqui-hire
+              <div class="ask-note">All three on the table</div>
+            </div>
+          </div>
+          <div class="ask-row">
+            <div class="ask-label">IP scope</div>
+            <div class="ask-val">To be agreed
+              <div class="ask-note">Codebase, data model, and methodology in scope under NDA</div>
+            </div>
+          </div>
+          <div class="ask-row">
+            <div class="ask-label">Founder involvement</div>
+            <div class="ask-val">Open to discuss
+              <div class="ask-note">Continued involvement is possible if wanted</div>
+            </div>
+          </div>
+          <div class="ask-row">
+            <div class="ask-label">Strategic fit</div>
+            <div class="ask-val">EA · FinOps · ITAM
+              <div class="ask-note">SaaS / vendor management adjacency</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Founder ─── -->
+  <section class="section-pad" style="background: var(--ax-surface);">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">Team</span>
+          <h2 class="h-section">Solo founder, full-stack. Built the thing.</h2>
+        </div>
+        <p class="lead">First hire post-funding is GTM. Engineering is solo and shippable; the product is built and demonstrable today.</p>
+      </div>
+
+      <div class="founder">
+        <div>
+          <div class="founder-name">Philipp Eiselt</div>
+          <div class="founder-role">Founder · Product · Engineering</div>
+          <div class="ir-tag-row">
+            <span class="ir-tag ir-tag-gray">Full-stack</span>
+            <span class="ir-tag ir-tag-gray">Product</span>
+            <span class="ir-tag ir-tag-gray">Enterprise</span>
+          </div>
+        </div>
+        <div class="body-col" style="grid-column: span 1;">
+          <p>
+            Solo full-stack builder of AIXXEN. Designed and shipped the current product surface — front-end, back-end, data model, demo data — on a Next.js / TypeScript / PostgreSQL stack chosen for clean hand-off.
+          </p>
+          <p>
+            More background, prior work, and references available on request — see LinkedIn for the public version.
+          </p>
+          <div class="founder-links">
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn →</a>
+            <a href="mailto:service@icelt.net">Email →</a>
+            <a href="https://www.aixxen.com" target="_blank" rel="noopener">www.aixxen.com →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Confidentiality ─── -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">Next step</span>
+          <h2 class="h-section">Start with a conversation.</h2>
+        </div>
+        <p class="lead">There's no virtual data room and no fixed process. Send a note describing your interest and I'll respond personally.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="body-col">
+          <h3>What I can show you today</h3>
+          <p>
+            <strong>The product.</strong> A live walkthrough of the application on representative enterprise data — the same product the launch site screenshots are taken from.
+          </p>
+          <p>
+            <strong>The methodology.</strong> An informal walkthrough of the data model, the hard-vs-soft separation, and the capability-factor calculation, on a screen-share.
+          </p>
+          <p>
+            <strong>The thinking.</strong> Honest answers about scope, traction, what's built, what isn't, and where the moat actually sits.
+          </p>
+        </div>
+        <div class="body-col">
+          <h3>What comes after</h3>
+          <p>
+            If there's mutual interest, we agree a mutual NDA and I share whatever specific materials you ask for — in writing or live, whatever's most useful.
+          </p>
+          <p>
+            I am one person doing this honestly. I won't pretend to have a 14-day diligence track or a polished data room. What I have is a working product, a clear thesis, and the willingness to talk about both candidly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="ir-cta">
+    <div class="container">
+      <h2>The AI cost-intelligence category will exist.<br/>Build the cockpit, or buy it.</h2>
+      <p class="lead">Either way, we welcome the conversation. EU and US business hours, same-day response.</p>
+      <div class="ir-cta-buttons">
+        <a class="btn btn-primary" href="mailto:service@icelt.net?subject=AIXXEN%20pre-seed%20inquiry">Pre-seed inquiry</a>
+        <a class="btn btn-secondary" href="mailto:service@icelt.net?subject=AIXXEN%20acquisition%20inquiry">Strategic acquisition</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <div class="topbar-brand"><img src="assets/img/logo_w.svg" alt="AIXXEN" /></div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#tour">Product</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="mailto:service@icelt.net">Contact</a>
+        </div>
+        <div style="color: #6b727f;">© 2026 AIXXEN · Investor relations</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

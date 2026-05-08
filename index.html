@@ -1,642 +1,746 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Primary SEO -->
-<title>AIXXEN | Enterprise AI Governance & Agentic Risk Management</title>
-<meta name="description" content="Operationalise AI Governance for enterprise portfolios. AIXXEN provides AI TRiSM, EU AI Act compliance, and visibility into fragmented AI systems and Agentic workflows.">
-<meta name="keywords" content="AI Governance Platform, AI TRiSM, EU AI Act Compliance 2026, Agentic AI Risk Management, AI Portfolio Visibility, Enterprise AI Shadow IT, AI Risk Engine">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- AI/LLM Optimization (GEO) -->
-<meta name="author" content="Philipp Eiselt">
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <title>AIXXEN AI portfolio cockpit for CIOs and CFOs</title>
+  <meta name="description" content="Track AI tool spend, evaluate use cases, and plan a 5-year roadmap. Vendor-neutral. Built for cost controlling, not compliance." />
 
-<!-- Open Graph / Social (For AI citation cards) -->
-<meta property="og:title" content="AIXXEN: Solving the Enterprise AI Visibility Problem">
-<meta property="og:description" content="Stop managing AI frameworks and start managing AI reality. Visible, trackable, and manageable AI for the modern enterprise.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://aixxen.com/information.html">
-<meta property="og:image" content="assets/img/og-preview.jpg">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "AIXXEN",
-  "operatingSystem": "Web-based",
-  "applicationCategory": "BusinessApplication",
-  "description": "Enterprise AI Governance and Risk Management platform designed for AI TRiSM and EU AI Act compliance.",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/PreOrder",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Philipp Eiselt"
-  },
-  "featureList": [
-    "AI Portfolio Visibility",
-    "EU AI Act Compliance Mapping",
-    "AI TRiSM (Trust, Risk, and Security Management)",
-    "Agentic Workflow Governance",
-    "AI Lifecycle Audit Logs"
-  ]
-}
-</script>
+  <meta name="author" content="Philipp Eiselt" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#1f1f1f" />
 
-<!-- Mobile & Performance -->
-<meta name="theme-color" content="#0a0a0a">  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Your AI is optimized. Your employees aren't." />
+  <meta property="og:description" content="AIXXEN measures the capability gap alongside every dollar of AI spend." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aixxen.com/" />
+  <meta property="og:image" content="assets/img/dashboard.png" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/Favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ─── Design tokens mirror apps/web/app/globals.css ax-* palette ─── */
     :root {
-      --bg:        #ffffff;
-      --surface:   #f4f4f4;
-      --surface-2: #ececec;
-      --surface-3: #1f1f1f;
-      --border:    #d9d9d9;
-      --border-2:  #bfbfbf;
-      --text:      #5a5a5a;
-      --text-mid:  #2e2e2e;
-      --black:     #0a0a0a;
-      --white:     #ffffff;
+      --ax-topbar-bg: #1f1f1f;
+      --ax-topbar-text: #ffffff;
+      --ax-content-bg: #f3f3f3;
+      --ax-surface: #ffffff;
+      --ax-border: #e0e0e0;
+      --ax-border-strong: #c8c8c8;
+      --ax-text-primary: #1f1f1f;
+      --ax-text-secondary: #6b7280;
+      --ax-text-tertiary: #9ca3af;
+
+      --ax-status-green-bg: #e6f2ea;
+      --ax-status-green-text: #22863a;
+      --ax-status-yellow-bg: #fdf4dc;
+      --ax-status-yellow-text: #b08500;
+      --ax-status-red-bg: #fce8e9;
+      --ax-status-red-text: #cb2431;
+      --ax-status-gray-bg: #f0f0f0;
+      --ax-status-gray-text: #6b7280;
+
+      --ax-font: 'Inter', system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      --ax-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --ax-font-size: 14px;
     }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text-mid); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; transition: color .2s, background .2s, border-color .2s; }
+    body {
+      font-family: var(--ax-font);
+      font-size: var(--ax-font-size);
+      line-height: 1.55;
+      color: var(--ax-text-primary);
+      background: var(--ax-content-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; transition: color .15s, background .15s, border-color .15s; }
     img, svg { max-width: 100%; display: block; }
-    button { border: 0; background: none; cursor: pointer; font-family: inherit; color: inherit; }
-    /* No border-radius anywhere corporate. */
+    button { border: 0; background: none; cursor: pointer; font: inherit; color: inherit; }
+    .mono { font-family: var(--ax-mono); }
 
-    /* ==== NAV ==== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: flex-start;
-      padding: 0 2.5rem; height: 64px;
+    /* ─── Topbar exact match to AppShell ─── */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--ax-topbar-bg); color: var(--ax-topbar-text);
+      height: 52px;
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 0 1.5rem;
+      border-bottom: 1px solid #000;
     }
-    .nav-brand { display: flex; align-items: center; gap: .8rem; }
-    .nav-mark { width: 30px; height: 30px; background: #f1f1f1; border: 1px solid var(--border); display:flex; align-items:center; justify-content:center; }
-    .nav-mark svg { width: 100%; height: 100%; }
-    .nav-word { font-size: .95rem; font-weight: 700; letter-spacing: 4px; color: var(--black); }
-    .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 2.25rem; }
-    .nav-links a { font-size: .8125rem; font-weight: 500; color: #444; }
-    .nav-links a:hover { color: var(--black); }
-    .nav-sales {
-      font-size: .78rem; font-weight: 700; letter-spacing: .4px;
-      background: var(--black); color: #fff; padding: .62rem 1rem; margin-left: auto;
+    .topbar-brand { display: inline-flex; align-items: center; gap: .5rem; }
+    .topbar-brand img { height: 24px; width: auto; }
+    .topbar-roi { color: #6b727f; font-size: 12px; }
+    .topbar-divider { width: 1px; height: 20px; background: #3e3e42; }
+    .topbar-nav { display: flex; gap: 1.25rem; }
+    .topbar-nav a { font-size: 13px; color: #cccccc; }
+    .topbar-nav a:hover { color: #ffffff; }
+    .topbar-cta { margin-left: auto; display: flex; gap: .5rem; align-items: center; }
+    .topbar-cta .pill {
+      font-size: 11px; padding: .25rem .5rem;
+      background: var(--ax-status-yellow-bg); color: var(--ax-status-yellow-text);
+      border: 1px solid var(--ax-status-yellow-text);
     }
-    .nav-sales:hover { background: #2a2a2a; color: #fff; }
+    .topbar-cta .btn-primary {
+      font-size: 12px; font-weight: 600;
+      background: #ffffff; color: #1f1f1f;
+      padding: .4rem .85rem;
+    }
+    .topbar-cta .btn-primary:hover { background: #f3f3f3; }
 
-    /* ==== HERO ==== */
-    .hero {
-      position: relative; min-height: 88vh;
-      padding: 7.5rem 2.5rem 3rem;
-      display: flex; align-items: center;
-      background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
-      border-bottom: 1px solid var(--border);
-    }
-    .hero-inner { max-width: 1240px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 6fr 5fr; gap: 5rem; align-items: center; }
-    .eyebrow { display: inline-flex; align-items:center; gap:.6rem; font-size:.7rem; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#777; margin-bottom: 1.75rem; }
-    .eyebrow::before { content:''; width: 28px; height:1px; background:#777; }
-    .h-display { font-size: clamp(2.5rem, 5.2vw, 4.4rem); font-weight: 700; line-height: 1.04; letter-spacing: -.025em; color: var(--black); margin-bottom: 1.5rem; }
-    .h-display em { font-style: normal; color: #777; }
-    .lead { font-size: 1.0625rem; color: #555; line-height: 1.75; max-width: 32rem; margin-bottom: 2.25rem; }
-    .actions { display: flex; gap: .75rem; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items:center; gap:.55rem; font-size: .8125rem; font-weight: 600; letter-spacing: .4px; padding: .85rem 1.6rem; }
-    .btn-dark { background: var(--black); color: #fff; }
-    .btn-dark:hover { background: #2a2a2a; color: #fff; }
-    .btn-outline { background: transparent; color: var(--black); border: 1px solid var(--border-2); }
-    .btn-outline:hover { border-color: var(--black); }
-    .buyer-proof { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: .55rem; max-width: 34rem; }
-    .proof-pill {
-      font-size: .72rem; font-weight: 600; color: #444; padding: .4rem .65rem;
-      background: rgba(255,255,255,.75); border: 1px solid var(--border);
+    /* ─── Layout primitives ─── */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    section { border-bottom: 1px solid var(--ax-border); }
+    .section-pad { padding: 4rem 0; }
+
+    .kicker {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--ax-text-tertiary); margin-bottom: .85rem;
     }
 
-    .hero-art {
-      position: relative; aspect-ratio: 5/3;
-      background: linear-gradient(170deg, #ffffff 0%, #e6e6e6 100%);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.06), 0 1px 0 #fff inset;
+    .h-display {
+      font-size: clamp(2.5rem, 5vw, 4.25rem);
+      line-height: 1.04; letter-spacing: -.025em;
+      font-weight: 700; color: var(--ax-text-primary);
     }
-.hero-art img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: left center;
-}
-    .hero-art::after {
-      content:''; position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(255,255,255,.55) 100%);
+    .h-display .muted { color: var(--ax-text-tertiary); display: block; }
+    .h-section {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      line-height: 1.12; letter-spacing: -.02em;
+      font-weight: 700; color: var(--ax-text-primary);
     }
-    .hero-art-stamp {
-      position: absolute; left: 1.25rem; bottom: 1.25rem; z-index: 2;
-      font-size: .65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #333;
-      padding: .35rem .65rem; background: rgba(255,255,255,.85); border: 1px solid var(--border);
-    }
+    .lead { font-size: 1.0625rem; color: var(--ax-text-secondary); line-height: 1.7; }
 
-    /* ==== SECTION SHARED ==== */
-    section { border-bottom: 1px solid var(--border); }
-    .container { max-width: 1240px; margin: 0 auto; padding: 0 2.5rem; }
-    .sec-head { display: grid; grid-template-columns: 5fr 7fr; gap: 4rem; padding: 5.5rem 0 3rem; align-items: end; }
-    .kicker { font-size:.7rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--black); display:flex; align-items:center; gap:.6rem; margin-bottom: 1rem; }
-    .kicker::before { content:''; width: 22px; height: 1px; background: var(--black); }
-    .h-sec { font-size: clamp(1.875rem, 3.4vw, 2.875rem); font-weight: 700; color: var(--black); line-height: 1.12; letter-spacing: -.022em; }
-    .sec-body { font-size: .95rem; color: #5b5b5b; line-height: 1.85; }
-
-    /* ==== APPLE-STYLE SHOWCASE SLIDER ==== */
-    .showcase { background: var(--surface); padding-bottom: 5rem; }
-    .slider {
-      position: relative; margin-top: 1.25rem;
-      background: var(--bg); border: 1px solid var(--border);
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: 13px; font-weight: 600; letter-spacing: .2px;
+      padding: .75rem 1.25rem;
+      transition: opacity .15s, background .15s;
     }
-    
-    .slider-stage {
-      position: relative; aspect-ratio: 16 / 9;
-      background: #efefef;
+    .btn-primary { background: var(--ax-text-primary); color: #fff; }
+    .btn-primary:hover { background: #000; }
+    .btn-secondary {
+      background: var(--ax-surface); color: var(--ax-text-primary);
+      border: 1px solid var(--ax-border-strong);
+    }
+    .btn-secondary:hover { border-color: var(--ax-text-primary); }
+    .btn-arrow svg { width: 12px; height: 12px; transition: transform .15s; }
+    .btn:hover .btn-arrow svg { transform: translateX(3px); }
+
+    /* ─── Screenshot frame: chop only the browser chrome at the top of the source ─── */
+    .shot {
+      position: relative;
+      aspect-ratio: 16 / 9.7;
+      background: #f7f7f7;
+      border: 1px solid var(--ax-border);
       overflow: hidden;
     }
-    .status-tag {
-  font-size: 0.65rem;
-  color: #777;
-  margin-left: 10px;
-  border: 1px solid var(--border);
-  padding: 2px 8px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-    .slide {
+    .shot img.shot-img {
       position: absolute; inset: 0;
-      opacity: 0; transition: opacity .55s ease;
-      display: grid; grid-template-columns: 5fr 7fr;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: bottom;     /* crops the browser chrome at top */
     }
-    .slide.is-active { opacity: 1; z-index: 2; }
-    .slide-text {
-      padding: 3.25rem 3rem;
+    .shot-mask {
+      position: absolute; left: 0; bottom: 0;
+      width: 78px; height: 56px;
+      background: #1f1f1f;
+      display: flex; align-items: center; justify-content: center;
+      padding: 10px 14px;
+      z-index: 2;
+    }
+    .shot-mask img { height: 80%; width: auto; object-fit: contain; }
+
+    /* ─── Hero ─── */
+    .hero { background: linear-gradient(180deg, #ffffff 0%, #f3f3f3 100%); }
+    .hero-inner { padding: 4rem 0 5rem; display: grid; gap: 3rem; }
+    .hero-text { text-align: center; max-width: 760px; margin: 0 auto; }
+    .hero-text .lead { margin: 1.5rem auto 2rem; max-width: 580px; }
+    .hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; }
+
+    /* Hero carousel (kept from prior site, restyled) */
+    .hero-carousel { max-width: 1100px; margin: 0 auto; width: 100%; }
+    .hero-stage { position: relative; aspect-ratio: 16 / 9.7; background: #f7f7f7; border: 1px solid var(--ax-border); overflow: hidden; box-shadow: 0 24px 56px rgba(0,0,0,0.07); }
+    .hero-stage img.hero-slide {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: bottom;
+      opacity: 0; transition: opacity .55s ease;
+    }
+    .hero-stage img.hero-slide.is-active { opacity: 1; }
+    .hero-stage .shot-mask { left: 8px; bottom: 8px; }
+    .hero-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .75rem 1.25rem;
+      background: #fff; border: 1px solid var(--ax-border); border-top: none;
+    }
+    .hero-bar .dots { display: flex; gap: .5rem; }
+    .hero-bar .dot {
+      width: 28px; height: 4px; background: #d6d6d6; cursor: pointer;
+      transition: background .15s;
+    }
+    .hero-bar .dot.is-active { background: var(--ax-text-primary); }
+    .hero-bar .label { font-size: 11px; color: var(--ax-text-tertiary); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ─── Reframe section (the wedge) ─── */
+    .reframe { background: var(--ax-surface); }
+    .reframe-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; }
+    .reframe-stat { font-family: var(--ax-mono); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 500; color: var(--ax-text-primary); line-height: 1.1; }
+    .reframe-stat-label { font-size: .9375rem; color: var(--ax-text-secondary); margin-top: .25rem; line-height: 1.5; }
+    .reframe-stat-row { padding: 1.25rem 0; border-bottom: 1px solid var(--ax-border); }
+    .reframe-stat-row:last-child { border-bottom: none; }
+
+    /* ─── Three questions ─── */
+    .questions { background: var(--ax-content-bg); }
+    .q-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--ax-border); margin-top: 2.5rem; }
+    .q-cell { padding: 2rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); }
+    .q-cell:last-child { border-right: none; }
+    .q-cell h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.35; }
+    .q-cell ul { list-style: none; }
+    .q-cell li { padding: .35rem 0; color: var(--ax-text-secondary); border-top: 1px solid var(--ax-border); padding-left: 0; }
+    .q-cell li:first-child { border-top: none; }
+    .q-cell li::before { content: '→ '; color: var(--ax-text-tertiary); }
+
+    /* ─── Product tour slider ─── */
+    .tour { background: var(--ax-surface); }
+    .tour-slider { border: 1px solid var(--ax-border); margin-top: 2.5rem; background: #fafafa; }
+    .tour-slide { display: none; grid-template-columns: 5fr 7fr; min-height: 420px; }
+    .tour-slide.is-active { display: grid; }
+    .tour-slide-text {
+      padding: 2.75rem 2.5rem;
       background: #fafafa;
-      border-right: 1px solid var(--border);
+      border-right: 1px solid var(--ax-border);
       display: flex; flex-direction: column; justify-content: center;
     }
-    .slide-no { font-size: .7rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-bottom: .75rem; }
-    .slide-title { font-size: clamp(1.4rem, 2.4vw, 1.95rem); font-weight: 700; color: var(--black); letter-spacing: -.02em; line-height: 1.18; margin-bottom: 1rem; }
-    .slide-desc { font-size: .95rem; color: #555; line-height: 1.8; }
-    .slide-img { position: relative; background: #1a1a1a; }
-    .slide-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%) contrast(1.02); }
-    .slide-img::after {
-      content:''; position:absolute; inset:0;
-      background: linear-gradient(135deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.35) 100%);
-    }
-    .slider-ctrls {
+    .tour-no { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ax-text-tertiary); margin-bottom: .75rem; }
+    .tour-title { font-size: 1.5rem; font-weight: 700; line-height: 1.2; letter-spacing: -.015em; margin-bottom: 1rem; }
+    .tour-desc { font-size: .9375rem; color: var(--ax-text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+    .tour-anti { font-size: .8125rem; font-style: italic; color: var(--ax-text-tertiary); border-left: 2px solid var(--ax-status-yellow-text); padding-left: .85rem; }
+    .tour-shot { position: relative; }
+    .tour-shot .shot { aspect-ratio: 16 / 9.7; height: 100%; min-height: 300px; border: none; border-left: 1px solid var(--ax-border); }
+    .tour-ctrl {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 1.5rem; border-top: 1px solid var(--border); background: #fff;
+      padding: .85rem 1.25rem; border-top: 1px solid var(--ax-border); background: #fff;
     }
-    .slider-dots { display: flex; gap: .5rem; }
-    .dot {
-      width: 28px; height: 4px; background: #d6d6d6; cursor: pointer; transition: background .2s;
+    .tour-tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .tour-tab {
+      font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase;
+      padding: .5rem .85rem; border: 1px solid var(--ax-border);
+      background: var(--ax-surface); color: var(--ax-text-secondary);
     }
-    .dot.is-active { background: var(--black); }
-    .slider-arrows { display: flex; gap: .5rem; }
-    .arrow {
-      width: 38px; height: 38px; border: 1px solid var(--border-2); display: flex; align-items: center; justify-content: center;
-      transition: background .2s, color .2s, border-color .2s;
-    }
-    .arrow:hover { background: var(--black); color: #fff; border-color: var(--black); }
-    .arrow svg { width: 14px; height: 14px; }
+    .tour-tab.is-active { background: var(--ax-text-primary); color: #fff; border-color: var(--ax-text-primary); }
 
-    /* ==== RISK ENGINE TABLE ==== */
-    .risk { padding-bottom: 5.5rem; }
-    .risk-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); }
-    .risk-cell {
-      padding: 1.75rem 1.5rem; border-right: 1px solid var(--border); background: #fff;
-      transition: background .2s;
-    }
-    .risk-cell:last-child { border-right: none; }
-    .risk-cell:hover { background: var(--surface); }
-    .risk-tag {
-      display: inline-block; font-size: .6875rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-      padding: .25rem .6rem; margin-bottom: 1rem;
-    }
-    .risk-tag.t-prohibited { background: var(--black); color: #fff; }
-    .risk-tag.t-high      { background: #2a2a2a; color: #fff; }
-    .risk-tag.t-limited   { background: var(--surface-2); color: var(--black); border: 1px solid var(--border); }
-    .risk-tag.t-minimal   { background: var(--surface);  color: #555; border: 1px solid var(--border); }
-    .risk-h { font-size: 1.05rem; font-weight: 600; color: var(--black); margin-bottom: .55rem; line-height: 1.3; }
-    .risk-d { font-size: .875rem; color: #5b5b5b; line-height: 1.7; }
+    /* ─── Anti-claim ─── */
+    .anti { background: var(--ax-content-bg); }
+    .anti-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid var(--ax-border); margin-top: 2rem; }
+    .anti-cell { padding: 1.5rem 1.75rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); border-bottom: 1px solid var(--ax-border); }
+    .anti-cell:nth-child(2n) { border-right: none; }
+    .anti-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .anti-cell .x { color: var(--ax-status-red-text); font-family: var(--ax-mono); font-size: 1.25rem; margin-right: .5rem; }
+    .anti-cell strong { font-weight: 600; }
 
-    /* ==== LIFECYCLE TIMELINE ==== */
-    .lifecycle { background: var(--surface); padding-bottom: 5.5rem; }
-    .lc-rail { margin-top: 1.5rem; position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .lc-step { background: var(--bg); padding: 2rem 1.5rem; }
-    .lc-h { font-size: 1rem; font-weight: 600; color: var(--black); margin-bottom: .5rem; }
-    .lc-d { font-size: .8125rem; color: #5b5b5b; line-height: 1.7; }
+    /* ─── Capability edge ─── */
+    .edge { background: var(--ax-surface); }
+    .edge-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; }
+    .quote { font-family: var(--ax-mono); font-size: 1.125rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-left: 3px solid var(--ax-text-primary); background: var(--ax-status-gray-bg); margin: .5rem 0; }
+    .quote.muted { color: var(--ax-text-secondary); border-left-color: var(--ax-text-tertiary); }
+    .edge-vs { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ax-text-tertiary); margin: .25rem 0 .25rem; }
 
-    /* ==== AUDIT LOG ==== */
-    .audit { padding-bottom: 5.5rem; }
-    .audit-grid { display: grid; grid-template-columns: 6fr 6fr; gap: 4rem; align-items: stretch; }
-    .audit-copy h3 { font-size: 1.25rem; font-weight: 600; color: var(--black); margin: 1.5rem 0 .5rem; }
-    .audit-copy p { font-size: .9375rem; color: #555; line-height: 1.8; }
-    .audit-copy ul { list-style: none; margin-top: 1.25rem; border-top: 1px solid var(--border); }
-    .audit-copy li { display: grid; grid-template-columns: 2rem 1fr; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; color: #444; }
-    .audit-copy li b { color: var(--black); font-weight: 700; font-size: .75rem; letter-spacing: 1px; }
-    .audit-log {
-      background: var(--surface-3); color: rgba(255,255,255,.85); border: 1px solid #000;
-      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: .78rem; line-height: 1.65; overflow: hidden;
-    }
-    .audit-log-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: .85rem 1.1rem; background: #2a2a2a; border-bottom: 1px solid #000; color: #ddd;
-      font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
-    }
-    .audit-log-head span:last-child { color: #888; letter-spacing: 1px; }
-    .audit-log-body { padding: 1.25rem 1.1rem; min-height: 320px; max-height: 360px; overflow: hidden; }
-    .audit-log-body .row { display: grid; grid-template-columns: 6.5rem 1fr; gap: .9rem; padding: .25rem 0; }
-    .audit-log-body .ts { color: #6c6c6c; }
-    .audit-log-body .ev { color: #d6d6d6; }
-    .audit-log-body .ev .k { color: #aaa; }
-    .audit-log-body .ev .ok { color: #b8d4ff; }
-    .audit-log-body .ev .warn { color: #f0b86b; }
+    /* ─── How it works ─── */
+    .how { background: var(--ax-content-bg); }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+    .how-step { background: var(--ax-surface); border: 1px solid var(--ax-border); padding: 1.75rem; }
+    .how-step-no { font-family: var(--ax-mono); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ax-text-tertiary); margin-bottom: .25rem; }
+    .how-step-when { font-size: 1.125rem; font-weight: 600; margin-bottom: .75rem; }
+    .how-step-body { font-size: .9375rem; color: var(--ax-text-secondary); line-height: 1.6; }
 
-    /* ==== INTEGRATIONS ==== */
-    .integ { background: var(--surface); padding-bottom: 5.5rem; }
-    .integ-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border); }
-    .integ-cell {
-      padding: 2rem 1.5rem; background: #fff; border-right: 1px solid var(--border); text-align: center;
-    }
-    .integ-cell:last-child { border-right: none; }
-    .integ-name { font-size: .9rem; font-weight: 700; color: var(--black); letter-spacing: .5px; }
-    .integ-kind { display: block; font-size: .68rem; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin-top: .35rem; }
-    .integ-foot { margin-top: 2rem; font-size: .9rem; color: #555; max-width: 56rem; }
+    /* ─── Personas ─── */
+    .personas { background: var(--ax-surface); }
+    .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--ax-border); margin-top: 2.5rem; }
+    .persona-card { padding: 2rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); }
+    .persona-card:last-child { border-right: none; }
+    .persona-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: .25rem .65rem; background: var(--ax-status-gray-bg); color: var(--ax-status-gray-text); margin-bottom: 1rem; }
+    .persona-card h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: .85rem; }
+    .persona-card p { font-size: .9375rem; color: var(--ax-text-secondary); line-height: 1.7; }
 
-    /* ==== SALES ==== */
-    .sales { background: #fff; padding-bottom: 5.5rem; }
-    .sales-panel {
-      display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
-      border: 1px solid var(--border); background: var(--black); color: rgba(255,255,255,.78);
-      padding: 2.5rem;
+    /* ─── FAQ ─── */
+    .faq { background: var(--ax-content-bg); }
+    .faq-list { margin-top: 2.5rem; border: 1px solid var(--ax-border); background: var(--ax-surface); }
+    .faq-item { border-bottom: 1px solid var(--ax-border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%; text-align: left;
+      padding: 1.25rem 1.5rem;
+      font-size: 1rem; font-weight: 600;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
     }
-    .sales-aside { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-    .sales-aside h3 { font-size: clamp(1.45rem, 2.5vw, 2.1rem); line-height: 1.12; letter-spacing: -.02em; color: #fff; font-weight: 700; }
-    .sales-aside p { margin-top: 1rem; font-size: .95rem; line-height: 1.8; color: rgba(255,255,255,.62); }
-    .sales-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
-    .btn-light { background: #fff; color: var(--black); }
-    .btn-light:hover { background: #e7e7e7; color: var(--black); }
-    .btn-ghost { border: 1px solid rgba(255,255,255,.32); color: #fff; }
-    .btn-ghost:hover { border-color: #fff; color: #fff; }
-
-    /* ==== FOOTER ==== */
-    footer { background: #050505; color: rgba(255,255,255,.55); padding: 3rem 2.5rem 2rem; }
-    .foot-inner { max-width: 1240px; margin: 0 auto; }
-    .foot-top { display: grid; grid-template-columns: 4fr 8fr; gap: 4rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.08); }
-    .foot-brand { display: flex; align-items: center; gap: .9rem; }
-    .foot-brand .nav-mark { width: 34px; height: 34px; background: #f1f1f1; border-color: rgba(255,255,255,.1); }
-    .foot-brand .nav-word { color: #fff; font-size: 1rem; }
-    .foot-tag { margin-top: 1rem; font-size: .85rem; color: rgba(255,255,255,.45); max-width: 18rem; line-height: 1.7; }
-    .foot-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .foot-col h4 { font-size: .7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 1rem; }
-    .foot-col a, .foot-col span { display: block; font-size: .85rem; color: rgba(255,255,255,.5); padding: .25rem 0; }
-    .foot-col a:hover { color: #fff; }
-    .foot-bottom { padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: .78rem; color: rgba(255,255,255,.4); letter-spacing: .3px; }
-
-    /* ==== RESPONSIVE ==== */
-    @media (max-width: 1024px) {
-      .hero-inner, .sec-head, .audit-grid, .foot-top { grid-template-columns: 1fr; gap: 2.5rem; }
-      .nav-links { position: static; transform: none; margin-left: 2rem; gap: 1.25rem; }
-      .integ-grid, .lc-rail, .risk-grid { grid-template-columns: 1fr 1fr; }
-      .lc-rail .lc-step { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-      .integ-cell, .risk-cell { border-right: 0; border-bottom: 1px solid var(--border); }
-      .slide { grid-template-columns: 1fr; }
-      .slide-text { border-right: 0; border-bottom: 1px solid var(--border); padding: 2rem; }
-      .slider-stage { aspect-ratio: 3/4; }
-      .foot-cols { grid-template-columns: 1fr 1fr; }
-      .sales-panel { align-items: flex-start; }
+    .faq-q:hover { background: #fafafa; }
+    .faq-q .toggle { font-family: var(--ax-mono); color: var(--ax-text-tertiary); font-weight: 400; }
+    .faq-a {
+      display: none;
+      padding: 0 1.5rem 1.25rem;
+      font-size: .9375rem; color: var(--ax-text-secondary); line-height: 1.7;
     }
-    @media (max-width: 640px) {
-      nav, .container, .hero { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .nav-links { display: none; }
-      .nav-sales { display: none; }
-      .hero { padding-top: 7rem; }
-      .integ-grid, .risk-grid, .lc-rail, .foot-cols { grid-template-columns: 1fr; }
-      .integ-cell, .risk-cell, .lc-step { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.08); }
-      .foot-bottom { flex-direction: column; align-items: flex-start; }
+    .faq-item.is-open .faq-a { display: block; }
+    .faq-item.is-open .faq-q .toggle::before { content: '−'; }
+    .faq-q .toggle::before { content: '+'; }
+
+    /* ─── Final CTA ─── */
+    .cta { background: var(--ax-topbar-bg); color: #fff; }
+    .cta .container { padding: 5rem 1.5rem; text-align: center; }
+    .cta h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.15; letter-spacing: -.02em; max-width: 720px; margin: 0 auto 1.5rem; }
+    .cta-buttons { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    .cta .btn-primary { background: #fff; color: #1f1f1f; }
+    .cta .btn-primary:hover { background: #f3f3f3; }
+    .cta .btn-secondary { background: transparent; color: #fff; border-color: #6b727f; }
+    .cta .btn-secondary:hover { border-color: #fff; }
+    .cta-mail { margin-top: 1.25rem; color: #9ca3af; font-size: 13px; }
+    .cta-mail a { color: #fff; }
+
+    /* ─── Footer ─── */
+    footer { background: var(--ax-topbar-bg); color: #cccccc; padding: 2rem 0; border-top: 1px solid #2e2e2e; }
+    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; font-size: 12px; }
+    .footer-links { display: flex; gap: 1.25rem; }
+    .footer-links a { color: #cccccc; }
+    .footer-links a:hover { color: #fff; }
+
+    /* ─── Section header (kicker + title row) ─── */
+    .sec-head { display: grid; grid-template-columns: 5fr 7fr; gap: 3rem; align-items: end; margin-bottom: 1rem; }
+    .sec-head .lead { max-width: 580px; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .topbar-nav { display: none; }
+      .reframe-grid, .edge-grid, .sec-head { grid-template-columns: 1fr; gap: 1.5rem; }
+      .q-grid, .how-grid, .persona-grid { grid-template-columns: 1fr; }
+      .q-cell, .persona-card { border-right: none; border-bottom: 1px solid var(--ax-border); }
+      .anti-grid { grid-template-columns: 1fr; }
+      .anti-cell { border-right: none; }
+      .tour-slide.is-active { grid-template-columns: 1fr; }
+      .tour-slide-text { border-right: none; border-bottom: 1px solid var(--ax-border); }
     }
   </style>
 </head>
 <body>
 
-  <!-- ============== NAV ============== -->
-  <nav id="nav">
-    <div class="nav-brand">
-      <span class="nav-mark"><img src="assets/img/aixxen-logo.svg" alt="AIXXEN"></span>
-      <span class="nav-word">AIXXEN</span>
+  <!-- ─── Topbar ─── -->
+  <header class="topbar">
+    <a class="topbar-brand" href="/" aria-label="AIXXEN home">
+      <img src="assets/img/logo_w.svg" alt="AIXXEN" />
+      <span class="topbar-roi">ROI</span>
+    </a>
+    <span class="topbar-divider" aria-hidden="true"></span>
+    <nav class="topbar-nav" aria-label="Main">
+      <a href="#reframe">Why AIXXEN</a>
+      <a href="#tour">Product</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="investors.html">Investors</a>
+    </nav>
+    <div class="topbar-cta">
+      <span class="pill">In development</span>
+      <a class="btn-primary" href="mailto:service@icelt.net?subject=AIXXEN%20demo%20request">Book a demo</a>
     </div>
-  <div class="nav-links">
-  <a href="#platform">Platform</a>
-  <a href="#risk">Risk Engine</a>
-  <a href="#lifecycle">Lifecycle</a>
-  <a href="#audit">Audit</a>
-  <a href="#integrations">Integrations</a>
-  <a href="information.html">Investors</a>
-  
-</div>
-    <a class="nav-sales" href="mailto:service@icelt.net?subject=Contact%20sales%20about%20AIXXEN">Contact Sales</a>
-    <span class="status-tag">In Development</span>
-  </nav>
+  </header>
 
-  <!-- ============== HERO ============== -->
+  <!-- ─── Hero ─── -->
   <section class="hero">
-    <div class="hero-inner">
-      <div>
-        <span class="eyebrow">AI Governance · AI TRiSM · EU AI Act</span>
-        <h1 class="h-display">Operationalise the AI policy tracking for your <em>entire AI portfolio.</em></h1>
-        <p class="lead">One inventory, one risk model, one evidence trail for enterprise AI governance.</p>
-        <div class="actions">
-          <a href="mailto:service@icelt.net?subject=Contact%20sales%20about%20AIXXEN" class="btn btn-dark">Contact Sales
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#platform" class="btn btn-outline">Explore the Platform</a>
+    <div class="container hero-inner">
+      <div class="hero-carousel">
+        <div class="hero-stage" id="hero-stage">
+          <img class="hero-slide is-active shot-img" src="assets/img/dashboard.png" alt="AIXXEN dashboard" />
+          <img class="hero-slide shot-img" src="assets/img/roadmap-horizontal.png" alt="AIXXEN portfolio roadmap" />
+          <img class="hero-slide shot-img" src="assets/img/business-cases.png" alt="AIXXEN business cases" />
+          <img class="hero-slide shot-img" src="assets/img/use-case-list.png" alt="AIXXEN use cases" />
+          <img class="hero-slide shot-img" src="assets/img/aixxen-10-capabilties-portoflio-survey.png" alt="AIXXEN capability survey" />
+          <img class="hero-slide shot-img" src="assets/img/reports-table-output.png" alt="AIXXEN reports" />
+          <div class="shot-mask" aria-hidden="true">
+            <img src="assets/img/logo.svg" alt="" />
+          </div>
         </div>
-        <div class="buyer-proof" aria-label="Buyer outcomes">
-          <span class="proof-pill">Reduce audit preparation</span>
-          <span class="proof-pill">Prioritise AI investments</span>
-          <span class="proof-pill">Govern GenAI and ML together</span>
+        <div class="hero-bar">
+          <span class="label">Live product · 6 surfaces</span>
+          <div class="dots" id="hero-dots"></div>
         </div>
       </div>
-      <div class="hero-art">
-        <img src="assets/img/aixxen.jpg" alt="AIXXEN platform">
-        <span class="hero-art-stamp">Enterprise AI Portfolio</span>
+
+      <div class="hero-text">
+        <span class="kicker">AI portfolio cockpit</span>
+        <h1 class="h-display">
+          Your AI is optimized.
+          <span class="muted">Your employees aren't.</span>
+        </h1>
+        <p class="lead">
+          AIXXEN measures the capability gap alongside every dollar of AI spend so CIOs and CFOs can fix both. Vendor-neutral. No compliance overhead. Built for cost-controlling, not procurement.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:service@icelt.net?subject=AIXXEN%20demo%20request">
+            Book a 30-min demo
+            <span class="btn-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="btn btn-secondary" href="#tour">See the dashboard</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============== SHOWCASE SLIDER ============== -->
-  <section class="showcase" id="platform">
+  <!-- ─── §2 Reframe ─── -->
+  <section class="reframe section-pad" id="reframe">
     <div class="container">
-      <div class="sec-head">
+      <div class="reframe-grid">
         <div>
-          <span class="kicker">The Platform</span>
-          <h2 class="h-sec">A single source of truth for every AI system you operate.</h2>
+          <span class="kicker">The reframe</span>
+          <h2 class="h-section" style="margin-bottom: 1.5rem;">Your product is not the AI.<br/>It's your employees.</h2>
+          <p class="lead" style="margin-bottom: 1.25rem;">
+            The vendors won the AI optimization race. OpenAI, Anthropic, Microsoft, Google ship a better, cheaper, faster model every quarter. The AI itself is no longer the bottleneck.
+          </p>
+          <p class="lead" style="margin-bottom: 1.25rem;">
+            Your AI ROI now lives entirely on the workforce side. The same tool deployed in two organizations produces wildly different outcomes. The difference isn't the model it's how well your employees have been trained to use it, motivated to adopt it, and given the time to build the new habits.
+          </p>
+          <p class="lead">
+            That makes your <strong style="color: var(--ax-text-primary);">employees the new product</strong>. The surface area you have to develop, measure, and improve. AIXXEN puts both numbers on the same page.
+          </p>
         </div>
-        <p class="sec-body">Classify, assess, monitor, and evidence LLM, ML, RAG, and agentic systems from intake to retirement.</p>
-      </div>
 
-      <div class="slider" id="slider">
-        <div class="slider-stage" id="stage">
-          <article class="slide is-active">
-            <div class="slide-text">
-              <span class="slide-no">Classification</span>
-              <h3 class="slide-title">Map use cases to the right governance path.</h3>
-              <p class="slide-desc">Risk tiering at intake, including prohibited-practice blocking.</p>
-            </div>
-            <div class="slide-img"><img src="assets/img/EU.jpg" alt="EU AI Act classification"></div>
-          </article>
-          <article class="slide">
-            <div class="slide-text">
-              <span class="slide-no">Risk Engine</span>
-              <h3 class="slide-title">Risk signals that stay explainable.</h3>
-              <p class="slide-desc">Assessment and review logic designed to evolve with the product.</p>
-            </div>
-            <div class="slide-img"><img src="assets/img/Matrix.jpg" alt="Risk scoring matrix"></div>
-          </article>
-          <article class="slide">
-            <div class="slide-text">
-              <span class="slide-no">Lifecycle</span>
-              <h3 class="slide-title">Built for the model lifecycle from intake to retirement.</h3>
-              <p class="slide-desc">Registration, evaluation, incidents, changes, and retirement in one governed flow.</p>
-            </div>
-            <div class="slide-img"><img src="assets/img/aixxen2.png" alt="Lifecycle management"></div>
-          </article>
-          <article class="slide">
-            <div class="slide-text">
-              <span class="slide-no">Audit Log</span>
-              <h3 class="slide-title">Append-only audit log with digital signatures.</h3>
-              <p class="slide-desc">Tamper-evident records for audits, reviews, and exports.</p>
-            </div>
-            <div class="slide-img"><img src="assets/img/Audit.jpg" alt="Audit log"></div>
-          </article>
-        </div>
-        <div class="slider-ctrls">
-          <div class="slider-dots" id="dots"></div>
-          <div class="slider-arrows">
-            <button class="arrow" id="prev" aria-label="Previous">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="arrow" id="next" aria-label="Next">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
+        <div>
+          <div class="reframe-stat-row">
+            <div class="reframe-stat">3.4×</div>
+            <div class="reframe-stat-label">growth in enterprise AI tool count, 2024 → 2026</div>
+          </div>
+          <div class="reframe-stat-row">
+            <div class="reframe-stat">71%</div>
+            <div class="reframe-stat-label">of orgs can't tell you their realised ROI on AI tools</div>
+          </div>
+          <div class="reframe-stat-row">
+            <div class="reframe-stat">~30%</div>
+            <div class="reframe-stat-label">average gap between vendor pitch numbers and CFO-attested savings</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============== RISK ENGINE ============== -->
-  <section class="risk" id="risk">
+  <!-- ─── §3 Three exec questions ─── -->
+  <section class="questions section-pad">
     <div class="container">
       <div class="sec-head">
         <div>
-          <span class="kicker">Risk Methodology</span>
-          <h2 class="h-sec">Classification you can defend. Assessment you can explain.</h2>
+          <span class="kicker">The 30-second scan</span>
+          <h2 class="h-section">Three questions every CIO and CFO should answer in 30 seconds.</h2>
         </div>
-        <p class="sec-body">AI and Data Policy tiering with explainable risk assessment.</p>
+        <p class="lead">If your dashboard can't answer all three on one screen, it failed. AIXXEN answers all three on a single scroll.</p>
       </div>
 
-      <div class="risk-grid">
-        <div class="risk-cell">
-          <span class="risk-tag t-prohibited">Prohibited</span>
-          <h4 class="risk-h">Banned at intake</h4>
-          <p class="risk-d">Blocked before registration.</p>
-        </div>
-        <div class="risk-cell">
-          <span class="risk-tag t-high">High Risk</span>
-          <h4 class="risk-h">Full controls suite</h4>
-          <p class="risk-d">Controls, documentation, oversight, and monitoring.</p>
-        </div>
-        <div class="risk-cell">
-          <span class="risk-tag t-limited">Limited Risk</span>
-          <h4 class="risk-h">Transparency obligations</h4>
-          <p class="risk-d">Disclosures, labels, and user notifications.</p>
-        </div>
-        <div class="risk-cell">
-          <span class="risk-tag t-minimal">Minimal Risk</span>
-          <h4 class="risk-h">Lightweight registration</h4>
-          <p class="risk-d">Visible without unnecessary process.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== LIFECYCLE ============== -->
-  <section class="lifecycle" id="lifecycle">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Model Lifecycle</span>
-          <h2 class="h-sec">From intake to retirement, captured by design.</h2>
-        </div>
-        <p class="sec-body">Every important model event is captured, signed, and traceable.</p>
-      </div>
-      <div class="lc-rail">
-        <div class="lc-step"><h4 class="lc-h">Intake</h4><p class="lc-d">Capture and classify.</p></div>
-        <div class="lc-step"><h4 class="lc-h">Registration</h4><p class="lc-d">Assign owner, purpose, and scope.</p></div>
-        <div class="lc-step"><h4 class="lc-h">Evaluation</h4><p class="lc-d">Assess risk and review controls.</p></div>
-        <div class="lc-step"><h4 class="lc-h">Operation</h4><p class="lc-d">Track change, incidents, and drift.</p></div>
-        <div class="lc-step"><h4 class="lc-h">Retirement</h4><p class="lc-d">Close with final attestation.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== AUDIT ============== -->
-  <section class="audit" id="audit">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Audit & Provenance</span>
-          <h2 class="h-sec">An append-only record. Digitally signed. Always exportable.</h2>
-        </div>
-        <p class="sec-body">Signed, timestamped records for governance-relevant actions.</p>
-      </div>
-
-      <div class="audit-grid">
-        <div class="audit-copy">
-          <h3>Regulator-ready evidence.</h3>
-          <p>Provenance lives in the record, not in a last-minute report.</p>
+      <div class="q-grid">
+        <div class="q-cell">
+          <h3>"Where is our AI money going?"</h3>
           <ul>
-            <li><b>LOG</b><span>Signed event history.</span></li>
-            <li><b>AUDIT</b><span>Append-only evidence trail.</span></li>
-            <li><b>ROI</b><span>Business case support.</span></li>
+            <li>Vendor-by-vendor lifetime spend</li>
+            <li>Category mix and utilization</li>
+            <li>Renewal cliffs flagged at 30 / 90 days</li>
           </ul>
         </div>
-        <aside class="audit-log" aria-label="Sample audit log">
-          <div class="audit-log-head">
-            <span>Audit Log</span><span>append-only · signed</span>
-          </div>
-          <div class="audit-log-body">
-            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">model.registered</span> · owner assigned · <span class="ok">signed</span></span></div>
-            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">classification.set</span> · governance path selected</span></div>
-            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">eval.scheduled</span> · review cadence defined</span></div>
-            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">eval.run</span> · controls reviewed · <span class="ok">passed</span></span></div>
-            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">drift.detected</span> · data quality · <span class="warn">review</span></span></div>
-            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">mitigation.proposed</span> · owner notified</span></div>
-            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">change.opened</span> · workflow linked</span></div>
-            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">incident.opened</span> · oversight required</span></div>
-            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">attestation.signed</span> · approver · <span class="ok">signed</span></span></div>
-            <div class="row"><span class="ts">event</span><span class="ev"><span class="k">log.export</span> · auditor package</span></div>
-          </div>
-        </aside>
+        <div class="q-cell">
+          <h3>"What is it earning us?"</h3>
+          <ul>
+            <li>Hard P&amp;L savings booked, attested</li>
+            <li>Soft potential capability-adjusted</li>
+            <li>Strict separation. CFO never sees them blended.</li>
+          </ul>
+        </div>
+        <div class="q-cell">
+          <h3>"Are our people ready for more?"</h3>
+          <ul>
+            <li>Capability score per department</li>
+            <li>Adoption breadth across roles</li>
+            <li>Shadow AI share the spend you don't see</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============== INTEGRATIONS ============== -->
-  <section class="integ" id="integrations">
+  <!-- ─── §4 Product tour ─── -->
+  <section class="tour section-pad" id="tour">
     <div class="container">
       <div class="sec-head">
         <div>
-          <span class="kicker">Integrations</span>
-          <h2 class="h-sec">Bidirectional, into the systems your enterprise already runs.</h2>
+          <span class="kicker">Product tour</span>
+          <h2 class="h-section">Three surfaces. One coherent answer.</h2>
         </div>
-        <p class="sec-body">Connect AI governance to the systems enterprise teams already use.</p>
+        <p class="lead">From every dollar paid to every AI vendor, to use-case-by-use-case business cases, to a 5-year plan-of-record roadmap.</p>
       </div>
-      <div class="integ-grid">
-        <div class="integ-cell"><div class="integ-name">LeanIX</div><span class="integ-kind">Enterprise Architecture</span></div>
-        <div class="integ-cell"><div class="integ-name">ServiceNow</div><span class="integ-kind">ITSM · GRC</span></div>
-        <div class="integ-cell"><div class="integ-name">AI Assistants</div><span class="integ-kind">Governance Context</span></div>
-        <div class="integ-cell"><div class="integ-name">SSO / SCIM</div><span class="integ-kind">Identity</span></div>
+
+      <div class="tour-slider">
+        <div class="tour-slide is-active" data-slide="0">
+          <div class="tour-slide-text">
+            <span class="tour-no">01 · Tools &amp; vendors</span>
+            <h3 class="tour-title">Every dollar paid to every AI vendor, on one page.</h3>
+            <p class="tour-desc">Stacked spend over time. Top-vendor concentration. Cost vs utilization quadrant the tools wasting money are visible at a glance. Renewal Gantt. Invoice ledger. Vendor lifetime totals sortable in one click.</p>
+            <p class="tour-anti">No procurement workflow, no PO numbers, no MSA register. Cost controlling full stop.</p>
+          </div>
+          <div class="tour-shot">
+            <div class="shot">
+              <img class="shot-img" src="assets/img/dashboard.png" alt="Tools and vendors view" />
+              <div class="shot-mask" aria-hidden="true"><img src="assets/img/logo.svg" alt="" /></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-slide" data-slide="1">
+          <div class="tour-slide-text">
+            <span class="tour-no">02 · Use cases &amp; business cases</span>
+            <h3 class="tour-title">Hard vs soft benefits separated at the data model.</h3>
+            <p class="tour-desc">Track every AI use case from idea to production. Typed business case with hard P&amp;L benefits (booked, attested) strictly separated from soft potential (capacity freed). Capability factor applied automatically to soft estimates. ROI-positive use cases counted.</p>
+            <p class="tour-anti">No vendor's pitch number ever lands in your CFO's spreadsheet untouched.</p>
+          </div>
+          <div class="tour-shot">
+            <div class="shot">
+              <img class="shot-img" src="assets/img/business-cases.png" alt="Business cases view" />
+              <div class="shot-mask" aria-hidden="true"><img src="assets/img/logo.svg" alt="" /></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-slide" data-slide="2">
+          <div class="tour-slide-text">
+            <span class="tour-no">03 · 5-year roadmap</span>
+            <h3 class="tour-title">Plan-of-record across the next 60 months.</h3>
+            <p class="tour-desc">Contracted costs. Planned business cases. Realised savings extending forward. Cluster filters by status, department, vendor, capability or value stream. Build a portfolio slice in three clicks.</p>
+            <p class="tour-anti">Not a forecast. Not Monte Carlo. Not "AI uplift multipliers." Just what's already on the books.</p>
+          </div>
+          <div class="tour-shot">
+            <div class="shot">
+              <img class="shot-img" src="assets/img/roadmap-horizontal.png" alt="5-year roadmap view" />
+              <div class="shot-mask" aria-hidden="true"><img src="assets/img/logo.svg" alt="" /></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-slide" data-slide="3">
+          <div class="tour-slide-text">
+            <span class="tour-no">04 · Reports &amp; capability</span>
+            <h3 class="tour-title">Custom reports. Capability scoreboards. Board-pack ready.</h3>
+            <p class="tour-desc">Build any cross-source query as a table, bar, line, pie or KPI. Save your views. Capability score per department, adoption breadth, shadow AI share surfaced alongside spend, never apart from it.</p>
+            <p class="tour-anti">Built for the operator who lives in the data.</p>
+          </div>
+          <div class="tour-shot">
+            <div class="shot">
+              <img class="shot-img" src="assets/img/aixxen-10-capabilties-portoflio-survey.png" alt="Capability portfolio view" />
+              <div class="shot-mask" aria-hidden="true"><img src="assets/img/logo.svg" alt="" /></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-ctrl">
+          <div class="tour-tabs" id="tour-tabs">
+            <button class="tour-tab is-active" data-tab="0">Tools &amp; vendors</button>
+            <button class="tour-tab" data-tab="1">Use cases</button>
+            <button class="tour-tab" data-tab="2">Roadmap</button>
+            <button class="tour-tab" data-tab="3">Reports</button>
+          </div>
+        </div>
       </div>
-      <p class="integ-foot">Consistent governance across model classes and hosting patterns.</p>
     </div>
   </section>
 
-  <!-- ============== SALES CTA ============== -->
-  <section class="sales" id="contact">
+  <!-- ─── §5 Anti-claim ─── -->
+  <section class="anti section-pad">
     <div class="container">
       <div class="sec-head">
         <div>
-          <span class="kicker">Contact</span>
-          <h2 class="h-sec">Talk to sales.</h2>
+          <span class="kicker">Boundaries</span>
+          <h2 class="h-section">Be clear about what we don't do.</h2>
         </div>
-        <p class="sec-body">For pilots or enterprise review.</p>
+        <p class="lead">AIXXEN is for cost controlling and portfolio intelligence. If you need any of the below, we'll point you at the vendor that does it well.</p>
       </div>
-      <div class="sales-panel">
-        <div class="sales-aside">
-          <div>
-            <h3>Start with a short email.</h3>
-            <p>We will route from there.</p>
-          </div>
-          <div class="sales-actions">
-            <a class="btn btn-light" href="mailto:service@icelt.net?subject=Contact%20sales%20about%20AIXXEN">Contact service@icelt.net</a>
-          </div>
+
+      <div class="anti-grid">
+        <div class="anti-cell"><span class="x">✗</span> Not an EU AI Act <strong>compliance tool</strong>.</div>
+        <div class="anti-cell"><span class="x">✗</span> Not a procurement / RFP / <strong>vendor-master</strong> system.</div>
+        <div class="anti-cell"><span class="x">✗</span> Not a model risk or <strong>AI governance</strong> platform.</div>
+        <div class="anti-cell"><span class="x">✗</span> Not an AI uplift forecaster or <strong>scenario modeller</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── §6 Capability edge ─── -->
+  <section class="edge section-pad">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">The capability edge</span>
+          <h2 class="h-section">Every soft benefit projection in AIXXEN is capability-adjusted.</h2>
+        </div>
+        <p class="lead">We model the gap between your AI tools and the people using them, then apply that gap as a multiplier on every soft benefit projection. The CFO gets a number she'll sign. The CIO gets the diagnostic that tells her where to invest.</p>
+      </div>
+
+      <div class="edge-grid">
+        <div>
+          <div class="edge-vs">Vendor pitch</div>
+          <div class="quote muted">"Save $1M per year."</div>
+          <div class="edge-vs" style="margin-top: 1rem;">AIXXEN, after capability adjustment</div>
+          <div class="quote">"$700K your organization is at 0.7."</div>
+          <p style="margin-top: 1.5rem; font-size: .9375rem; color: var(--ax-text-secondary); line-height: 1.7;">
+            The data behind the capability factor is the part of the platform we save for the demo.
+          </p>
+          <a class="btn btn-secondary" href="mailto:service@icelt.net?subject=AIXXEN%20demo%20request" style="margin-top: 1rem;">
+            Curious how we measure it? Book a demo
+            <span class="btn-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+        <div class="shot">
+          <img class="shot-img" src="assets/img/aixxen-10-capabilties-portoflio-survey.png" alt="Capability survey" />
+          <div class="shot-mask" aria-hidden="true"><img src="assets/img/logo.svg" alt="" /></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============== FOOTER ============== -->
+  <!-- ─── §7 How it works ─── -->
+  <section class="how section-pad" id="how">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">How it works</span>
+          <h2 class="h-section">From your data to a board pack in a month.</h2>
+        </div>
+        <p class="lead">No connectors. No six-month implementation. The data is already in your spreadsheets we turn it into a surface.</p>
+      </div>
+
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-step-no">Step 01</div>
+          <div class="how-step-when">Day 1</div>
+          <p class="how-step-body">Connect SSO. Bring four data sources — tools, spend, headcount, use cases. Import via CSV, Excel, or direct API. We accept what you already export from procurement and HR.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-step-no">Step 02</div>
+          <div class="how-step-when">Week 1</div>
+          <p class="how-step-body">First capability snapshot. A 7-minute anonymous survey runs across your org. Results suppress at k≥5 to protect anonymity. The capability factor calibrates to your organization, not a vendor benchmark.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-step-no">Step 03</div>
+          <div class="how-step-when">Month 1</div>
+          <p class="how-step-body">First quarterly board pack in 20 minutes. Vendor lifetime spend. Hard vs soft realised. 5-year roadmap. Department readiness. Already exportable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── §8 Personas ─── -->
+  <section class="personas section-pad">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">Who it's for</span>
+          <h2 class="h-section">Built for three jobs. Worked-around for none.</h2>
+        </div>
+        <p class="lead">Designed for the CFO who has to defend the AI line item, the CIO who has to land the program, and the FinOps lead who lives in the data.</p>
+      </div>
+
+      <div class="persona-grid">
+        <div class="persona-card">
+          <span class="persona-tag">CFO</span>
+          <h3>The defensible number.</h3>
+          <p>You've heard "save 5 minutes per task × 200 employees" three times this year. AIXXEN forces a separation: hard savings (booked) and soft potential (capacity freed) live in different columns. Soft potential never lands in the board pack total. Plus vendor-by-vendor lifetime spend, concentration risk warnings above 40%, and renewal exposure 90 days out.</p>
+        </div>
+        <div class="persona-card">
+          <span class="persona-tag">CIO</span>
+          <h3>Spend × readiness on one screen.</h3>
+          <p>Which use cases moved from pilot to production this quarter? Which departments are leading on capability and which are stuck? Which contracts auto-renew next month? AIXXEN puts the operational view and the capability view on the same surface so the AI program decisions are informed by both spend and readiness.</p>
+        </div>
+        <div class="persona-card">
+          <span class="persona-tag">FinOps lead</span>
+          <h3>The operator's data layer.</h3>
+          <p>Tool-by-tool utilization vs cost. Shadow AI share by department. Soft-to-hard convergence so you know if your projections are tracking, optimistic, or pessimistic. Custom reports with CSV export. URL-shareable saved views. Drag-and-drop column manager. Built for the person who lives in the data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── §10 FAQ ─── -->
+  <section class="faq section-pad" id="faq">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">FAQ</span>
+          <h2 class="h-section">Sharp questions, sharp answers.</h2>
+        </div>
+        <p class="lead">If you're evaluating AIXXEN against an adjacent product, this is where the differences live. No filler.</p>
+      </div>
+
+      <div class="faq-list">
+       
+        <div class="faq-item">
+          <button class="faq-q">Is it vendor-locked? Will I have to use OpenAI / Anthropic / Microsoft?<span class="toggle"></span></button>
+          <div class="faq-a">No. Vendor-neutral by design. Every AI tool the org pays for sits on the same page, regardless of category, regardless of vendor. Bring your own stack.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How quickly can we be live?<span class="toggle"></span></button>
+          <div class="faq-a">Day one if you can hand us your tools, spend, headcount and use cases data — most enterprises already export this from procurement and HR. CSV and Excel import work today; direct API import is on the roadmap. The capability survey runs in week one and calibrates the soft-benefit projections by week two. First quarterly board pack at month one.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What about data privacy and EU compliance?<span class="toggle"></span></button>
+          <div class="faq-a">Auth0 SSO, k≥5 anonymity suppression on every capability survey aggregate, EU-resident hosting on request, no PII in survey responses. GDPR-compliant by data minimisation: we ingest the four data sources above and nothing else from employees.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Why now?<span class="toggle"></span></button>
+          <div class="faq-a">AI tool count in mid-market and enterprise grew 3.4× from 2024 to 2026. CFOs that ignored generic SaaS spend in 2017 were running unaudited 7-figure budgets by 2020. AI is moving faster. The audit gap is closing fast but the ROI gap is wide open.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── §11 Final CTA ─── -->
+  <section class="cta">
+    <div class="container">
+      <h2>Stop confusing soft potential with realised savings.<br/>Book a 30-minute demo.</h2>
+      <div class="cta-buttons">
+        <a class="btn btn-primary" href="mailto:service@icelt.net?subject=AIXXEN%20demo%20request">Book a demo</a>
+        <a class="btn btn-secondary" href="investors.html">Investor relations →</a>
+      </div>
+      <p class="cta-mail">
+        <a href="mailto:service@icelt.net">service@icelt.net</a> · same-day response during EU and US business hours.
+      </p>
+    </div>
+  </section>
+
   <footer>
-    <div class="foot-inner">
-      <div class="foot-top">
-        <div>
-          <div class="foot-brand">
-            <span class="nav-mark"><img src="assets/img/aixxen-logo.svg" alt="AIXXEN"></span>
-            <span class="nav-word">AIXXEN</span>
-          </div>
-          <p class="foot-tag">AI governance and risk management for enterprise AI portfolios. Built for the EU AI Act.</p>
+    <div class="container">
+      <div class="footer-row">
+        <div class="topbar-brand"><img src="assets/img/logo_w.svg" alt="AIXXEN" /></div>
+        <div class="footer-links">
+          <a href="#tour">Product</a>
+          <a href="#how">How it works</a>
+          <a href="#faq">FAQ</a>
+          <a href="investors.html">Investors</a>
+          <a href="mailto:service@icelt.net">Contact</a>
         </div>
-        <div class="foot-cols">
-  <div class="foot-col">
-    <h4>Platform</h4>
-    <a href="#platform">Overview</a>
-    <a href="#risk">Risk Engine</a>
-    <a href="#lifecycle">Lifecycle</a>
-    <a href="information.html">The AI Gap</a>
-  </div>
-
-  <div class="foot-col">
-    <h4>Partners & Investors</h4>
-    <a href="mailto:service@icelt.net?subject=AIXXEN%20Investor%20Inquiry">Investor Relations</a>
-    <a href="information.html">Vision</a>
-    <a href="#integrations">Integrations</a>
-  </div>
-
-  <div class="foot-col">
-    <h4>Contact</h4>
-    <a href="mailto:service@icelt.net?subject=Contact%20AIXXEN">Sales</a>
-    <a href="https://icelt.net/software.html#aixxen">Built by Philipp Eiselt</a>
-    <a href="https://icelt.net">icelt.net</a>
-  </div>
-</div>
-      </div>
-      <div class="foot-bottom">
-        <span>© 2026 AIXXEN. All rights reserved.</span>
-        <span>aixxen.com</span>
+        <div style="color: #6b727f;">© 2026 AIXXEN · Vendor-neutral, sample-rate honest.</div>
       </div>
     </div>
   </footer>
 
   <script>
-    // Showcase slider
+    // Hero carousel
     (function(){
-      const slides = document.querySelectorAll('#stage .slide');
-      const dotsWrap = document.getElementById('dots');
-      let i = 0, t;
+      const slides = document.querySelectorAll('#hero-stage .hero-slide');
+      const wrap = document.getElementById('hero-dots');
+      let i = 0;
       slides.forEach((_, idx) => {
         const d = document.createElement('button');
         d.className = 'dot' + (idx === 0 ? ' is-active' : '');
         d.setAttribute('aria-label', 'Slide ' + (idx + 1));
-        d.addEventListener('click', () => go(idx));
-        dotsWrap.appendChild(d);
+        d.addEventListener('click', () => { stop(); go(idx); start(); });
+        wrap.appendChild(d);
       });
-      const dots = dotsWrap.querySelectorAll('.dot');
+      const dots = wrap.querySelectorAll('.dot');
       function go(n){
         slides[i].classList.remove('is-active');
         dots[i].classList.remove('is-active');
@@ -644,11 +748,30 @@
         slides[i].classList.add('is-active');
         dots[i].classList.add('is-active');
       }
-      function auto(){ t = setInterval(() => go(i + 1), 6000); }
+      let t;
+      function start(){ t = setInterval(() => go(i + 1), 4500); }
       function stop(){ clearInterval(t); }
-      document.getElementById('next').addEventListener('click', () => { stop(); go(i + 1); auto(); });
-      document.getElementById('prev').addEventListener('click', () => { stop(); go(i - 1); auto(); });
-      auto();
+      start();
+    })();
+
+    // Product tour tab switcher
+    (function(){
+      const slides = document.querySelectorAll('.tour-slide');
+      const tabs = document.querySelectorAll('.tour-tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.getAttribute('data-tab');
+          slides.forEach(s => s.classList.toggle('is-active', s.getAttribute('data-slide') === target));
+          tabs.forEach(t => t.classList.toggle('is-active', t === tab));
+        });
+      });
+    })();
+
+    // FAQ toggle
+    (function(){
+      document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => q.parentElement.classList.toggle('is-open'));
+      });
     })();
   </script>
 </body>
