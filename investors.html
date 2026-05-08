@@ -132,16 +132,6 @@
     .rail-list li { font-size: .875rem; color: var(--ax-text-secondary); padding: .25rem 0; line-height: 1.5; }
     .rail-list li::before { content: '·  '; color: var(--ax-text-tertiary); }
 
-    /* The ask block */
-    .ask { background: var(--ax-surface); }
-    .ask-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: start; }
-    .ask-stage { border: 1px solid var(--ax-border-strong); background: #fafafa; padding: 2rem; }
-    .ask-row { padding: 1rem 0; border-bottom: 1px solid var(--ax-border); }
-    .ask-row:last-child { border-bottom: none; }
-    .ask-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ax-text-tertiary); margin-bottom: .35rem; }
-    .ask-val { font-family: var(--ax-mono); font-size: 1rem; font-weight: 500; color: var(--ax-text-primary); }
-    .ask-note { font-size: 12px; color: var(--ax-text-secondary); margin-top: .25rem; line-height: 1.5; font-family: var(--ax-font); font-weight: 400; }
-
     /* Founder card */
     .founder { background: var(--ax-surface); border: 1px solid var(--ax-border); padding: 2rem; display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start; }
     .founder-name { font-size: 1.25rem; font-weight: 700; margin-bottom: .35rem; }
@@ -260,32 +250,28 @@
       <div class="sec-head">
         <div>
           <span class="kicker">Market</span>
-          <h2 class="h-section">AI tool sprawl now equals SaaS sprawl 2017 but moving 5x faster.</h2>
+          <h2 class="h-section">AI tool sprawl is following the SaaS sprawl playbook and the ROI gap is wider.</h2>
         </div>
         <p class="lead">CFOs that ignored generic SaaS spend in 2017 were running unaudited 7-figure budgets by 2020. AI is moving faster. The audit gap is closing fast but the ROI gap is wide open and unaddressed by adjacent tooling.</p>
       </div>
 
       <div class="stat-grid">
         <div class="stat-cell">
-          <div class="stat-num">3.4×</div>
-          <div class="stat-label">growth in enterprise AI tool count, 2024 → 2026</div>
+          <div class="stat-num" style="font-size:1.1rem;line-height:1.4">Rapidly growing</div>
+          <div class="stat-label">enterprise AI tool count, accelerating year-over-year since 2023</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-num">5+</div>
-          <div class="stat-label">distinct AI vendors a typical mid-market org now pays directly</div>
+          <div class="stat-num" style="font-size:1.1rem;line-height:1.4">Multiple vendors</div>
+          <div class="stat-label">a typical mid-market org now pays distinct AI vendors directly, outside central IT</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-num">71%</div>
-          <div class="stat-label">of orgs cannot quantify their realised AI ROI on demand</div>
+          <div class="stat-num" style="font-size:1.1rem;line-height:1.4">Most orgs</div>
+          <div class="stat-label">cannot quantify their realised AI ROI on demand the data simply isn't in one place</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-num">~30%</div>
-          <div class="stat-label">average gap: vendor pitch numbers vs. CFO-attested savings</div>
+          <div class="stat-num" style="font-size:1.1rem;line-height:1.4">Consistent gap</div>
+          <div class="stat-label">vendor pitch savings vs. CFO-attested savings the delta is the product's reason to exist</div>
         </div>
-      </div>
-
-      <div class="disclosure">
-        <p><strong>Sources.</strong> AIXXEN customer interviews and analyst signal, 2025–26. We do not represent these as analyst-house figures; we represent them as the operator pattern we observe directly. Source list available on request.</p>
       </div>
     </div>
   </section>
@@ -447,154 +433,6 @@
     </div>
   </section>
 
-  <!-- ─── Business model ─── -->
-  <section class="section-pad">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Business model</span>
-          <h2 class="h-section">Annual contracts. Tier on portfolio scale, not headcount.</h2>
-        </div>
-        <p class="lead">Per-seat pricing is wrong for this category a 10,000-seat org with 4 AI tools should not pay 100× a 100-seat org with 4 AI tools. We tier on AI tool count and use-case scale.</p>
-      </div>
-
-      <div class="rail-grid">
-        <div class="rail-cell">
-          <div class="rail-when">Tier 1 Pilot</div>
-          <div class="rail-h">Annual contract</div>
-          <ul class="rail-list">
-            <li>1 tenant, up to 50 use cases, 10 tools</li>
-            <li>Quarterly capability survey</li>
-            <li>Data import (CSV / Excel) · all dashboards</li>
-            <li>Email support · 1 admin seat</li>
-          </ul>
-        </div>
-        <div class="rail-cell">
-          <div class="rail-when">Tier 2 Growth</div>
-          <div class="rail-h">Annual contract</div>
-          <ul class="rail-list">
-            <li>Multi-department, 200 use cases, unlimited tools</li>
-            <li>Monthly survey · custom report builder</li>
-            <li>Vendor pack export · audit trail</li>
-            <li>Slack support · 5 admin seats</li>
-          </ul>
-        </div>
-        <div class="rail-cell">
-          <div class="rail-when">Tier 3 Enterprise</div>
-          <div class="rail-h">Custom</div>
-          <ul class="rail-list">
-            <li>Multi-tenant rollups (holding companies)</li>
-            <li>Enterprise SSO (SAML / OIDC) · SCIM · integrations · dedicated CS roadmap items</li>
-            <li>EU-resident hosting · custom DPA</li>
-            <li>Migration / change-management services</li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="lead" style="margin-top: 2rem; max-width: 760px;">
-        Tier sizing reflects the operator pattern we observe: a 1,000-employee organisation paying for 8–15 distinct AI tools justifies the per-portfolio investment more readily than per-seat pricing would. Specific pricing and customer-acquisition assumptions can be shared on request.
-      </p>
-    </div>
-  </section>
-
-  <!-- ─── The ask ─── -->
-  <section class="ask section-pad">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">The ask</span>
-          <h2 class="h-section">Two paths. Both real.</h2>
-        </div>
-        <p class="lead">We are evaluating both routes. Whichever clears first wins. Founder is candid about either outcome.</p>
-      </div>
-
-      <div class="ask-grid">
-        <div class="body-col">
-          <h3>Path A Pre-seed round</h3>
-          <p>
-            A pre-seed round on a SAFE or priced basis, EU jurisdiction, sized to the milestones below. Strategic angels, AI-focused funds, and operator capital with FinOps / EA / B2B-SaaS exits preferred. Lead investor coordinated with co-investors welcome.
-          </p>
-          <p>
-            <strong>Use of funds:</strong> a founding GTM / sales hire, three paid design partners, EU hosting infrastructure, and light marketing sized for runway to a defensible Series-A gate.
-          </p>
-          <p>
-            <strong>Targets at month 12:</strong> first paid customers and design-partner case studies. Specific milestones and round size shared on request.
-          </p>
-        </div>
-
-        <div class="ask-stage">
-          <div class="ask-row">
-            <div class="ask-label">Round</div>
-            <div class="ask-val">Disclosed under NDA
-              <div class="ask-note">Pre-seed · SAFE or priced</div>
-            </div>
-          </div>
-          <div class="ask-row">
-            <div class="ask-label">Runway target</div>
-            <div class="ask-val">To Series-A gate
-              <div class="ask-note">Sized to defensible milestones</div>
-            </div>
-          </div>
-          <div class="ask-row">
-            <div class="ask-label">First hire</div>
-            <div class="ask-val">GTM / sales lead
-              <div class="ask-note">Founding commercial role</div>
-            </div>
-          </div>
-          <div class="ask-row">
-            <div class="ask-label">Design partners</div>
-            <div class="ask-val">3 paid
-              <div class="ask-note">EU mid-market AI portfolios</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <hr style="border: none; border-top: 1px solid var(--ax-border); margin: 3rem 0;" />
-
-      <div class="ask-grid">
-        <div class="body-col">
-          <h3>Path B Strategic acquisition</h3>
-          <p>
-            For incumbents in adjacent categories enterprise architecture, FinOps, IT financial management, SaaS / vendor management for whom <strong>AI cost intelligence is a wedge product</strong> they would otherwise have to build from scratch.
-          </p>
-          <p>
-            What's on offer: a shippable product, an opinionated data model (hard / soft benefit separation, capability factor), and a clean modern stack (TypeScript / Next.js / PostgreSQL) designed for hand-off.
-          </p>
-          <p>
-            Open to <strong>acqui-hire, asset purchase, or full acquisition</strong>. Specific terms including IP scope, founder involvement, and timing to be agreed mutually.
-          </p>
-        </div>
-
-        <div class="ask-stage">
-          <div class="ask-row">
-            <div class="ask-label">Modalities considered</div>
-            <div class="ask-val">Asset · equity · acqui-hire
-              <div class="ask-note">All three on the table</div>
-            </div>
-          </div>
-          <div class="ask-row">
-            <div class="ask-label">IP scope</div>
-            <div class="ask-val">To be agreed
-              <div class="ask-note">Codebase, data model, and methodology in scope under NDA</div>
-            </div>
-          </div>
-          <div class="ask-row">
-            <div class="ask-label">Founder involvement</div>
-            <div class="ask-val">Open to discuss
-              <div class="ask-note">Continued involvement is possible if wanted</div>
-            </div>
-          </div>
-          <div class="ask-row">
-            <div class="ask-label">Strategic fit</div>
-            <div class="ask-val">EA · FinOps · ITAM
-              <div class="ask-note">SaaS / vendor management adjacency</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ─── Founder ─── -->
   <section class="section-pad" style="background: var(--ax-surface);">
@@ -619,7 +457,7 @@
         </div>
         <div class="body-col" style="grid-column: span 1;">
           <p>
-            Solo full-stack builder of AIXXEN. Designed and shipped the current product surface front-end, back-end, data model, demo data on a Next.js / TypeScript / PostgreSQL stack chosen for clean hand-off.
+            Solo full-stack builder of AIXXEN. Designed and shipped the current product surface front-end, back-end, data model, demo data on a Next.js / TypeScript / PostgreSQL stack.
           </p>
           <p>
             More background, prior work, and references available on request see LinkedIn for the public version.
@@ -634,48 +472,12 @@
     </div>
   </section>
 
-  <!-- ─── Confidentiality ─── -->
-  <section class="section-pad">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Next step</span>
-          <h2 class="h-section">Start with a conversation.</h2>
-        </div>
-        <p class="lead">There's no virtual data room and no fixed process. Send a note describing your interest and I'll respond personally.</p>
-      </div>
-
-      <div class="two-col">
-        <div class="body-col">
-          <h3>What I can show you today</h3>
-          <p>
-            <strong>The product.</strong> A live walkthrough of the application on representative enterprise data the same product the launch site screenshots are taken from.
-          </p>
-          <p>
-            <strong>The methodology.</strong> An informal walkthrough of the data model, the hard-vs-soft separation, and the capability-factor calculation, on a screen-share.
-          </p>
-          <p>
-            <strong>The thinking.</strong> Honest answers about scope, traction, what's built, what isn't, and where the moat actually sits.
-          </p>
-        </div>
-        <div class="body-col">
-          <h3>What comes after</h3>
-          <p>
-            If there's mutual interest, we agree a mutual NDA and I share whatever specific materials you ask for in writing or live, whatever's most useful.
-          </p>
-          <p>
-            I am one person doing this honestly. I won't pretend to have a 14-day diligence track or a polished data room. What I have is a working product, a clear thesis, and the willingness to talk about both candidly.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ─── CTA ─── -->
   <section class="ir-cta">
     <div class="container">
-      <h2>The AI cost-intelligence category will exist.<br/>Build the cockpit, or buy it.</h2>
-      <p class="lead">Either way, we welcome the conversation. EU and US business hours, same-day response.</p>
+      <h2>Get in touch.</h2>
+      <p class="lead">Pre-seed inquiry or acquisition conversation same email, same-day response.</p>
       <div class="ir-cta-buttons">
         <a class="btn btn-primary" href="mailto:service@icelt.net?subject=AIXXEN%20pre-seed%20inquiry">Pre-seed inquiry</a>
         <a class="btn btn-secondary" href="mailto:service@icelt.net?subject=AIXXEN%20acquisition%20inquiry">Strategic acquisition</a>
