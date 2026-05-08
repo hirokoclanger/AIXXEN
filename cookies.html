@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIXXEN — Cookie policy</title>
+  <meta name="description" content="What cookies AIXXEN uses, why, and how to change your preferences." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1f1f1f" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/Favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ax-topbar-bg: #1f1f1f;
+      --ax-content-bg: #f3f3f3;
+      --ax-surface: #ffffff;
+      --ax-border: #e0e0e0;
+      --ax-text-primary: #1f1f1f;
+      --ax-text-secondary: #6b7280;
+      --ax-text-tertiary: #9ca3af;
+      --ax-status-yellow-bg: #fdf4dc;
+      --ax-status-yellow-text: #b08500;
+      --ax-font: 'Inter', system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--ax-font); font-size: 14px; line-height: 1.65; color: var(--ax-text-primary); background: var(--ax-content-bg); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: #000; }
+    img { max-width: 100%; display: block; }
+
+    .topbar { position: sticky; top: 0; z-index: 50; background: var(--ax-topbar-bg); color: #fff; height: 52px; display: flex; align-items: center; gap: 1.25rem; padding: 0 1.5rem; border-bottom: 1px solid #000; }
+    .topbar-brand { display: inline-flex; align-items: center; gap: .5rem; }
+    .topbar-brand img { height: 24px; width: auto; }
+    .topbar-roi { color: #6b727f; font-size: 12px; }
+    .topbar-back { margin-left: auto; font-size: 13px; color: #cccccc; text-decoration: none; }
+    .topbar-back:hover { color: #fff; }
+
+    main { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; background: var(--ax-surface); border-left: 1px solid var(--ax-border); border-right: 1px solid var(--ax-border); min-height: calc(100vh - 52px); }
+    h1 { font-size: 2rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; margin-bottom: .5rem; }
+    .meta { font-size: 12px; color: var(--ax-text-tertiary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--ax-border); }
+    h2 { font-size: 1.125rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .85rem; line-height: 1.25; }
+    p { margin-bottom: 1rem; }
+    .lead { font-size: 1rem; color: var(--ax-text-secondary); margin-bottom: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; border: 1px solid var(--ax-border); }
+    th, td { padding: .65rem .85rem; text-align: left; border-bottom: 1px solid var(--ax-border); border-right: 1px solid var(--ax-border); font-size: 13px; vertical-align: top; }
+    th { background: #f0f0f0; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: var(--ax-text-secondary); }
+    th:last-child, td:last-child { border-right: none; }
+    tr:last-child td { border-bottom: none; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; background: #f0f0f0; padding: .1rem .35rem; }
+
+    .pill {
+      display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: .2rem .5rem; vertical-align: middle;
+    }
+    .pill-essential { background: #e6f2ea; color: #22863a; }
+    .pill-optional { background: var(--ax-status-yellow-bg); color: var(--ax-status-yellow-text); }
+
+    .manage-cta {
+      display: inline-block;
+      margin: 1.5rem 0;
+      padding: .75rem 1.25rem;
+      background: var(--ax-text-primary); color: #fff;
+      font-size: 13px; font-weight: 600; text-decoration: none;
+    }
+    .manage-cta:hover { background: #000; color: #fff; }
+
+    footer { background: var(--ax-topbar-bg); color: #cccccc; padding: 2rem 0; border-top: 1px solid #2e2e2e; }
+    .footer-row { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; font-size: 12px; }
+    .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .footer-links a { color: #cccccc; text-decoration: none; }
+    .footer-links a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="topbar-brand" href="index.html" aria-label="AIXXEN home">
+      <img src="assets/img/logo_w.svg" alt="AIXXEN" />
+      <span class="topbar-roi">ROI</span>
+    </a>
+    <a class="topbar-back" href="index.html">← Back to home</a>
+  </header>
+
+  <main>
+    <h1>Cookie policy</h1>
+    <p class="meta">Last updated: 8 May 2026</p>
+
+    <p class="lead">
+      This page explains what cookies AIXXEN uses on this website, what they do, and how to change your preferences.
+    </p>
+
+    <a href="#" class="manage-cta" data-cookie-manage>Manage your cookie preferences →</a>
+
+    <h2>What is a cookie?</h2>
+    <p>
+      A cookie is a small file that a website stores in your browser. They're used to make a site work, remember preferences, or track behaviour across pages and visits. The same applies to similar technologies like browser <code>localStorage</code>.
+    </p>
+
+    <h2>What we use today</h2>
+
+    <table>
+      <thead>
+        <tr><th>Name</th><th>Type</th><th>Purpose</th><th>Duration</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>aixxen.cookieConsent.v1</code></td>
+          <td><span class="pill pill-essential">Essential</span></td>
+          <td>Remembers your cookie-consent choice (which categories you allow).</td>
+          <td>12 months</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>That's it. We do not currently load any analytics or marketing tools on this site.</p>
+
+    <h2>Categories</h2>
+
+    <h3><span class="pill pill-essential">Essential</span> Always on</h3>
+    <p>Required for the site to function. The only essential cookie today is the consent record above. Cannot be disabled because the site needs to know your preferences to honour them.</p>
+
+    <h3><span class="pill pill-optional">Analytics</span> Off by default</h3>
+    <p>If we add anonymous usage analytics in the future (page views, navigation paths) we will declare them here, gate them behind your consent, and re-prompt you if our cookie list changes materially.</p>
+
+    <h3><span class="pill pill-optional">Marketing</span> Off by default</h3>
+    <p>Cookies used by ad networks, retargeting tools, or attribution platforms. Same rule — declared here and gated behind your consent before any are loaded.</p>
+
+    <h2>Changing your preferences</h2>
+    <p>
+      Click <a href="#" data-cookie-manage>Manage your cookie preferences</a> at any time. Your choice updates immediately and is stored locally on your device. You can also clear cookies and site data via your browser settings to reset.
+    </p>
+
+    <h2>The application</h2>
+    <p>
+      Cookies used inside the AIXXEN application (post-login) are governed by the customer Data Processing Agreement and are described in the application's own privacy notice. This page covers the public marketing site only.
+    </p>
+
+    <h2>Contact</h2>
+    <p>Questions: <a href="mailto:service@icelt.net">service@icelt.net</a>.</p>
+  </main>
+
+  <footer>
+    <div class="footer-row">
+      <div class="topbar-brand"><img src="assets/img/logo_w.svg" alt="AIXXEN" /></div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="#" data-cookie-manage>Manage cookies</a>
+        <a href="mailto:service@icelt.net">Contact</a>
+      </div>
+      <div style="color: #6b727f;">© 2026 AIXXEN</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/cookie-banner.js" defer></script>
+</body>
+</html>
