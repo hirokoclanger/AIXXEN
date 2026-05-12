@@ -178,6 +178,10 @@
       .stat-cell, .rail-cell { border-right: none; border-bottom: 1px solid var(--ax-border); }
       .founder { grid-template-columns: 1fr; }
     }
+    @media (max-width: 480px) {
+      .matrix th, .matrix td { padding: .5rem .65rem; font-size: .8125rem; }
+      .matrix th { font-size: 10px; }
+    }
   </style>
 </head>
 <body>
@@ -336,6 +340,7 @@
         <p class="lead">Adjacent products solve adjacent problems. None puts AI vendor spend, business case attribution, capability measurement, and a 5-year plan-of-record on the same surface.</p>
       </div>
 
+      <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
       <table class="matrix">
         <thead>
           <tr>
@@ -391,6 +396,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </section>
 
