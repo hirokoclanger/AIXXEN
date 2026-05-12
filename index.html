@@ -51,7 +51,7 @@
       "logo": "https://aixxen.com/assets/img/logo.svg",
       "contactPoint": {
         "@type": "ContactPoint",
-        "email": "service@icelt.net",
+        "email": "sales@aixxen.com",
         "contactType": "sales"
       }
     }
@@ -354,16 +354,44 @@
     .sec-head { display: grid; grid-template-columns: 5fr 7fr; gap: 3rem; align-items: end; margin-bottom: 1rem; }
     .sec-head .lead { max-width: 580px; }
 
-    /* ─── Responsive ─── */
+    /* ─── Tablet — iPad 11 (≤ 900px) ─── */
     @media (max-width: 900px) {
       .topbar-nav { display: none; }
       .reframe-grid, .edge-grid, .sec-head { grid-template-columns: 1fr; gap: 1.5rem; }
       .q-grid, .how-grid, .persona-grid { grid-template-columns: 1fr; }
       .q-cell, .persona-card { border-right: none; border-bottom: 1px solid var(--ax-border); }
+      .q-cell:last-child, .persona-card:last-child { border-bottom: none; }
       .anti-grid { grid-template-columns: 1fr; }
       .anti-cell { border-right: none; }
+      .anti-cell:nth-last-child(-n+1) { border-bottom: none; }
       .tour-slide.is-active { grid-template-columns: 1fr; }
       .tour-slide-text { border-right: none; border-bottom: 1px solid var(--ax-border); }
+      .tour-shot .shot { aspect-ratio: 16/9; height: auto; min-height: 0; }
+      .section-pad { padding: 3rem 0; }
+      .hero-inner { padding: 1.25rem 0 3rem; }
+    }
+
+    /* ─── Mobile — iPhone 12 mini (≤ 480px) ─── */
+    @media (max-width: 480px) {
+      .container { padding: 0 1rem; }
+      .section-pad { padding: 2rem 0; }
+      .topbar-divider, .topbar-roi { display: none; }
+      .hero-inner { padding: 1rem 0 2.5rem; gap: 1.75rem; }
+      .hero-bar { padding: .6rem 1rem; }
+      .hero-bar .label { display: none; }
+      .hero-bar .dots { gap: .3rem; }
+      .hero-bar .dot { width: 18px; }
+      .hero-stage .shot-mask { display: none; }
+      .tour-slide-text { padding: 1.5rem 1.25rem; }
+      .tour-ctrl { padding: .75rem 1rem; }
+      .tour-tab { font-size: 10px; padding: .4rem .65rem; }
+      .cta .container { padding: 3rem 1rem; }
+      .footer-row { flex-direction: column; align-items: flex-start; gap: .75rem; }
+      .faq-q { padding: 1rem 1.25rem; font-size: .9375rem; }
+      .faq-a { padding: 0 1.25rem 1rem; }
+      .how-step { padding: 1.25rem; }
+      .persona-card { padding: 1.5rem; }
+      .q-cell { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -385,7 +413,7 @@
     </nav>
     <div class="topbar-cta">
 
-      <a class="btn-primary" href="mailto:service@icelt.net?subject=AIXXEN%20demo%20request">Book a demo</a>
+      <a class="btn-primary" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request">Book a demo</a>
     </div>
   </header>
 
@@ -422,7 +450,7 @@
           AIXXEN measures the capability gap alongside every dollar of AI spend so organizations can fix both. Vendor-neutral. No compliance overhead. Built for measuring AI benefits and optimizing for efficiency.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:service@icelt.net?subject=AIXXEN%20demo%20request">
+          <a class="btn btn-primary" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request">
             Book a 30-min demo
             <span class="btn-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
           </a>
@@ -624,7 +652,7 @@
           <p style="font-size: 1.0625rem; color: var(--ax-text-secondary); line-height: 1.75; margin: 0 0 1.5rem;">
             AIXXEN applies a capability factor to every soft benefit estimate. The score reduces soft projections to a realistic, traceable value. Not because the tool underperforms, but because the adoption gap is real and measurable. We show you the gap, size it in dollars, and give you a path to close it.
           </p>
-          <a class="btn btn-secondary" href="mailto:service@icelt.net?subject=AIXXEN%20demo%20request" style="margin-top: 1rem;">
+          <a class="btn btn-secondary" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request" style="margin-top: 1rem;">
             See how we measure your capability factor
             <span class="btn-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
           </a>
@@ -734,11 +762,11 @@
     <div class="container">
       <h2>Stop confusing soft potential with realized savings.<br/>Book a 30-minute demo.</h2>
       <div class="cta-buttons">
-        <a class="btn btn-primary" href="mailto:service@icelt.net?subject=AIXXEN%20demo%20request">Book a demo</a>
+        <a class="btn btn-primary" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request">Book a demo</a>
         <a class="btn btn-secondary" href="investors.html">Investor relations →</a>
       </div>
       <p class="cta-mail">
-        <a href="mailto:service@icelt.net">service@icelt.net</a> · same-day response during EU and US business hours.
+        <a href="mailto:sales@aixxen.com">sales@aixxen.com</a> · same-day response during EU and US business hours.
       </p>
     </div>
   </section>
@@ -755,9 +783,9 @@
           <a href="privacy.html">Privacy</a>
           <a href="cookies.html">Cookies</a>
           <a href="#" data-cookie-manage>Manage cookies</a>
-          <a href="mailto:service@icelt.net">Contact</a>
+          <a href="mailto:sales@aixxen.com">Contact</a>
         </div>
-        <div style="color: #6b727f;">© 2026 AIXXEN · Vendor-neutral, sample-rate honest.</div>
+        <div style="color: #6b727f;">© 2026 AIXXEN · AI benefits tracked properly.</div>
       </div>
     </div>
   </footer>
