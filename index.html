@@ -141,19 +141,15 @@
     .btn-arrow svg { width: 12px; height: 12px; transition: transform .15s; }
     .btn:hover .btn-arrow svg { transform: translateX(3px); }
 
-    /* ─── Screenshot frame: chop only the browser chrome at the top of the source ─── */
+    /* ─── Screenshot frame ─── */
     .shot {
       position: relative;
-      aspect-ratio: 16 / 9.7;
       background: #f7f7f7;
       border: 1px solid var(--ax-border);
-      overflow: hidden;
     }
     .shot img.shot-img {
-      position: absolute; inset: 0;
-      width: 102%; height: 100%;
-      object-fit: cover;
-      object-position: left bottom;
+      width: 100%; height: auto;
+      display: block;
     }
     .shot-mask {
       position: absolute; left: 0; bottom: 0;
@@ -174,12 +170,13 @@
 
     /* Hero carousel (kept from prior site, restyled) */
     .hero-carousel { max-width: 1100px; margin: 0 auto; width: 100%; }
-    .hero-stage { position: relative; aspect-ratio: 16 / 9.7; background: #f7f7f7; border: 1px solid var(--ax-border); overflow: hidden; box-shadow: 0 24px 56px rgba(0,0,0,0.07); }
+    .hero-stage { position: relative; background: #f7f7f7; border: 1px solid var(--ax-border); box-shadow: 0 24px 56px rgba(0,0,0,0.07); overflow: hidden; }
     .hero-stage img.hero-slide {
-      position: absolute; inset: 0; width: 102%; height: 100%;
-      object-fit: cover; object-position: left bottom;
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block;
       opacity: 0; transition: opacity .55s ease;
     }
+    .hero-stage img.hero-slide:first-child { position: relative; height: auto; }
     .hero-stage img.hero-slide.is-active { opacity: 1; }
     .hero-stage .shot-mask { left: 8px; bottom: 8px; }
     .hero-bar {
@@ -361,18 +358,14 @@
     <div class="container hero-inner">
       <div class="hero-carousel">
         <div class="hero-stage" id="hero-stage">
-             <img class="hero-slide is-active shot-img" src="assets/img/aixxen-0.jpg" alt="AIXXEN dashboard" />
-          <img class="hero-slide  shot-img" src="assets/img/aixxen-10.jpg" alt="AIXXEN vendors cost control" />
-          <img class="hero-slide shot-img" src="assets/img/aixxen-11.jpg" alt="AIXXEN dashboard" />
-          <img class="hero-slide shot-img" src="assets/img/aixxen-7.jpg" alt="AIXXEN portfolio roadmap" />
-
-          <img class="hero-slide shot-img" src="assets/img/aixxen-4.jpg" alt="AIXXEN vendors details" />
-          <img class="hero-slide shot-img" src="assets/img/aixxen-8.jpg" alt="AIXXEN portfolio roadmap" />
-          <img class="hero-slide shot-img" src="assets/img/aixxen-13.jpg" alt="AIXXEN business cases" />
-                    <img class="hero-slide shot-img" src="assets/img/aixxen-9.jpg" alt="AIXXEN portfolio roadmap" />
-
-          <img class="hero-slide shot-img" src="assets/img/aixxen-2.jpg" alt="AIXXEN use cases" />
-          <img class="hero-slide shot-img" src="assets/img/aixxen-10-capabilties-portoflio-survey.jpg" alt="AIXXEN capability survey" />
+          <img class="hero-slide is-active" src="assets/img/aixxen-10-dashboard.jpg" alt="AIXXEN dashboard" />
+          <img class="hero-slide" src="assets/img/aixxen-5-vendors.jpg" alt="AIXXEN vendors" />
+          <img class="hero-slide" src="assets/img/aixxen-9-roadmap.jpg" alt="AIXXEN roadmap" />
+          <img class="hero-slide" src="assets/img/aixxen-4-surveys.jpg" alt="AIXXEN surveys" />
+          <img class="hero-slide" src="assets/img/aixxen-3-reports.jpg" alt="AIXXEN reports" />
+          <img class="hero-slide" src="assets/img/aixxen-1-businesscase-analytics.jpg" alt="AIXXEN business case analytics" />
+          <img class="hero-slide" src="assets/img/aixxen-0-usecase-business-case-view.jpg" alt="AIXXEN business case view" />
+          <img class="hero-slide" src="assets/img/aixxen-2-usecase-table.jpg" alt="AIXXEN use case table" />
           <div class="shot-mask" aria-hidden="true">
             <img src="assets/img/logo.svg" alt="" />
           </div>
@@ -500,7 +493,7 @@
           </div>
           <div class="tour-shot">
             <div class="shot">
-              <img class="shot-img" src="assets/img/aixxen-0.jpg" alt="Tools and vendors view" />
+              <img class="shot-img" src="assets/img/aixxen-5-vendors.jpg" alt="Tools and vendors view" />
               <div class="shot-mask" aria-hidden="true"><img src="assets/img/logo.svg" alt="" /></div>
             </div>
           </div>
@@ -515,7 +508,7 @@
           </div>
           <div class="tour-shot">
             <div class="shot">
-              <img class="shot-img" src="assets/img/aixxen-13.jpg" alt="Business cases view" />
+              <img class="shot-img" src="assets/img/aixxen-0-usecase-business-case-view.jpg" alt="Business cases view" />
               <div class="shot-mask" aria-hidden="true"><img src="assets/img/logo.svg" alt="" /></div>
             </div>
           </div>
@@ -530,7 +523,7 @@
           </div>
           <div class="tour-shot">
             <div class="shot">
-              <img class="shot-img" src="assets/img/roadmap-details.png" alt="5-year roadmap view" />
+              <img class="shot-img" src="assets/img/aixxen-8-roadmap-stacked.jpg" alt="5-year roadmap view" />
               <div class="shot-mask" aria-hidden="true"><img src="assets/img/logo.svg" alt="" /></div>
             </div>
           </div>
@@ -545,7 +538,7 @@
           </div>
           <div class="tour-shot">
             <div class="shot">
-              <img class="shot-img" src="assets/img/aixxen-3.jpg" alt="Capability portfolio view" />
+              <img class="shot-img" src="assets/img/aixxen-3-reports.jpg" alt="Reports and capability view" />
               <div class="shot-mask" aria-hidden="true"><img src="assets/img/logo.svg" alt="" /></div>
             </div>
           </div>
