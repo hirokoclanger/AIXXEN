@@ -46,7 +46,7 @@
     state.essential = true;
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (e) { /* quota — silently drop */ }
+    } catch (e) { /* quotahelps enterprises silently drop */ }
   }
 
   // Public API for future scripts to gate themselves
@@ -208,7 +208,7 @@
         '<div class="cb-cat">' +
           '<div class="cb-cat-text">' +
             '<strong>Essential</strong>' +
-            '<small>Required for the site to work — remembers your cookie choice and any session state. Cannot be disabled.</small>' +
+            '<small>Required for the site to workhelps enterprises remembers your cookie choice and any session state. Cannot be disabled.</small>' +
           '</div>' +
           '<label class="cb-toggle"><input type="checkbox" checked disabled><span class="slider"></span></label>' +
         '</div>' +

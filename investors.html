@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T379MPB9KN"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -18,6 +17,8 @@
   <meta name="theme-color" content="#1f1f1f" />
 
   <link rel="icon" type="image/svg+xml" href="assets/img/Favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="196x196" href="assets/img/favicon-196.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -25,190 +26,197 @@
   <style>
     :root {
       --ax-topbar-bg: #1f1f1f;
-      --ax-topbar-text: #ffffff;
-      --ax-content-bg: #f3f3f3;
+      --ax-bg: #f5f5f5;
       --ax-surface: #ffffff;
-      --ax-border: #e0e0e0;
+      --ax-border: #e5e5e5;
       --ax-border-strong: #c8c8c8;
-      --ax-text-primary: #1f1f1f;
-      --ax-text-secondary: #6b7280;
-      --ax-text-tertiary: #9ca3af;
-      --ax-status-green-bg: #e6f2ea;
-      --ax-status-green-text: #22863a;
-      --ax-status-yellow-bg: #fdf4dc;
-      --ax-status-yellow-text: #b08500;
-      --ax-status-red-bg: #fce8e9;
-      --ax-status-red-text: #cb2431;
-      --ax-status-gray-bg: #f0f0f0;
-      --ax-status-gray-text: #6b7280;
-      --ax-status-blue-bg: #e8f0fe;
-      --ax-status-blue-text: #1f6feb;
-      --ax-font: 'Inter', system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-      --ax-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-      --ax-font-size: 14px;
+      --ax-text: #111111;
+      --ax-muted: #6b7280;
+      --ax-faint: #9ca3af;
+      --ax-blue: #1f6feb;   --ax-blue-bg: #e8f0fe;
+      --ax-green: #22863a;  --ax-green-bg: #e6f2ea;
+      --ax-yellow: #b08500; --ax-yellow-bg: #fdf4dc;
+      --ax-red: #cb2431;    --ax-red-bg: #fce8e9;
+      --ax-gray-bg: #f0f0f0;
+      --ax-font: 'Inter', system-ui, 'Segoe UI', sans-serif;
+      --ax-mono: 'JetBrains Mono', ui-monospace, monospace;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--ax-font); font-size: var(--ax-font-size); line-height: 1.6; color: var(--ax-text-primary); background: var(--ax-content-bg); -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; transition: color .15s, background .15s, border-color .15s; }
+    body { font-family: var(--ax-font); font-size: 15px; line-height: 1.6; color: var(--ax-text); background: var(--ax-bg); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
     img, svg { max-width: 100%; display: block; }
     button { border: 0; background: none; cursor: pointer; font: inherit; color: inherit; }
-    .mono { font-family: var(--ax-mono); }
 
-    /* Topbar (match index.html exactly) */
-    .topbar { position: sticky; top: 0; z-index: 50; background: var(--ax-topbar-bg); color: var(--ax-topbar-text); height: 52px; display: flex; align-items: center; gap: 1.25rem; padding: 0 1.5rem; border-bottom: 1px solid #000; }
-    .topbar-brand { display: inline-flex; align-items: center; gap: .5rem; }
-    .topbar-brand img { height: 24px; width: auto; }
-    .topbar-roi { color: #6b727f; font-size: 12px; }
-    .topbar-divider { width: 1px; height: 20px; background: #3e3e42; }
+    /* ── Layout ── */
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+    .wrap--narrow { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── Topbar ── */
+    .topbar { position: sticky; top: 0; z-index: 50; height: 52px; display: flex; align-items: center; gap: 1.5rem; padding: 0 2rem; background: var(--ax-topbar-bg); border-bottom: 1px solid #000; }
+    .topbar-brand { display: flex; align-items: center; gap: .5rem; }
+    .topbar-brand img { height: 22px; width: auto; }
+    .topbar-roi { font-size: 11px; color: #6b727f; }
+    .topbar-div { width: 1px; height: 18px; background: #333; }
     .topbar-nav { display: flex; gap: 1.25rem; }
-    .topbar-nav a { font-size: 13px; color: #cccccc; }
-    .topbar-nav a.is-active { color: #ffffff; }
-    .topbar-nav a:hover { color: #ffffff; }
-    .topbar-cta { margin-left: auto; }
-    .topbar-cta .btn-primary { font-size: 12px; font-weight: 600; background: #ffffff; color: #1f1f1f; padding: .4rem .85rem; }
-    .topbar-cta .btn-primary:hover { background: #f3f3f3; }
+    .topbar-nav a { font-size: 13px; color: #aaa; transition: color .15s; }
+    .topbar-nav a:hover, .topbar-nav a.active { color: #fff; }
+    .topbar-end { margin-left: auto; }
+    .btn-solid { display: inline-flex; align-items: center; gap: .4rem; font-size: 13px; font-weight: 600; padding: .55rem 1.1rem; transition: background .15s; }
+    .btn-solid--white { background: #fff; color: #111; }
+    .btn-solid--white:hover { background: #f0f0f0; }
+    .btn-solid--dark { background: var(--ax-text); color: #fff; }
+    .btn-solid--dark:hover { background: #000; }
+    .btn-solid--outline { background: transparent; color: var(--ax-text); border: 1.5px solid var(--ax-border-strong); }
+    .btn-solid--outline:hover { border-color: var(--ax-text); }
 
-    .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
-    section { border-bottom: 1px solid var(--ax-border); }
-    .section-pad { padding: 4rem 0; }
+    /* ── Section ── */
+    .section { border-top: 1px solid var(--ax-border); padding: 5rem 0; }
+    .section--white { background: var(--ax-surface); }
+    .section--gray { background: var(--ax-bg); }
+    .section--dark { background: var(--ax-topbar-bg); color: #fff; border-top: none; }
 
-    .kicker { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ax-text-tertiary); margin-bottom: .85rem; }
-    .h-display { font-size: clamp(2rem, 4.2vw, 3.25rem); line-height: 1.08; letter-spacing: -.025em; font-weight: 700; }
-    .h-section { font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.15; letter-spacing: -.018em; font-weight: 700; }
-    .lead { font-size: 1rem; color: var(--ax-text-secondary); line-height: 1.7; }
+    /* ── Type ── */
+    .kicker { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--ax-faint); margin-bottom: .85rem; }
+    .h-display { font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 700; line-height: 1.1; letter-spacing: -.025em; }
+    .h-section { font-size: clamp(1.5rem, 2.6vw, 2.25rem); font-weight: 700; line-height: 1.14; letter-spacing: -.02em; }
+    .lead { font-size: 1rem; color: var(--ax-muted); line-height: 1.75; }
 
-    .btn { display: inline-flex; align-items: center; gap: .5rem; font-size: 13px; font-weight: 600; padding: .75rem 1.25rem; transition: opacity .15s, background .15s, border-color .15s; }
-    .btn-primary { background: var(--ax-text-primary); color: #fff; }
-    .btn-primary:hover { background: #000; }
-    .btn-secondary { background: var(--ax-surface); color: var(--ax-text-primary); border: 1px solid var(--ax-border-strong); }
-    .btn-secondary:hover { border-color: var(--ax-text-primary); }
+    /* ── Section header ── */
+    .sec { text-align: center; margin-bottom: 3rem; }
+    .sec .lead { max-width: 640px; margin: .85rem auto 0; }
 
-    /* Hero investor-focused, calmer than launch hero */
-    .ir-hero { background: linear-gradient(180deg, #ffffff 0%, #f3f3f3 100%); padding: 4rem 0 3rem; }
-    .ir-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
-    .ir-hero h1 { margin-bottom: 1.5rem; }
-    .ir-hero .lead { margin-bottom: 1.5rem; }
-    .ir-tag-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
-    .ir-tag { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: .35rem .65rem; }
-    .ir-tag-primary { background: var(--ax-status-blue-bg); color: var(--ax-status-blue-text); }
-    .ir-tag-yellow { background: var(--ax-status-yellow-bg); color: var(--ax-status-yellow-text); }
-    .ir-tag-gray { background: var(--ax-status-gray-bg); color: var(--ax-status-gray-text); }
-    .ir-stage { background: var(--ax-surface); border: 1px solid var(--ax-border); padding: 2rem; }
-    .ir-stage-row { display: flex; justify-content: space-between; padding: .75rem 0; border-bottom: 1px solid var(--ax-border); align-items: baseline; }
-    .ir-stage-row:last-child { border-bottom: none; }
-    .ir-stage-key { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ax-text-tertiary); }
-    .ir-stage-val { font-family: var(--ax-mono); font-weight: 500; color: var(--ax-text-primary); text-align: right; }
-    .ir-stage-val small { display: block; color: var(--ax-text-tertiary); font-weight: 400; font-family: var(--ax-font); font-size: 11px; margin-top: .15rem; }
+    /* ── Hero grid ── */
+    .ir-hero { background: #fff; border-bottom: 1px solid var(--ax-border); padding: 5rem 0 4rem; }
+    .ir-hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 4rem; align-items: start; }
+    .ir-hero-left .kicker { display: block; }
+    .ir-hero-left h1 { margin: .85rem 0 1.5rem; }
+    .ir-hero-left .lead { margin-bottom: 1.25rem; }
+    .ir-tag-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.5rem; }
+    .ir-tag { font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; padding: .3rem .65rem; border-radius: 3px; }
+    .ir-tag-gray { background: var(--ax-gray-bg); color: var(--ax-muted); }
+    .ir-tag-blue { background: var(--ax-blue-bg); color: var(--ax-blue); }
 
-    /* Section header (kicker + title row) */
-    .sec-head { display: grid; grid-template-columns: 5fr 7fr; gap: 3rem; align-items: end; margin-bottom: 1.75rem; }
-    .sec-head .lead { max-width: 580px; }
+    /* ── Fact card ── */
+    .ir-card { background: var(--ax-surface); border: 1px solid var(--ax-border); border-radius: 8px; overflow: hidden; }
+    .ir-card-header { background: var(--ax-text); color: #fff; padding: 1rem 1.5rem; }
+    .ir-card-header span { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; }
+    .ir-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .9rem 1.5rem; border-bottom: 1px solid var(--ax-border); }
+    .ir-row:last-child { border-bottom: none; }
+    .ir-key { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ax-faint); white-space: nowrap; }
+    .ir-val { font-family: var(--ax-mono); font-size: .875rem; font-weight: 500; text-align: right; line-height: 1.4; }
+    .ir-val small { display: block; font-family: var(--ax-font); font-size: 11px; font-weight: 400; color: var(--ax-faint); margin-top: .15rem; }
 
-    /* Stat blocks */
-    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--ax-border); }
-    .stat-cell { padding: 1.5rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); }
+    /* ── Stat grid ── */
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--ax-border); border-radius: 8px; overflow: hidden; }
+    .stat-cell { padding: 1.75rem 1.5rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); }
     .stat-cell:last-child { border-right: none; }
-    .stat-num { font-family: var(--ax-mono); font-size: 1.75rem; font-weight: 500; color: var(--ax-text-primary); line-height: 1.1; margin-bottom: .35rem; }
-    .stat-label { font-size: 12px; color: var(--ax-text-secondary); line-height: 1.5; }
+    .stat-num { font-family: var(--ax-mono); font-size: 1rem; line-height: 1.45; font-weight: 500; margin-bottom: .35rem; }
+    .stat-label { font-size: .8125rem; color: var(--ax-muted); line-height: 1.55; }
 
-    /* Two-column body */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    /* ── Two-column body ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; }
     .body-col h3 { font-size: 1.0625rem; font-weight: 600; margin-bottom: .75rem; }
-    .body-col p { font-size: .9375rem; color: var(--ax-text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+    .body-col p { font-size: .9375rem; color: var(--ax-muted); line-height: 1.75; margin-bottom: 1rem; }
     .body-col p:last-child { margin-bottom: 0; }
-    .body-col strong { color: var(--ax-text-primary); }
+    .body-col strong { color: var(--ax-text); font-weight: 600; }
 
-    /* Comp matrix */
-    .matrix { width: 100%; border-collapse: collapse; border: 1px solid var(--ax-border); background: var(--ax-surface); margin-top: 2rem; }
-    .matrix th, .matrix td { padding: .85rem 1.1rem; text-align: left; border-bottom: 1px solid var(--ax-border); border-right: 1px solid var(--ax-border); font-size: .9375rem; vertical-align: top; }
-    .matrix th { background: var(--ax-status-gray-bg); color: var(--ax-text-secondary); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-    .matrix td:first-child { font-weight: 600; color: var(--ax-text-primary); }
+    /* ── Competitive matrix ── */
+    .matrix { width: 100%; border-collapse: collapse; border: 1px solid var(--ax-border); border-radius: 8px; overflow: hidden; background: var(--ax-surface); margin-top: 2.5rem; }
+    .matrix th, .matrix td { padding: .85rem 1.1rem; text-align: left; border-bottom: 1px solid var(--ax-border); border-right: 1px solid var(--ax-border); font-size: .875rem; vertical-align: top; }
+    .matrix th { background: var(--ax-gray-bg); color: var(--ax-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .matrix td:first-child { font-weight: 600; }
     .matrix tr:last-child td { border-bottom: none; }
     .matrix td:last-child, .matrix th:last-child { border-right: none; }
-    .check-yes { color: var(--ax-status-green-text); font-weight: 600; }
-    .check-partial { color: var(--ax-status-yellow-text); font-weight: 600; }
-    .check-no { color: var(--ax-text-tertiary); }
+    .yes { color: var(--ax-green); font-weight: 600; }
+    .partial { color: var(--ax-yellow); font-weight: 600; }
+    .no { color: var(--ax-faint); }
 
-    /* Roadmap rail */
-    .rail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--ax-border); }
-    .rail-cell { padding: 1.75rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); }
+    /* ── Roadmap rail ── */
+    .rail-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--ax-border); border-radius: 8px; overflow: hidden; }
+    .rail-cell { padding: 2rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); }
     .rail-cell:last-child { border-right: none; }
-    .rail-when { font-family: var(--ax-mono); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ax-text-tertiary); margin-bottom: .25rem; }
-    .rail-h { font-size: 1.0625rem; font-weight: 600; margin-bottom: .85rem; }
+    .rail-when { font-family: var(--ax-mono); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ax-faint); margin-bottom: .35rem; }
+    .rail-h { font-size: 1.0625rem; font-weight: 600; margin-bottom: 1rem; }
     .rail-list { list-style: none; }
-    .rail-list li { font-size: .875rem; color: var(--ax-text-secondary); padding: .25rem 0; line-height: 1.5; }
-    .rail-list li::before { content: '·  '; color: var(--ax-text-tertiary); }
+    .rail-list li { font-size: .875rem; color: var(--ax-muted); padding: .3rem 0; line-height: 1.5; border-top: 1px solid var(--ax-border); }
+    .rail-list li:first-child { border-top: none; }
+    .rail-list li::before { content: '→  '; color: var(--ax-faint); }
 
-    /* Founder card */
-    .founder { background: var(--ax-surface); border: 1px solid var(--ax-border); padding: 2rem; display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start; }
-    .founder-name { font-size: 1.25rem; font-weight: 700; margin-bottom: .35rem; }
-    .founder-role { font-size: 12px; color: var(--ax-text-tertiary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
-    .founder p { font-size: .9375rem; color: var(--ax-text-secondary); line-height: 1.7; margin-bottom: .75rem; }
-    .founder-links { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 13px; }
-    .founder-links a { color: var(--ax-text-primary); text-decoration: underline; text-underline-offset: 3px; }
+    /* ── Founder ── */
+    .founder { background: var(--ax-surface); border: 1px solid var(--ax-border); border-radius: 8px; padding: 2.5rem; display: grid; grid-template-columns: 1fr 2fr; gap: 2.5rem; align-items: start; }
+    .founder-name { font-size: 1.25rem; font-weight: 700; margin-bottom: .3rem; }
+    .founder-role { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ax-faint); margin-bottom: 1.25rem; }
+    .founder-links { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 1rem; }
+    .founder-links a { font-size: 13px; color: var(--ax-text); text-decoration: underline; text-underline-offset: 3px; }
 
-    /* CTA */
-    .ir-cta { background: var(--ax-topbar-bg); color: #fff; }
-    .ir-cta .container { padding: 4.5rem 1.5rem; text-align: center; }
-    .ir-cta h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 700; line-height: 1.2; max-width: 760px; margin: 0 auto 1rem; }
-    .ir-cta .lead { color: #cccccc; max-width: 600px; margin: 0 auto 2rem; }
-    .ir-cta-buttons { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
-    .ir-cta .btn-primary { background: #fff; color: #1f1f1f; }
-    .ir-cta .btn-primary:hover { background: #f3f3f3; }
-    .ir-cta .btn-secondary { background: transparent; color: #fff; border-color: #6b727f; }
-    .ir-cta .btn-secondary:hover { border-color: #fff; }
+    /* ── CTA ── */
+    .ir-cta { text-align: center; padding: 6rem 0; }
+    .ir-cta h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.15; max-width: 640px; margin: 0 auto 1rem; }
+    .ir-cta .lead { color: #9ca3af; max-width: 500px; margin: 0 auto; }
+    .ir-cta-btns { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+    .btn-cta-w { background: #fff; color: #111; font-size: 13px; font-weight: 600; padding: .75rem 1.4rem; display: inline-flex; align-items: center; }
+    .btn-cta-w:hover { background: #f0f0f0; }
+    .btn-cta-g { font-size: 13px; font-weight: 600; padding: .75rem 1.4rem; border: 1px solid #444; color: #fff; display: inline-flex; align-items: center; }
+    .btn-cta-g:hover { border-color: #888; }
 
-    /* Footer */
-    footer { background: var(--ax-topbar-bg); color: #cccccc; padding: 2rem 0; border-top: 1px solid #2e2e2e; }
-    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; font-size: 12px; }
-    .footer-links { display: flex; gap: 1.25rem; }
-    .footer-links a { color: #cccccc; }
+    /* ── Footer ── */
+    footer { background: var(--ax-topbar-bg); border-top: 1px solid #2a2a2a; padding: 2rem 0; color: #888; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 12px; }
+    .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .footer-links a { color: #888; }
     .footer-links a:hover { color: #fff; }
 
-    /* Disclosure block */
-    .disclosure { background: var(--ax-status-yellow-bg); border-left: 3px solid var(--ax-status-yellow-text); padding: 1rem 1.25rem; margin: 2rem 0 0; }
-    .disclosure p { font-size: 12px; color: var(--ax-text-secondary); line-height: 1.6; }
-    .disclosure strong { color: var(--ax-status-yellow-text); }
-
-    @media (max-width: 900px) {
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
       .topbar-nav { display: none; }
-      .ir-hero-grid, .two-col, .ask-grid, .sec-head { grid-template-columns: 1fr; }
-      .stat-grid, .rail-grid { grid-template-columns: 1fr; }
-      .stat-cell, .rail-cell { border-right: none; border-bottom: 1px solid var(--ax-border); }
+      .ir-hero-grid, .two-col { grid-template-columns: 1fr; gap: 2rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .stat-cell:nth-child(2n) { border-right: none; }
+      .stat-cell:nth-child(1), .stat-cell:nth-child(2) { border-bottom: 1px solid var(--ax-border); }
+      .rail-grid { grid-template-columns: 1fr; }
+      .rail-cell { border-right: none; border-bottom: 1px solid var(--ax-border); }
+      .rail-cell:last-child { border-bottom: none; }
       .founder { grid-template-columns: 1fr; }
+      .section { padding: 3.5rem 0; }
+      .ir-hero { padding: 3.5rem 0 3rem; }
     }
-    @media (max-width: 480px) {
+    @media (max-width: 560px) {
+      .wrap, .wrap--narrow { padding: 0 1.25rem; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .stat-cell { border-right: none; border-bottom: 1px solid var(--ax-border); }
+      .stat-cell:last-child { border-bottom: none; }
       .matrix th, .matrix td { padding: .5rem .65rem; font-size: .8125rem; }
       .matrix th { font-size: 10px; }
+      .footer-row { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ─── Topbar ─── -->
+  <!-- ── Topbar ── -->
   <header class="topbar">
-    <a class="topbar-brand" href="/" aria-label="AIXXEN home">
+    <a class="topbar-brand" href="/">
       <img src="assets/img/logo_w.svg" alt="AIXXEN" />
       <span class="topbar-roi">ROI</span>
     </a>
-    <span class="topbar-divider" aria-hidden="true"></span>
+    <span class="topbar-div" aria-hidden="true"></span>
     <nav class="topbar-nav" aria-label="Main">
-      <a href="index.html#tour">Product</a>
+      <a href="index.html#product">Product</a>
       <a href="index.html#how">How it works</a>
       <a href="index.html#faq">FAQ</a>
-      <a href="investors.html" class="is-active">Investors</a>
+      <a href="investors.html" class="active">Investors</a>
     </nav>
-    <div class="topbar-cta">
-      <a class="btn-primary" href="mailto:investors@aixxen.com?subject=AIXXEN%20investor%20inquiry">Get in touch</a>
+    <div class="topbar-end">
+      <a class="btn-solid btn-solid--white" href="mailto:investors@aixxen.com?subject=AIXXEN%20investor%20inquiry">Get in touch</a>
     </div>
   </header>
 
-  <!-- ─── IR hero ─── -->
-  <section class="ir-hero">
-    <div class="container">
+  <!-- ── Hero ── -->
+  <div class="ir-hero">
+    <div class="wrap">
       <div class="ir-hero-grid">
-        <div>
+        <div class="ir-hero-left">
           <span class="kicker">Investor relations</span>
           <h1 class="h-display">A vendor-neutral cockpit for the new largest line item on every IT budget.</h1>
           <div class="ir-tag-row">
@@ -216,199 +224,178 @@
             <span class="ir-tag ir-tag-gray">Buyout open to discuss</span>
             <span class="ir-tag ir-tag-gray">Solo founder · full-stack</span>
           </div>
-          <p class="lead">
-            AIXXEN is the AI portfolio cockpit for CIOs and CFOs of mid-market and enterprise organizations. We turn fragmented AI vendor spend, business cases, and adoption signal into a single decision surface. Product is built, demonstrable, and seeded with realistic enterprise data.
-          </p>
-          <p class="lead">
-            We are exploring two parallel paths in 2026: a pre-seed round to fund design-partner expansion and a first hire, or a strategic acquisition by an EA / FinOps / SaaS-management incumbent for whom AI cost intelligence is a wedge product they would otherwise have to build.
-          </p>
-          <a class="btn btn-primary" href="mailto:investors@aixxen.com?subject=AIXXEN%20investor%20inquiry">
-            Get in touch →
-          </a>
+          <p class="lead">AIXXEN is the AI portfolio cockpit for CIOs and CFOs of mid-market and enterprise organizations. We turn fragmented AI vendor spend, business cases, and adoption signal into a single decision surface. Product is built, demonstrable, and seeded with realistic enterprise data.</p>
+          <p class="lead" style="margin-top:.85rem;">We are exploring two parallel paths in 2026: a pre-seed round to fund design-partner expansion and a first hire, or a strategic acquisition by an EA / FinOps / SaaS-management incumbent for whom AI cost intelligence is a wedge product they would otherwise have to build.</p>
+          <div style="margin-top:1.75rem;">
+            <a class="btn-solid btn-solid--dark" href="mailto:investors@aixxen.com?subject=AIXXEN%20investor%20inquiry">Get in touch →</a>
+          </div>
         </div>
-        <aside class="ir-stage">
-          <div class="ir-stage-row">
-            <div class="ir-stage-key">Stage</div>
-            <div class="ir-stage-val">Pre-seed<small>Product built · pre-revenue · pre-launch</small></div>
+
+        <div class="ir-card">
+          <div class="ir-card-header">
+            <span>Investment snapshot</span>
           </div>
-          <div class="ir-stage-row">
-            <div class="ir-stage-key">Founded</div>
-            <div class="ir-stage-val">2026<small>Solo build, full-stack</small></div>
+          <div class="ir-row">
+            <div class="ir-key">Stage</div>
+            <div class="ir-val">Pre-seed<small>Product built · pre-revenue · pre-launch</small></div>
           </div>
-          <div class="ir-stage-row">
-            <div class="ir-stage-key">Round target</div>
-            <div class="ir-stage-val">Disclosed under NDA<small>Pre-seed · sized to milestones</small></div>
+          <div class="ir-row">
+            <div class="ir-key">Founded</div>
+            <div class="ir-val">2026<small>Solo build, full-stack</small></div>
           </div>
-          <div class="ir-stage-row">
-            <div class="ir-stage-key">Use of funds</div>
-            <div class="ir-stage-val">Design partners<small>GTM hire · enterprise infrastructure</small></div>
+          <div class="ir-row">
+            <div class="ir-key">Round target</div>
+            <div class="ir-val">Disclosed under NDA<small>Pre-seed · sized to milestones</small></div>
           </div>
-          <div class="ir-stage-row">
-            <div class="ir-stage-key">Acquisition signal</div>
-            <div class="ir-stage-val">Open<small>EA / FinOps / SaaS-management strategic fit</small></div>
+          <div class="ir-row">
+            <div class="ir-key">Use of funds</div>
+            <div class="ir-val">Design partners<small>GTM hire · enterprise infrastructure</small></div>
           </div>
-          <div class="ir-stage-row">
-            <div class="ir-stage-key">Contact</div>
-            <div class="ir-stage-val"><a href="mailto:investors@aixxen.com" style="text-decoration: underline;">investors@aixxen.com</a></div>
+          <div class="ir-row">
+            <div class="ir-key">Acquisition signal</div>
+            <div class="ir-val">Open<small>EA / FinOps / SaaS-management strategic fit</small></div>
           </div>
-        </aside>
+          <div class="ir-row">
+            <div class="ir-key">Contact</div>
+            <div class="ir-val"><a href="mailto:investors@aixxen.com" style="text-decoration:underline; text-underline-offset:3px;">investors@aixxen.com</a></div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ─── Why now ─── -->
-  <section class="section-pad">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Market</span>
-          <h2 class="h-section">AI tool sprawl is following the SaaS sprawl playbook and the ROI gap is wider.</h2>
-        </div>
+  <!-- ── Market ── -->
+  <section class="section section--gray">
+    <div class="wrap">
+      <div class="sec">
+        <span class="kicker">Market</span>
+        <h2 class="h-section">AI tool sprawl is following the SaaS playbookhelps enterprises and the ROI gap is wider.</h2>
         <p class="lead">CFOs that ignored generic SaaS spend in 2017 were running unaudited 7-figure budgets by 2020. AI is moving faster. The audit gap is closing fast, but the ROI gap is wide open and unaddressed by adjacent tooling.</p>
       </div>
 
       <div class="stat-grid">
         <div class="stat-cell">
-          <div class="stat-num" style="font-size:1.1rem;line-height:1.4">Rapidly growing</div>
+          <div class="stat-num">Rapidly growing</div>
           <div class="stat-label">enterprise AI tool count, accelerating year-over-year since 2023</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-num" style="font-size:1.1rem;line-height:1.4">Multiple vendors</div>
+          <div class="stat-num">Multiple vendors</div>
           <div class="stat-label">a typical mid-market org now pays distinct AI vendors directly, outside central IT</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-num" style="font-size:1.1rem;line-height:1.4">Most orgs</div>
-          <div class="stat-label">cannot quantify realized AI ROI on demand. The data is not in one place.</div>
+          <div class="stat-num">Most orgs</div>
+          <div class="stat-label">cannot quantify realized AI ROI on demandhelps enterprises the data is not in one place</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-num" style="font-size:1.1rem;line-height:1.4">Consistent gap</div>
-          <div class="stat-label">gap between vendor pitch savings and what CFOs actually book. Closing that gap is the product.</div>
+          <div class="stat-num">Consistent gap</div>
+          <div class="stat-label">between vendor pitch savings and what CFOs actually bookhelps enterprises closing that gap is the product</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Wedge ─── -->
-  <section class="section-pad" style="background: var(--ax-surface);">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">The wedge</span>
-          <h2 class="h-section">The vendors won the AI race. The leverage moved to the workforce.</h2>
-        </div>
+  <!-- ── Wedge ── -->
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="sec">
+        <span class="kicker">The wedge</span>
+        <h2 class="h-section">The vendors won the AI race. The leverage moved to the workforce.</h2>
         <p class="lead">Existing tooling treats AI as a procurement category, a compliance question, or a generic SaaS line item. None measure the gap that actually drives ROI.</p>
       </div>
 
       <div class="two-col">
         <div class="body-col">
           <h3>What we observe</h3>
-          <p>
-            <strong>The AI itself is no longer the bottleneck.</strong> OpenAI, Anthropic, Microsoft, and Google ship cheaper, faster, more capable models every quarter. The same tool deployed in two organizations produces wildly different outcomes and the difference is rarely the model.
-          </p>
-          <p>
-            The AI ROI conversation has moved entirely to the workforce side: how well employees have been trained to use the tools, motivated to adopt them, and given the time to build new habits. Until you can measure that, every soft-saving projection is a vendor pitch.
-          </p>
-          <p>
-            <strong>Capability is the missing primitive.</strong> Every adjacent tool in EA, FinOps, governance, and model risk assumes the value is in the AI. AIXXEN inverts that. The product is the workforce; the AI is a tool. We measure both sides, on one page.
-          </p>
+          <p><strong>The AI itself is no longer the bottleneck.</strong> OpenAI, Anthropic, Microsoft, and Google ship cheaper, faster, more capable models every quarter. The same tool deployed in two organizations produces wildly different outcomeshelps enterprises and the difference is rarely the model.</p>
+          <p>The AI ROI conversation has moved entirely to the workforce side: how well employees have been trained to use the tools, motivated to adopt them, and given the time to build new habits. Until you can measure that, every soft-saving projection is a vendor pitch.</p>
+          <p><strong>Capability is the missing primitive.</strong> Every adjacent tool in EA, FinOps, governance, and model risk assumes the value is in the AI. AIXXEN inverts that. The product is the workforce; the AI is a tool. We measure both sides, on one page.</p>
         </div>
-
         <div class="body-col">
           <h3>What that produces</h3>
-          <p>
-            A defensible CFO conversation. Hard P&amp;L savings (booked, attested) sit in a different column from soft potential (capacity freed). Soft potential is multiplied by an organization-specific capability factor before it lands anywhere near a board pack.
-          </p>
-          <p>
-            A targeted CIO conversation. Capability scores per department surface where training and enablement spend will produce the biggest delta. Shadow AI share surfaces the spend that's happening outside procurement.
-          </p>
-          <p>
-            <strong>Defensibility lives in the measurement methodology.</strong> The capability factor is calibrated by a proprietary anonymous instrument that produces tenant-specific numbers not vendor benchmarks. The methodology is the moat; details under NDA.
-          </p>
+          <p>A defensible CFO conversation. Hard P&amp;L savings (booked, attested) sit in a different column from soft potential (capacity freed). Soft potential is multiplied by an organization-specific capability factor before it lands anywhere near a board pack.</p>
+          <p>A targeted CIO conversation. Capability scores per department surface where training and enablement spend will produce the biggest delta. Shadow AI share surfaces the spend that's happening outside procurement.</p>
+          <p><strong>Defensibility lives in the measurement methodology.</strong> The capability factor is calibrated by a proprietary anonymous instrument that produces tenant-specific numbershelps enterprises not vendor benchmarks. The methodology is the moat; details under NDA.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Competitive matrix ─── -->
-  <section class="section-pad">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Competitive landscape</span>
-          <h2 class="h-section">The CIO's AI question doesn't have a vendor today.</h2>
-        </div>
+  <!-- ── Competitive matrix ── -->
+  <section class="section section--gray">
+    <div class="wrap">
+      <div class="sec">
+        <span class="kicker">Competitive landscape</span>
+        <h2 class="h-section">The CIO's AI question doesn't have a vendor today.</h2>
         <p class="lead">Adjacent products solve adjacent problems. None puts AI vendor spend, business case attribution, capability measurement, and a 5-year plan-of-record on the same surface.</p>
       </div>
 
-      <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
-      <table class="matrix">
-        <thead>
-          <tr>
-            <th>Capability</th>
-            <th>AIXXEN</th>
-            <th>EA / SAM<br/><small>LeanIX, Flexera</small></th>
-            <th>FinOps<br/><small>Apptio, CloudHealth</small></th>
-            <th>AI governance<br/><small>Credo, Holistic, FairNow</small></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Vendor-neutral AI spend</td>
-            <td><span class="check-yes">✓ Native</span></td>
-            <td><span class="check-partial">~ Generic SaaS</span></td>
-            <td><span class="check-no">— Cloud-only</span></td>
-            <td><span class="check-no">— Out of scope</span></td>
-          </tr>
-          <tr>
-            <td>Hard vs soft benefit accounting</td>
-            <td><span class="check-yes">✓ At data model</span></td>
-            <td><span class="check-no">— No model</span></td>
-            <td><span class="check-no">— No model</span></td>
-            <td><span class="check-no">— Out of scope</span></td>
-          </tr>
-          <tr>
-            <td>Capability measurement</td>
-            <td><span class="check-yes">✓ Proprietary</span></td>
-            <td><span class="check-no">—</span></td>
-            <td><span class="check-no">—</span></td>
-            <td><span class="check-no">—</span></td>
-          </tr>
-          <tr>
-            <td>5-year roadmap (plan-of-record)</td>
-            <td><span class="check-yes">✓ Native</span></td>
-            <td><span class="check-partial">~ Project EA</span></td>
-            <td><span class="check-no">— Cost only</span></td>
-            <td><span class="check-no">— Out of scope</span></td>
-          </tr>
-          <tr>
-            <td>EU AI Act compliance</td>
-            <td><span class="check-no">— Deliberately out</span></td>
-            <td><span class="check-no">—</span></td>
-            <td><span class="check-no">—</span></td>
-            <td><span class="check-yes">✓ Core</span></td>
-          </tr>
-          <tr>
-            <td>Onboarding shape</td>
-            <td><span class="check-yes">Lightweight · file-based</span></td>
-            <td><span class="check-no">Heavy · multi-quarter</span></td>
-            <td><span class="check-partial">Connector-driven</span></td>
-            <td><span class="check-partial">Workflow-driven</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>AIXXEN</th>
+              <th>EA / SAM<br/><small style="text-transform:none;letter-spacing:0;">LeanIX, Flexera</small></th>
+              <th>FinOps<br/><small style="text-transform:none;letter-spacing:0;">Apptio, CloudHealth</small></th>
+              <th>AI governance<br/><small style="text-transform:none;letter-spacing:0;">Credo, Holistic, FairNow</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Vendor-neutral AI spend</td>
+              <td><span class="yes">✓ Native</span></td>
+              <td><span class="partial">~ Generic SaaS</span></td>
+              <td><span class="no">— Cloud-only</span></td>
+              <td><span class="no">— Out of scope</span></td>
+            </tr>
+            <tr>
+              <td>Hard vs soft benefit accounting</td>
+              <td><span class="yes">✓ At data model</span></td>
+              <td><span class="no">— No model</span></td>
+              <td><span class="no">— No model</span></td>
+              <td><span class="no">— Out of scope</span></td>
+            </tr>
+            <tr>
+              <td>Capability measurement</td>
+              <td><span class="yes">✓ Proprietary</span></td>
+              <td><span class="no">—</span></td>
+              <td><span class="no">—</span></td>
+              <td><span class="no">—</span></td>
+            </tr>
+            <tr>
+              <td>5-year roadmap (plan-of-record)</td>
+              <td><span class="yes">✓ Native</span></td>
+              <td><span class="partial">~ Project EA</span></td>
+              <td><span class="no">— Cost only</span></td>
+              <td><span class="no">— Out of scope</span></td>
+            </tr>
+            <tr>
+              <td>EU AI Act compliance</td>
+              <td><span class="no">— Deliberately out</span></td>
+              <td><span class="no">—</span></td>
+              <td><span class="no">—</span></td>
+              <td><span class="yes">✓ Core</span></td>
+            </tr>
+            <tr>
+              <td>Onboarding shape</td>
+              <td><span class="yes">Lightweight · file-based</span></td>
+              <td><span class="no">Heavy · multi-quarter</span></td>
+              <td><span class="partial">Connector-driven</span></td>
+              <td><span class="partial">Workflow-driven</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <!-- ─── Product status ─── -->
-  <section class="section-pad" style="background: var(--ax-surface);">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Product status</span>
-          <h2 class="h-section">Built. Demonstrable. Seeded with realistic enterprise data.</h2>
-        </div>
-        <p class="lead">AIXXEN is a working multi-tenant application running on representative seed data not a deck with screenshots. Live demo available on request.</p>
+  <!-- ── Product status ── -->
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="sec">
+        <span class="kicker">Product status</span>
+        <h2 class="h-section">Built. Demonstrable. Seeded with realistic enterprise data.</h2>
+        <p class="lead">AIXXEN is a working multi-tenant application running on representative seed datahelps enterprises not a deck with screenshots. Live demo available on request.</p>
       </div>
 
       <div class="rail-grid">
@@ -416,10 +403,10 @@
           <div class="rail-when">Shipped</div>
           <div class="rail-h">Core product</div>
           <ul class="rail-list">
-            <li>Tools &amp; vendors page (filter rail, vendor spend chart, league table, renewal Gantt)</li>
+            <li>Tools &amp; vendors pagehelps enterprises filter rail, vendor spend chart, league table, renewal Gantt</li>
             <li>Use cases pipeline with typed business cases (hard / soft separation)</li>
             <li>5-year portfolio roadmap with cluster filters</li>
-            <li>Custom report builder (4 sources, 5 presentations, saved views, CSV export)</li>
+            <li>Custom report builderhelps enterprises 4 sources, 5 presentations, saved views, CSV export</li>
             <li>Anonymous capability survey · anonymized aggregates only</li>
             <li>Authentication · admin invite flow · multi-tenant infrastructure</li>
           </ul>
@@ -428,7 +415,7 @@
           <div class="rail-when">Live</div>
           <div class="rail-h">Demo &amp; data model</div>
           <ul class="rail-list">
-            <li>Import templates for tools, spend, headcount, use cases (CSV and Excel today; API on the roadmap)</li>
+            <li>Import templates for tools, spend, headcount, use caseshelps enterprises CSV and Excel today; API on the roadmap</li>
             <li>Realistic seed data set: 24 months of vendor spend across multiple categories</li>
             <li>End-to-end demo on representative enterprise data</li>
           </ul>
@@ -447,15 +434,12 @@
     </div>
   </section>
 
-
-  <!-- ─── Founder ─── -->
-  <section class="section-pad" style="background: var(--ax-surface);">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Team</span>
-          <h2 class="h-section">Solo founder, full-stack. Built the thing.</h2>
-        </div>
+  <!-- ── Founder ── -->
+  <section class="section section--gray">
+    <div class="wrap">
+      <div class="sec">
+        <span class="kicker">Team</span>
+        <h2 class="h-section">Solo founder, full-stack. Built the thing.</h2>
         <p class="lead">First hire post-funding is GTM. Engineering is solo and shippable; the product is built and demonstrable today.</p>
       </div>
 
@@ -469,13 +453,9 @@
             <span class="ir-tag ir-tag-gray">Enterprise</span>
           </div>
         </div>
-        <div class="body-col" style="grid-column: span 1;">
-          <p>
-            Solo full-stack builder of AIXXEN. Designed and shipped the current product surface front-end, back-end, data model, demo data on a Next.js / TypeScript / PostgreSQL stack.
-          </p>
-          <p>
-            More background, prior work, and references available on request see LinkedIn for the public version.
-          </p>
+        <div class="body-col">
+          <p>Solo full-stack builder of AIXXEN. Designed and shipped the current product surfacehelps enterprises front-end, back-end, data model, demo datahelps enterprises on a Next.js / TypeScript / PostgreSQL stack.</p>
+          <p>More background, prior work, and references available on request. See LinkedIn for the public version.</p>
           <div class="founder-links">
             <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn →</a>
             <a href="mailto:investors@aixxen.com">Email →</a>
@@ -486,33 +466,32 @@
     </div>
   </section>
 
-
-  <!-- ─── CTA ─── -->
-  <section class="ir-cta">
-    <div class="container">
+  <!-- ── CTA ── -->
+  <section class="section section--dark">
+    <div class="wrap--narrow ir-cta">
       <h2>Get in touch.</h2>
-      <p class="lead">Pre-seed inquiry or acquisition conversation same email, same-day response.</p>
-      <div class="ir-cta-buttons">
-        <a class="btn btn-primary" href="mailto:investors@aixxen.com?subject=AIXXEN%20pre-seed%20inquiry">Pre-seed inquiry</a>
-        <a class="btn btn-secondary" href="mailto:investors@aixxen.com?subject=AIXXEN%20acquisition%20inquiry">Strategic acquisition</a>
+      <p class="lead">Pre-seed inquiry or acquisition conversationhelps enterprises same email, same-day response.</p>
+      <div class="ir-cta-btns">
+        <a class="btn-cta-w" href="mailto:investors@aixxen.com?subject=AIXXEN%20pre-seed%20inquiry">Pre-seed inquiry</a>
+        <a class="btn-cta-g" href="mailto:investors@aixxen.com?subject=AIXXEN%20acquisition%20inquiry">Strategic acquisition</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="container">
+    <div class="wrap">
       <div class="footer-row">
         <div class="topbar-brand"><img src="assets/img/logo_w.svg" alt="AIXXEN" /></div>
         <div class="footer-links">
           <a href="index.html">Home</a>
-          <a href="index.html#tour">Product</a>
+          <a href="index.html#product">Product</a>
           <a href="index.html#faq">FAQ</a>
           <a href="privacy.html">Privacy</a>
           <a href="cookies.html">Cookies</a>
           <a href="#" data-cookie-manage>Manage cookies</a>
           <a href="mailto:investors@aixxen.com">Contact</a>
         </div>
-        <div style="color: #6b727f;">© 2026 AIXXEN · Investor relations</div>
+        <div>© 2026 AIXXEN · Investor relations</div>
       </div>
     </div>
   </footer>
