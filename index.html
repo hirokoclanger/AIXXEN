@@ -10,193 +10,743 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIXXEN — AI Portfolio Intelligence for CIOs and CFOs</title>
+  <title>AIXXENhelps enterprises Measure and maximize your AI return on investment</title>
   <meta name="description" content="AIXXEN helps enterprises evaluate, track and prove the return on AI investments. See spend, use-case ROI and workforce capability on one screen." />
-  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Philipp Eiselt" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#1f1f1f" />
   <link rel="canonical" href="https://aixxen.com/" />
-  <meta property="og:title" content="AIXXEN — AI Portfolio Intelligence for CIOs and CFOs" />
+  <meta property="og:title" content="AIXXEN - Measure and maximize your AI return on investment" />
   <meta property="og:description" content="AIXXEN helps enterprises evaluate, track and prove the return on AI investments. See spend, use-case ROI and workforce capability on one screen." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aixxen.com/" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://aixxen.com/assets/img/aixxen-10-dashboard.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AIXXENhelps enterprises Measure and maximize your AI return on investment" />
+  <meta name="twitter:description" content="AIXXEN helps enterprises evaluate, track and prove the return on AI investments. See spend, use-case ROI and workforce capability on one screen." />
+  <meta name="twitter:image" content="https://aixxen.com/assets/img/aixxen-10-dashboard.jpg" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"AIXXEN","url":"https://aixxen.com","description":"AIXXEN helps enterprises evaluate, track and prove the return on AI investments.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"AIXXEN","url":"https://aixxen.com","logo":"https://aixxen.com/assets/img/logo.svg","contactPoint":{"@type":"ContactPoint","email":"sales@aixxen.com","contactType":"sales"}}}
+  </script>
   <link rel="icon" type="image/svg+xml" href="assets/img/Favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="196x196" href="assets/img/favicon-196.png" />
   <link rel="apple-touch-icon" href="assets/img/favicon-196.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
+    /* ── Tokens ── */
     :root {
-      --topbar-bg: #1f1f1f;
-      --bg: #f5f5f5;
-      --surface: #ffffff;
-      --border: #e5e5e5;
-      --text: #111111;
-      --muted: #6b7280;
-      --faint: #9ca3af;
+      --black: #111111;
+      --white: #ffffff;
+      --gray-50: #f9f9f9;
+      --gray-100: #f3f3f3;
+      --gray-200: #e8e8e8;
+      --gray-400: #a0a0a0;
+      --gray-500: #6b6b6b;
+      --gray-600: #444444;
+      --topbar: #1a1a1a;
+      --blue: #1f6feb;
       --green: #22863a;
-      --font: 'Inter', system-ui, 'Segoe UI', sans-serif;
+      --yellow: #b08500;
+      --red: #cb2431;
+      --font: 'Inter', system-ui, sans-serif;
       --mono: 'JetBrains Mono', ui-monospace, monospace;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font); font-size: 15px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: var(--font); font-size: 16px; line-height: 1.6; color: var(--black); background: #fff; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
-    img, svg { max-width: 100%; display: block; }
+    img { max-width: 100%; display: block; }
     button { border: 0; background: none; cursor: pointer; font: inherit; color: inherit; }
 
-    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+    /* ── Containers ── */
+    .c { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+    .c-md { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
 
-    /* Topbar */
-    .topbar { position: sticky; top: 0; z-index: 50; height: 52px; display: flex; align-items: center; gap: 1.5rem; padding: 0 2rem; background: var(--topbar-bg); border-bottom: 1px solid #000; }
-    .topbar-brand { display: flex; align-items: center; gap: .5rem; }
-    .topbar-brand img { height: 22px; width: auto; }
-    .topbar-roi { font-size: 11px; color: #6b727f; }
-    .topbar-end { margin-left: auto; }
-    .btn-top { display: inline-flex; align-items: center; font-size: 13px; font-weight: 600; padding: .55rem 1.1rem; background: #fff; color: #111; transition: background .15s; }
-    .btn-top:hover { background: #f0f0f0; }
+    /* ── Topbar ── */
+    .topbar { position: sticky; top: 0; z-index: 99; height: 52px; display: flex; align-items: center; padding: 0 2rem; background: var(--topbar); border-bottom: 1px solid #000; }
+    .tb-brand { display: flex; align-items: center; gap: .5rem; }
+    .tb-brand img { height: 20px; }
+    .tb-roi { font-size: 11px; color: #555; }
+    .tb-sep { width: 1px; height: 18px; background: #333; margin: 0 1rem; }
+    .tb-nav { display: flex; gap: 1.25rem; }
+    .tb-nav a { font-size: 13px; color: #888; transition: color .15s; }
+    .tb-nav a:hover { color: #fff; }
+    .tb-end { margin-left: auto; }
+    .btn { display: inline-flex; align-items: center; gap: .35rem; font-size: 13px; font-weight: 600; padding: .55rem 1.1rem; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+    .btn-w { background: #fff; color: #111; }
+    .btn-w:hover { background: #f0f0f0; }
+    .btn-d { background: #111; color: #fff; }
+    .btn-d:hover { background: #000; }
+    .btn-o { background: transparent; color: #111; border: 1.5px solid #ccc; }
+    .btn-o:hover { border-color: #111; }
+    .btn-lg { font-size: 15px; padding: .8rem 1.75rem; }
+    .arrow { display: inline-flex; }
+    .arrow svg { width: 14px; height: 14px; }
 
-    /* Hero */
-    .hero { background: var(--surface); border-bottom: 1px solid var(--border); padding: 7rem 0 6rem; text-align: center; }
-    .hero-eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--faint); background: #f3f3f3; border: 1px solid var(--border); border-radius: 100px; padding: .35rem 1rem; margin-bottom: 2.25rem; }
-    .hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-    .hero-h1 { font-size: clamp(2.5rem, 7vw, 4.25rem); font-weight: 700; line-height: 1.08; letter-spacing: -.03em; color: var(--text); max-width: 820px; margin: 0 auto; }
-    .hero-h1 em { font-style: normal; color: var(--faint); }
-    .hero-sub { font-size: 1.0625rem; color: var(--muted); line-height: 1.75; margin: 1.75rem auto 0; max-width: 520px; }
-    .hero-actions { margin-top: 2.5rem; display: flex; flex-direction: column; align-items: center; gap: .75rem; }
-    .btn-primary { display: inline-flex; align-items: center; gap: .4rem; font-size: 15px; font-weight: 600; padding: .85rem 2rem; background: var(--text); color: #fff; transition: background .15s; }
-    .btn-primary:hover { background: #000; }
-    .btn-secondary { display: inline-flex; align-items: center; gap: .4rem; font-size: 13px; font-weight: 600; padding: .75rem 1.5rem; background: transparent; color: var(--text); border: 1.5px solid #ccc; transition: border-color .15s; }
-    .btn-secondary:hover { border-color: var(--text); }
-    .hero-note { font-size: 12px; color: var(--faint); margin-top: .5rem; }
+    /* ── Hero ── */
+    .hero { background: #fff; padding: 6rem 0 0; }
+    .hero-text { text-align: center; }
+    .hero-pill { display: inline-flex; align-items: center; gap: .5rem; font-size: 12px; font-weight: 600; color: var(--gray-500); background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 100px; padding: .3rem .85rem; margin-bottom: 2rem; letter-spacing: .2px; }
+    .hero-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+    .hero-h1 { font-size: clamp(2.75rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.04; letter-spacing: -.035em; color: var(--black); }
+    .hero-h1 span { color: var(--gray-400); }
+    .hero-sub { font-size: 1.0625rem; color: var(--gray-500); line-height: 1.7; margin: 1.5rem auto 0; max-width: 540px; }
+    .hero-actions { margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+    .hero-caption { font-size: 12px; color: var(--gray-400); }
+    .hero-shot { margin-top: 4rem; }
 
-    /* Pillars */
-    .pillars { padding: 5rem 0; background: var(--bg); border-bottom: 1px solid var(--border); }
-    .pillars-kicker { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--faint); margin-bottom: 3rem; }
-    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    .pillar { background: var(--surface); padding: 2rem 1.75rem; }
-    .pillar-n { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--faint); margin-bottom: .85rem; }
-    .pillar-title { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; letter-spacing: -.01em; }
-    .pillar-body { font-size: .875rem; color: var(--muted); line-height: 1.7; }
+    /* ── Browser frame ── */
+    .browser { border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 8px 32px rgba(0,0,0,.1), 0 24px 64px rgba(0,0,0,.08); background: #fff; }
+    .browser-bar { background: #efefef; border-bottom: 1px solid var(--gray-200); height: 34px; display: flex; align-items: center; gap: 5px; padding: 0 14px; flex-shrink: 0; }
+    .bdot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .bdot:nth-child(1) { background: #ff5f57; }
+    .bdot:nth-child(2) { background: #febc2e; }
+    .bdot:nth-child(3) { background: #28c840; }
+    .burl { flex: 1; max-width: 240px; height: 15px; background: #ddd; border-radius: 4px; margin-left: 10px; }
+    .bscreen { position: relative; line-height: 0; }
+    .bscreen img { width: 100%; display: block; }
+    .bscreen img.slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity .5s ease; }
+    .bscreen img.slide:first-child { position: relative; height: auto; }
+    .bscreen img.slide.on { opacity: 1; }
 
-    /* CTA */
-    .cta-section { background: var(--topbar-bg); color: #fff; padding: 6rem 0; text-align: center; }
-    .cta-section h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.12; max-width: 600px; margin: 0 auto 1rem; }
-    .cta-section p { font-size: 1rem; color: #9ca3af; max-width: 440px; margin: 0 auto; }
-    .cta-btns { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-top: 2.25rem; }
-    .btn-cta-w { background: #fff; color: #111; font-size: 14px; font-weight: 600; padding: .85rem 1.75rem; display: inline-flex; align-items: center; }
-    .btn-cta-w:hover { background: #f0f0f0; }
-    .btn-cta-g { font-size: 14px; font-weight: 600; padding: .85rem 1.75rem; border: 1px solid #444; color: #fff; display: inline-flex; align-items: center; }
-    .btn-cta-g:hover { border-color: #888; }
+    /* ── Carousel nav ── */
+    .cnav { display: flex; align-items: center; justify-content: space-between; padding: .75rem 1.25rem; border-top: 1px solid var(--gray-200); }
+    .cnav-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-400); }
+    .cdots { display: flex; gap: .35rem; }
+    .cdot { width: 24px; height: 3px; background: #ddd; border: 0; cursor: pointer; padding: 0; transition: background .15s; }
+    .cdot.on { background: var(--black); }
 
-    /* Footer */
-    footer { background: var(--topbar-bg); border-top: 1px solid #2a2a2a; padding: 2rem 0; color: #888; }
-    .footer-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 12px; }
-    .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-    .footer-links a { color: #888; }
-    .footer-links a:hover { color: #fff; }
+    /* ── Vendor strip ── */
+    .vendors { background: var(--gray-100); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); padding: 1.25rem 0; }
+    .vendors-inner { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0; }
+    .v-pre { font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: var(--gray-400); padding-right: 1.5rem; border-right: 1px solid var(--gray-200); white-space: nowrap; }
+    .v-name { font-size: 12px; font-weight: 500; color: var(--gray-400); padding: .35rem 1.25rem; border-right: 1px solid var(--gray-200); white-space: nowrap; }
+    .v-name:last-child { border-right: none; }
 
-    /* Responsive */
-    @media (max-width: 720px) {
-      .pillars-grid { grid-template-columns: 1fr; }
-      .hero { padding: 5rem 0 4.5rem; }
+    /* ── Sections ── */
+    .sec { border-top: 1px solid var(--gray-200); padding: 6rem 0; }
+    .sec-w { background: #fff; }
+    .sec-g { background: var(--gray-50); }
+
+    /* ── Section header (centered) ── */
+    .sh { text-align: center; margin-bottom: 4rem; }
+    .kicker { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-400); margin-bottom: 1rem; }
+    .sh-h2 { font-size: clamp(1.875rem, 4vw, 3rem); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; }
+    .sh-sub { font-size: 1rem; color: var(--gray-500); line-height: 1.75; margin: 1rem auto 0; max-width: 560px; }
+
+    /* ── Product overview cards (Campsite "Visibility" style) ── */
+    .overview-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .ocard { background: #fff; border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden; }
+    .ocard-shot { background: var(--gray-100); border-bottom: 1px solid var(--gray-200); }
+    .ocard-shot .browser { border: none; border-radius: 0; box-shadow: none; }
+    .ocard-shot .browser-bar { border-radius: 0; background: #e8e8e8; border-bottom-color: var(--gray-200); }
+    .ocard-body { padding: 1.25rem 1.5rem 1.5rem; }
+    .ocard-title { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+    .ocard-desc { font-size: .875rem; color: var(--gray-500); line-height: 1.6; }
+
+    /* ── Feature tiles (Campsite "Share anything" style) ── */
+    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .ftile { padding: 1.75rem; background: #fff; border: 1px solid var(--gray-200); border-radius: 10px; }
+    .ftile-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--gray-100); border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; color: var(--gray-600); flex-shrink: 0; }
+    .ftile-icon svg { width: 18px; height: 18px; }
+    .ftile-title { font-size: .9375rem; font-weight: 700; margin-bottom: .5rem; }
+    .ftile-body { font-size: .875rem; color: var(--gray-500); line-height: 1.65; }
+
+    /* ── Split section ── */
+    .split { display: grid; grid-template-columns: 5fr 7fr; gap: 5rem; align-items: center; }
+    .split.rev { grid-template-columns: 7fr 5fr; }
+    .split.rev .split-shot { order: -1; }
+    .split-content .kicker { display: block; }
+    .split-h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; line-height: 1.1; letter-spacing: -.025em; margin-bottom: 1rem; }
+    .split-body { font-size: .9375rem; color: var(--gray-500); line-height: 1.75; }
+    .split-list { list-style: none; margin-top: 1.5rem; border-top: 1px solid var(--gray-200); }
+    .split-list li { display: flex; gap: .65rem; padding: .6rem 0; border-bottom: 1px solid var(--gray-200); font-size: .875rem; color: var(--gray-500); }
+    .split-list li::before { content: '→'; color: var(--gray-400); flex-shrink: 0; }
+    .split-cta { margin-top: 2rem; }
+
+    /* ── How it works (numbered) ── */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .step { background: #fff; border: 1px solid var(--gray-200); border-radius: 10px; padding: 2rem 1.75rem; }
+    .step-n { font-family: var(--mono); font-size: 2.25rem; font-weight: 700; color: var(--gray-200); line-height: 1; margin-bottom: 1.25rem; }
+    .step-t { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .step-b { font-size: .875rem; color: var(--gray-500); line-height: 1.7; }
+
+    /* ── Personas ── */
+    .persona-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .persona { background: #fff; border: 1px solid var(--gray-200); border-radius: 10px; padding: 2rem; }
+    .persona-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: var(--gray-100); color: var(--gray-500); padding: .25rem .65rem; border-radius: 3px; margin-bottom: .85rem; }
+    .persona h3 { font-size: 1rem; font-weight: 700; margin-bottom: .65rem; }
+    .persona p { font-size: .875rem; color: var(--gray-500); line-height: 1.7; }
+
+    /* ── Tour ── */
+    .tour-shell { border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden; background: var(--gray-50); }
+    .tslide { display: none; grid-template-columns: 5fr 7fr; }
+    .tslide.on { display: grid; }
+    .tslide-text { padding: 2.5rem 2.25rem; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--gray-200); background: var(--gray-50); }
+    .tno { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray-400); margin-bottom: .5rem; }
+    .th3 { font-size: 1.25rem; font-weight: 700; line-height: 1.2; letter-spacing: -.015em; margin-bottom: .75rem; }
+    .tbody { font-size: .875rem; color: var(--gray-500); line-height: 1.7; margin-bottom: .75rem; }
+    .tnote { font-size: .8125rem; color: var(--gray-400); border-left: 2px solid var(--gray-200); padding-left: .75rem; font-style: italic; line-height: 1.55; }
+    .tslide-shot .browser { border: none; border-radius: 0; box-shadow: none; height: 100%; }
+    .tslide-shot .browser-bar { border-radius: 0; }
+    .tslide-shot .bscreen { height: calc(100% - 34px); }
+    .tslide-shot .bscreen img { height: 100%; object-fit: cover; object-position: top; }
+    .tctrl { display: flex; align-items: center; padding: .85rem 1.25rem; border-top: 1px solid var(--gray-200); background: #fff; gap: .4rem; }
+    .ttab { font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; padding: .45rem .85rem; border: 1px solid var(--gray-200); color: var(--gray-500); background: #fff; border-radius: 4px; transition: all .15s; }
+    .ttab.on { background: var(--black); color: #fff; border-color: var(--black); }
+
+    /* ── FAQ ── */
+    .faq-list { border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden; background: #fff; }
+    .faq-item { border-bottom: 1px solid var(--gray-200); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { width: 100%; text-align: left; padding: 1.25rem 1.5rem; font-size: .9375rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .faq-q:hover { background: var(--gray-50); }
+    .faq-tog { font-family: var(--mono); color: var(--gray-400); font-weight: 400; font-size: 1rem; }
+    .faq-tog::before { content: '+'; }
+    .faq-item.open .faq-tog::before { content: '−'; }
+    .faq-a { display: none; padding: 0 1.5rem 1.25rem; font-size: .9375rem; color: var(--gray-500); line-height: 1.75; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CTA ── */
+    .cta-card { background: #111; border-radius: 20px; padding: 4rem 3rem; text-align: center; color: #fff; max-width: 900px; margin: 0 auto; }
+    .cta-card h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.12; margin-bottom: 1rem; max-width: 620px; margin-left: auto; margin-right: auto; }
+    .cta-card .sub { font-size: .9375rem; color: #888; margin-bottom: 2rem; }
+    .cta-btns { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    .btn-cw { background: #fff; color: #111; font-size: 13px; font-weight: 600; padding: .75rem 1.5rem; display: inline-flex; align-items: center; gap: .4rem; border-radius: 4px; }
+    .btn-cw:hover { background: #f0f0f0; }
+    .btn-cg { font-size: 13px; font-weight: 600; padding: .75rem 1.5rem; border: 1px solid #333; color: #fff; display: inline-flex; align-items: center; gap: .4rem; border-radius: 4px; }
+    .btn-cg:hover { border-color: #888; }
+    .cta-mail { margin-top: 1.5rem; font-size: 13px; color: #555; }
+    .cta-mail a { color: #fff; }
+
+    /* ── Footer ── */
+    footer { background: var(--topbar); border-top: 1px solid #222; padding: 2rem 0; }
+    .foot-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 12px; color: #666; }
+    .foot-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .foot-links a { color: #666; }
+    .foot-links a:hover { color: #fff; }
+    .foot-brand { display: flex; align-items: center; gap: .4rem; }
+    .foot-brand img { height: 18px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .tb-nav { display: none; }
+      .overview-grid { grid-template-columns: 1fr; }
+      .feat-grid { grid-template-columns: 1fr 1fr; }
+      .split, .split.rev { grid-template-columns: 1fr; gap: 2.5rem; }
+      .split.rev .split-shot { order: 0; }
+      .steps { grid-template-columns: 1fr; }
+      .persona-row { grid-template-columns: 1fr; }
+      .tslide.on { grid-template-columns: 1fr; }
+      .tslide-text { border-right: none; border-bottom: 1px solid var(--gray-200); }
+
+      .sec { padding: 4rem 0; }
+      .hero { padding-top: 4rem; }
     }
-    @media (max-width: 400px) {
-      .wrap { padding: 0 1.25rem; }
-      .topbar { padding: 0 1.25rem; }
-      .hero-h1 { font-size: clamp(2rem, 10vw, 2.5rem); }
-      .hero-sub { font-size: .9375rem; }
-      .btn-primary { font-size: 14px; padding: .8rem 1.5rem; }
+    @media (max-width: 600px) {
+      .c, .c-md { padding: 0 1.25rem; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .hero-h1 { font-size: 2.25rem; }
+      .sh-h2 { font-size: 1.75rem; }
+      .sec { padding: 3rem 0; }
+      .hero { padding-top: 3rem; }
+      .cta-card { padding: 2.5rem 1.5rem; border-radius: 14px; }
+      .foot-row { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Topbar -->
+  <!-- ── Topbar ── -->
   <header class="topbar">
-    <a class="topbar-brand" href="/">
+    <a class="tb-brand" href="/">
       <img src="assets/img/logo_w.svg" alt="AIXXEN" />
-      <span class="topbar-roi">ROI</span>
+      <span class="tb-roi">ROI</span>
     </a>
-    <div class="topbar-end">
-      <a class="btn-top" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request">Request demo</a>
+    <span class="tb-sep" aria-hidden="true"></span>
+    <nav class="tb-nav" aria-label="Main">
+      <a href="#overview">Product</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="investors.html">Investors</a>
+    </nav>
+    <div class="tb-end">
+      <a class="btn btn-w" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request">Book a demo</a>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- ── Hero ── -->
   <section class="hero">
-    <div class="wrap">
-      <div class="hero-eyebrow">
-        <span class="hero-dot"></span>
-        Launching soon
+    <div class="c-md hero-text">
+      <div class="hero-pill">
+        <span class="hero-pill-dot"></span>
+        Pre-seed · Live demo on request
       </div>
-      <h1 class="hero-h1">The AI portfolio cockpit for <em>CIOs and CFOs.</em></h1>
-      <p class="hero-sub">Vendor-neutral spend, use-case ROI, and workforce capability on one decision surface. Built for mid-market and enterprise.</p>
+      <h1 class="hero-h1">Your AI is optimized.<br/><span>Your employees aren't.</span></h1>
+      <p class="hero-sub">AIXXEN measures the capability gap alongside every dollar of AI spend so organizations can fix both. Vendor-neutral. No compliance overhead. Built for measuring AI benefits and optimizing for efficiency.</p>
       <div class="hero-actions">
-        <a class="btn-primary" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request">
-          Request a demo
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        <a class="btn btn-d btn-lg" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request">
+          Book a 30-min demo
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </a>
-        <a class="btn-secondary" href="investors.html">Investor relations</a>
-        <p class="hero-note">Product is built and demonstrable. Same-day response.</p>
+        <p class="hero-caption">Same-day response during EU and US business hours</p>
+      </div>
+    </div>
+
+    <div class="hero-shot">
+      <div class="c">
+        <div class="browser" style="border-radius:10px 10px 0 0; border-bottom:none;">
+          <div class="browser-bar">
+            <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+            <span class="burl"></span>
+          </div>
+          <div class="bscreen" id="hero-stage">
+            <img class="slide on" src="assets/img/aixxen-10-dashboard.jpg" alt="AIXXEN portfolio dashboard" />
+            <img class="slide" src="assets/img/aixxen-5-vendors.jpg" alt="AIXXEN vendor spend view" />
+            <img class="slide" src="assets/img/aixxen-9-roadmap.jpg" alt="AIXXEN 5-year roadmap" />
+            <img class="slide" src="assets/img/aixxen-3-reports.jpg" alt="AIXXEN reports" />
+            <img class="slide" src="assets/img/aixxen-1-businesscase-analytics.jpg" alt="AIXXEN business case analytics" />
+            <img class="slide" src="assets/img/aixxen-0-usecase-business-case-view.jpg" alt="AIXXEN use case view" />
+            <img class="slide" src="assets/img/aixxen-2-usecase-table.jpg" alt="AIXXEN use case table" />
+          </div>
+        </div>
+        <div class="cnav">
+          <span class="cnav-label">Live product · 8 surfaces</span>
+          <div class="cdots" id="hero-dots"></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Pillars -->
-  <section class="pillars">
-    <div class="wrap">
-      <p class="pillars-kicker">What AIXXEN tracks</p>
-      <div class="pillars-grid">
-        <div class="pillar">
-          <div class="pillar-n">01</div>
-          <div class="pillar-title">AI spend & vendor portfolio</div>
-          <p class="pillar-body">Every AI tool the org pays for on one page — costs, renewals, and shadow spend surfaced through anomaly detection. Vendor-neutral by design.</p>
+  <!-- ── Vendor strip ── -->
+  <div class="vendors">
+    <div class="vendors-inner">
+      <span class="v-pre">Works with your AI stack</span>
+      <span class="v-name">OpenAI</span>
+      <span class="v-name">Microsoft Copilot</span>
+      <span class="v-name">Google Gemini</span>
+      <span class="v-name">Anthropic</span>
+      <span class="v-name">Notion AI</span>
+      <span class="v-name">Glean</span>
+      <span class="v-name">Gamma</span>
+      <span class="v-name">+ any vendor</span>
+    </div>
+  </div>
+
+  <!-- ── Product overview (Campsite "Visibility") ── -->
+  <section class="sec sec-w" id="overview">
+    <div class="c">
+      <div class="sh">
+        <span class="kicker">Product overview</span>
+        <h2 class="sh-h2">See your entire AI portfolio on one screen.</h2>
+        <p class="sh-sub">From every dollar paid to every AI vendor, to use-case-by-use-case ROI, to a 5-year plan-of-record. On one screen. In one tab.</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="ocard">
+          <div class="ocard-shot">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+                <span class="burl"></span>
+              </div>
+              <div class="bscreen">
+                <img src="assets/img/aixxen-10-dashboard.jpg" alt="AIXXEN dashboard" />
+              </div>
+            </div>
+          </div>
+          <div class="ocard-body">
+            <div class="ocard-title">Portfolio dashboard</div>
+            <div class="ocard-desc">The C-suite view: total AI spend, realized ROI, capability score, and top use caseshelps enterprises all visible in under 10 seconds.</div>
+          </div>
         </div>
-        <div class="pillar">
-          <div class="pillar-n">02</div>
-          <div class="pillar-title">Use-case ROI</div>
-          <p class="pillar-body">Hard P&amp;L savings booked and attested sit in a separate column from soft potential. Capability-adjusted projections, not vendor benchmarks.</p>
+
+        <div class="ocard">
+          <div class="ocard-shot">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+                <span class="burl"></span>
+              </div>
+              <div class="bscreen">
+                <img src="assets/img/aixxen-5-vendors.jpg" alt="Vendor spend view" />
+              </div>
+            </div>
+          </div>
+          <div class="ocard-body">
+            <div class="ocard-title">Vendor spend tracking</div>
+            <div class="ocard-desc">Every AI vendor, every invoice, every renewal cliffhelps enterprises sorted by lifetime spend, flagged 90 days before auto-renewal.</div>
+          </div>
         </div>
-        <div class="pillar">
-          <div class="pillar-n">03</div>
-          <div class="pillar-title">5-year plan-of-record</div>
-          <p class="pillar-body">Contracted costs, planned business cases, and realized savings extending forward. Filter by department, vendor, or value stream.</p>
+
+        <div class="ocard">
+          <div class="ocard-shot">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+                <span class="burl"></span>
+              </div>
+              <div class="bscreen">
+                <img src="assets/img/aixxen-0-usecase-business-case-view.jpg" alt="Business cases view" />
+              </div>
+            </div>
+          </div>
+          <div class="ocard-body">
+            <div class="ocard-title">Use cases &amp; business cases</div>
+            <div class="ocard-desc">Hard P&amp;L savings and soft potential separated at the data model. No vendor pitch number lands in your CFO's spreadsheet untouched.</div>
+          </div>
+        </div>
+
+        <div class="ocard">
+          <div class="ocard-shot">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+                <span class="burl"></span>
+              </div>
+              <div class="bscreen">
+                <img src="assets/img/aixxen-6-roadmaps.jpg" alt="Business cases roadmaps" />
+              </div>
+            </div>
+          </div>
+          <div class="ocard-body">
+            <div class="ocard-title">Capability measurement</div>
+            <div class="ocard-desc">A capability factor calibrated to your organization adjusts every soft projection to your actual adoption level — not a vendor benchmark.</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="wrap">
-      <h2>See it live before we launch.</h2>
-      <p>The product is built and seeded with realistic enterprise data. Request a demo today.</p>
-      <div class="cta-btns">
-        <a class="btn-cta-w" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request">Request a demo</a>
-        <a class="btn-cta-g" href="investors.html">Investor relations</a>
+  <!-- ── Feature tiles (Campsite "Share anything") ── -->
+  <section class="sec sec-g">
+    <div class="c">
+      <div class="sh">
+        <span class="kicker">Every number that matters</span>
+        <h2 class="sh-h2">Hard savings. Soft potential. Never blended.</h2>
+        <p class="sh-sub">AIXXEN enforces a strict separation across your entire portfolio. The number your CFO sees is defensible because it had to earn its way there.</p>
+      </div>
+
+      <div class="feat-grid">
+        <div class="ftile">
+          <div class="ftile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+          </div>
+          <div class="ftile-title">Vendor lifetime spend</div>
+          <div class="ftile-body">Stacked spend over time. Concentration risk above 40% flagged. Renewal Gantt. Invoice ledger sortable in one click.</div>
+        </div>
+        <div class="ftile">
+          <div class="ftile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>
+          </div>
+          <div class="ftile-title">Hard P&amp;L savings (booked)</div>
+          <div class="ftile-body">Attested savings that have actually moved through your P&amp;L. Lives in its own column, always. CFO-ready by design.</div>
+        </div>
+        <div class="ftile">
+          <div class="ftile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
+          </div>
+          <div class="ftile-title">Soft potential (capability-adjusted)</div>
+          <div class="ftile-body">Capacity freedhelps enterprises automatically reduced by your organization's capability factor. Not a vendor benchmark. Your number.</div>
+        </div>
+        <div class="ftile">
+          <div class="ftile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 4V2M16 4V2M8 14h1M12 14h1M16 14h1M8 18h1M12 18h1"/></svg>
+          </div>
+          <div class="ftile-title">5-year plan-of-record</div>
+          <div class="ftile-body">Contracted costs, planned business cases, and realized savings extending forward. Filter by department, vendor, or value stream.</div>
+        </div>
+        <div class="ftile">
+          <div class="ftile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div class="ftile-title">Shadow AI signal</div>
+          <div class="ftile-body">Spend you don't see yet, surfaced through spend anomaly detection — not network monitoring.</div>
+        </div>
+        <div class="ftile">
+          <div class="ftile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+          </div>
+          <div class="ftile-title">Board-pack reports</div>
+          <div class="ftile-body">Build any cross-source query as a table, bar, line, pie, or KPI. Save views. URL-shareable. CSV export. Board-ready on demand.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Product tour ── -->
+  <section class="sec sec-w" id="tour">
+    <div class="c">
+      <div class="sh">
+        <span class="kicker">Product tour</span>
+        <h2 class="sh-h2">Three surfaces. One coherent answer.</h2>
+        <p class="sh-sub">Explore each surface of the AIXXEN portfolio cockpit. Every screen draws from the same data model.</p>
+      </div>
+
+      <div class="tour-shell">
+        <div class="tslide on" data-slide="0">
+          <div class="tslide-text">
+            <div class="tno">01 · Tools &amp; vendors</div>
+            <h3 class="th3">Every dollar paid to every AI vendor, on one page.</h3>
+            <p class="tbody">Stacked spend over time. Top-vendor concentration. Cost vs. utilization quadrant. The tools wasting money are visible immediately. Renewal Gantt. Invoice ledger. Vendor lifetime totals sortable in one click.</p>
+            <p class="tnote">No procurement workflow, no PO numbers, no MSA register. Cost controlling full stop.</p>
+          </div>
+          <div class="tslide-shot">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+                <span class="burl"></span>
+              </div>
+              <div class="bscreen">
+                <img src="assets/img/aixxen-5-vendors.jpg" alt="Tools and vendors view" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tslide" data-slide="1">
+          <div class="tslide-text">
+            <div class="tno">02 · Use cases &amp; business cases</div>
+            <h3 class="th3">Hard vs soft benefits separated at the data model.</h3>
+            <p class="tbody">Track every AI use case from idea to production. Typed business case with hard P&amp;L benefits (booked, attested) strictly separated from soft potential (capacity freed). Capability factor applied automatically. ROI-positive use cases counted.</p>
+            <p class="tnote">No vendor's pitch number ever lands in your CFO's spreadsheet untouched.</p>
+          </div>
+          <div class="tslide-shot">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+                <span class="burl"></span>
+              </div>
+              <div class="bscreen">
+                <img src="assets/img/aixxen-0-usecase-business-case-view.jpg" alt="Business cases view" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tslide" data-slide="2">
+          <div class="tslide-text">
+            <div class="tno">03 · 5-year roadmap</div>
+            <h3 class="th3">Plan-of-record across the next 60 months.</h3>
+            <p class="tbody">Contracted costs. Planned business cases. Realised savings extending forward. Cluster filters by status, department, vendor, capability or value stream. Build a portfolio slice in three clicks.</p>
+            <p class="tnote">Not a forecast. Not Monte Carlo. Not "AI uplift multipliers." Just what's already on the books.</p>
+          </div>
+          <div class="tslide-shot">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+                <span class="burl"></span>
+              </div>
+              <div class="bscreen">
+                <img src="assets/img/aixxen-8-roadmap-stacked.jpg" alt="5-year roadmap view" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tslide" data-slide="3">
+          <div class="tslide-text">
+            <div class="tno">04 · Reports &amp; capability</div>
+            <h3 class="th3">Custom reports. Capability scoreboards. Board-pack ready.</h3>
+            <p class="tbody">Build any cross-source query as a table, bar, line, pie or KPI. Save your views. Capability score per department, adoption breadth, shadow AI share surfaced alongside spendhelps enterprises never apart from it.</p>
+            <p class="tnote">Built for the operator who lives in the data.</p>
+          </div>
+          <div class="tslide-shot">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+                <span class="burl"></span>
+              </div>
+              <div class="bscreen">
+                <img src="assets/img/aixxen-3-reports.jpg" alt="Reports and capability view" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tctrl">
+          <div id="tour-tabs" style="display:flex;gap:.4rem;flex-wrap:wrap;">
+            <button class="ttab on" data-tab="0">Tools &amp; vendors</button>
+            <button class="ttab" data-tab="1">Use cases</button>
+            <button class="ttab" data-tab="2">Roadmap</button>
+            <button class="ttab" data-tab="3">Reports</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── How it works ── -->
+  <section class="sec sec-w" id="how">
+    <div class="c">
+      <div class="sh">
+        <span class="kicker">How it works</span>
+        <h2 class="sh-h2">Three steps from your data to portfolio reporting.</h2>
+        <p class="sh-sub">No six-month implementation. The data is already in your spreadsheets or databaseshelps enterprises we turn it into a surface.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">01</div>
+          <div class="step-t">Setup</div>
+          <p class="step-b">Bring four data sourceshelps enterprises tools, spend, user count, use caseshelps enterprises by API, CSV, or Excel. Most enterprises already export this from procurement and HR.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">02</div>
+          <div class="step-t">First capability snapshot</div>
+          <p class="step-b">AIXXEN calculates your capability factor from real usage data — adoption rates, active users, and actual workflow integration — calibrated to your organization, not a vendor benchmark.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">03</div>
+          <div class="step-t">Reporting</div>
+          <p class="step-b">Vendor lifetime spend, hard vs. soft realized, 5-year roadmap, department readinesshelps enterprises all on screen and exportable as CSV. The screens a board pack draws on, ready when you need them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Personas ── -->
+  <section class="sec sec-w">
+    <div class="c">
+      <div class="sh">
+        <span class="kicker">Who it's for</span>
+        <h2 class="sh-h2">Built for three jobs. Worked-around for none.</h2>
+        <p class="sh-sub">Designed for the CFO who has to defend the AI line item, the CIO who has to land the program, and the FinOps lead who lives in the data.</p>
+      </div>
+
+      <div class="persona-row">
+        <div class="persona">
+          <span class="persona-tag">CFO</span>
+          <h3>The defensible number.</h3>
+          <p>You've heard "save 5 minutes per task × 200 employees" three times this year. AIXXEN forces a separation: hard savings (booked) and soft potential (capacity freed) live in different columns. Soft potential never lands in the board pack total. Plus vendor-by-vendor lifetime spend, concentration risk warnings above 40%, and renewal exposure 90 days out.</p>
+        </div>
+        <div class="persona">
+          <span class="persona-tag">CIO</span>
+          <h3>Spend × readiness on one screen.</h3>
+          <p>Which use cases moved from pilot to production this quarter? Which departments are leading on capability and which are stuck? Which contracts auto-renew next month? AIXXEN puts the operational view and the capability view on the same surface so AI program decisions are informed by both spend and readiness.</p>
+        </div>
+        <div class="persona">
+          <span class="persona-tag">FinOps lead</span>
+          <h3>The operator's data layer.</h3>
+          <p>Tool-by-tool utilization vs cost. Shadow AI share by department. Soft-to-hard convergence so you know if your projections are tracking, optimistic, or pessimistic. Custom reports with CSV export. URL-shareable saved views. Drag-and-drop column manager. Built for the person who lives in the data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="sec sec-g" id="faq">
+    <div class="c-md">
+      <div class="sh">
+        <span class="kicker">FAQ</span>
+        <h2 class="sh-h2">Sharp questions, sharp answers.</h2>
+        <p class="sh-sub">If you're evaluating AIXXEN against an adjacent product, this is where the differences live.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">Is it vendor-locked? Will I have to use OpenAI / Anthropic / Microsoft?<span class="faq-tog"></span></button>
+          <div class="faq-a">No. Vendor-neutral by design. Every AI tool the org pays for sits on the same page, regardless of category, regardless of vendor. Bring your own stack.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How quickly can we be live?<span class="faq-tog"></span></button>
+          <div class="faq-a">Onboarding is small and pragmatic. Once you can hand us your tools, spend, headcount and use cases data — most enterprises already export this from procurement and HR — the screens populate. CSV and Excel import work today; direct API import is on the roadmap. We won't promise a fixed number of days; we'll commit to a timeline once we've talked through your data sources.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Why now?<span class="faq-tog"></span></button>
+          <div class="faq-a">AI tool sprawl in mid-market and enterprise is accelerating. CFOs that ignored generic SaaS spend in 2017 were running unaudited 7-figure budgets by 2020. AI is moving faster. The audit gap is closing fast, but the ROI gap is wide open.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA (dark card inside light section) ── -->
+  <section class="sec sec-w">
+    <div class="c">
+      <div class="cta-card">
+        <h2>Stop confusing soft potential with realized savings.</h2>
+        <p class="sub">Book a 30-minute demo and see your AI portfolio on one screen.</p>
+        <div class="cta-btns">
+          <a class="btn-cw" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request">Book a demo</a>
+          <a class="btn-cg" href="investors.html">Investor relations →</a>
+        </div>
+        <p class="cta-mail"><a href="mailto:sales@aixxen.com">sales@aixxen.com</a> · same-day response during EU and US business hours</p>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="wrap">
-      <div class="footer-row">
-        <div><img src="assets/img/logo_w.svg" alt="AIXXEN" style="height:20px;" /></div>
-        <div class="footer-links">
+    <div class="c">
+      <div class="foot-row">
+        <div class="foot-brand"><img src="assets/img/logo_w.svg" alt="AIXXEN" /></div>
+        <div class="foot-links">
+          <a href="#overview">Product</a>
+          <a href="#how">How it works</a>
+          <a href="#faq">FAQ</a>
           <a href="investors.html">Investors</a>
           <a href="privacy.html">Privacy</a>
           <a href="cookies.html">Cookies</a>
           <a href="#" data-cookie-manage>Manage cookies</a>
           <a href="mailto:sales@aixxen.com">Contact</a>
         </div>
-        <div>© 2026 AIXXEN</div>
+        <div>© 2026 AIXXEN · AI benefits tracked properly.</div>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Hero carousel
+    (function(){
+      const slides = document.querySelectorAll('#hero-stage .slide');
+      const wrap = document.getElementById('hero-dots');
+      if (!slides.length || !wrap) return;
+      let idx = 0;
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'cdot' + (i === 0 ? ' on' : '');
+        d.setAttribute('aria-label', 'Slide ' + (i+1));
+        d.addEventListener('click', () => { stop(); go(i); start(); });
+        wrap.appendChild(d);
+      });
+      const dots = wrap.querySelectorAll('.cdot');
+      function go(n) {
+        slides[idx].classList.remove('on');
+        dots[idx].classList.remove('on');
+        idx = (n + slides.length) % slides.length;
+        slides[idx].classList.add('on');
+        dots[idx].classList.add('on');
+      }
+      let t;
+      function start() { t = setInterval(() => go(idx + 1), 4500); }
+      function stop() { clearInterval(t); }
+      start();
+    })();
+
+    // Product tour tabs
+    (function(){
+      const slides = document.querySelectorAll('.tslide');
+      const tabs = document.querySelectorAll('.ttab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.tab;
+          slides.forEach(s => s.classList.toggle('on', s.dataset.slide === target));
+          tabs.forEach(t => t.classList.toggle('on', t === tab));
+        });
+      });
+    })();
+
+    // FAQ toggle
+    (function(){
+      document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+      });
+    })();
+  </script>
 
   <script src="assets/js/cookie-banner.js" defer></script>
 </body>
