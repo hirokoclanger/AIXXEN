@@ -1,0 +1,776 @@
+% AIXXEN Business Brochure
+% Compile with: xelatex aixxen-brochure.tex  (run twice)
+\documentclass[10pt]{article}
+
+\usepackage[a4paper,top=2.45cm,bottom=2.0cm,left=1.95cm,right=1.95cm,headsep=14pt,footskip=24pt]{geometry}
+\usepackage{fontspec}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\graphicspath{{images/}{bimg/}}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{microtype}
+\usepackage{needspace}
+\usepackage{csquotes}
+\usepackage{pifont}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\hyphenpenalty=2000
+
+% ---------- Colors ----------
+\definecolor{navy}{HTML}{14283C}
+\definecolor{navy2}{HTML}{1D3A55}
+\definecolor{blue}{HTML}{1F6FEB}
+\definecolor{midblue}{HTML}{3D7FB5}
+\definecolor{ink}{HTML}{1A1A1A}
+\definecolor{slate}{HTML}{5B6675}
+\definecolor{lightbg}{HTML}{F1F4F8}
+\definecolor{linegray}{HTML}{D6DCE4}
+\definecolor{paleblue}{HTML}{E7EFFB}
+
+% ---------- Fonts ----------
+\setmainfont{Lato}[
+  UprightFont = {Lato Regular},
+  BoldFont    = {Lato Bold},
+  ItalicFont  = {Lato Italic}
+]
+\newfontfamily\black{Lato Black}
+\newfontfamily\heavy{Lato Heavy}
+\newfontfamily\semibold{Lato Semibold}
+\newfontfamily\medium{Lato Medium}
+\newfontfamily\thinf{Lato Light}
+
+\newcommand{\bodysize}{\fontsize{9.6}{15.2}\selectfont}
+
+% ---------- Header / Footer ----------
+\setlength{\headheight}{16pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[L]{\semibold\fontsize{9}{9}\selectfont\textcolor{navy}{AIXXEN}\enspace\textcolor{linegray}{|}\enspace{\normalfont\fontsize{8}{8}\selectfont\textcolor{slate}{BUSINESS BROCHURE}}}
+\fancyhead[R]{\fontsize{8}{8}\selectfont\textcolor{slate}{aixxen.com}}
+\fancyfoot[L]{\fontsize{7.6}{7.6}\selectfont\textcolor{slate}{Measure and maximize your AI return on investment}}
+\fancyfoot[R]{\tikz[baseline]{\node[circle,fill=navy,text=white,inner sep=2.6pt,font=\semibold\fontsize{8}{8}\selectfont]{\thepage};}}
+
+% ---------- Helper macros ----------
+% full-page background fill for current page
+\newcommand{\pagefill}[1]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[#1] (current page.north west) rectangle (current page.south east);
+  \end{tikzpicture}}
+
+% section header for content pages
+\newcommand{\sectionhead}[3]{%
+  {\semibold\fontsize{8}{8}\selectfont\textcolor{blue}{#1\ \ \textbullet\ \ \MakeUppercase{#2}}}\\[5pt]
+  {\black\fontsize{25}{28}\selectfont\textcolor{navy}{#3}}\\[6pt]
+  {\color{blue}\rule{40pt}{2.8pt}}\par\vspace{14pt}}
+
+% framed product screenshot (fills enclosing width)
+\newcommand{\shot}[1]{%
+  {\setlength{\fboxsep}{0pt}\setlength{\fboxrule}{0.8pt}%
+   \color{linegray}\fbox{\includegraphics[width=\linewidth]{#1}}}}
+% framed screenshot at an explicit width
+\newcommand{\shotw}[2]{%
+  {\setlength{\fboxsep}{0pt}\setlength{\fboxrule}{0.8pt}%
+   \color{linegray}\fbox{\includegraphics[width=#2]{#1}}}}
+% caption under a screenshot (left aligned)
+\newcommand{\shotcap}[1]{\par\vspace{5pt}%
+  {\raggedright\fontsize{7.6}{9.5}\selectfont\textcolor{slate}{#1}\par}}
+
+% body paragraph
+\newcommand{\body}[1]{{\bodysize\textcolor{ink}{#1}\par}}
+\newcommand{\bodyslate}[1]{{\bodysize\textcolor{slate}{#1}\par}}
+
+% lead-in subtitle under a title
+\newcommand{\lead}[1]{{\medium\fontsize{11.5}{16}\selectfont\textcolor{slate}{#1}\par}}
+
+% mini card title
+\newcommand{\cardtitle}[1]{{\heavy\fontsize{10.5}{12}\selectfont\textcolor{navy}{#1}\par\vspace{3pt}}}
+
+% feature tile (light) -- content left aligned
+\newtcolorbox{tile}{enhanced,colback=lightbg,colframe=lightbg,boxrule=0pt,
+  arc=3pt,left=11pt,right=11pt,top=10pt,bottom=11pt,
+  borderline west={2.6pt}{0pt}{blue},before upper={\raggedright}}
+% navy block
+\newtcolorbox{navyblock}{enhanced,colback=navy,colframe=navy,boxrule=0pt,
+  arc=3pt,left=14pt,right=14pt,top=13pt,bottom=14pt,coltext=white}
+% blue block
+\newtcolorbox{blueblock}{enhanced,colback=blue,colframe=blue,boxrule=0pt,
+  arc=3pt,left=14pt,right=14pt,top=13pt,bottom=14pt,coltext=white}
+% outlined block
+\newtcolorbox{outblock}{enhanced,colback=white,colframe=linegray,boxrule=0.8pt,
+  arc=3pt,left=12pt,right=12pt,top=11pt,bottom=12pt}
+
+% checklist item
+\newcommand{\checkitem}[1]{\textcolor{blue}{\ding{52}}~~{\bodysize\textcolor{ink}{#1}}\par\vspace{4.5pt}}
+
+% big stat
+\newcommand{\bigstat}[2]{{\black\fontsize{27}{28}\selectfont\textcolor{blue}{#1}}\\[2pt]{\semibold\fontsize{8}{10.5}\selectfont\textcolor{slate}{\MakeUppercase{#2}}}}
+
+\begin{document}
+
+% ============================================================
+% PAGE 1 - COVER
+% ============================================================
+\thispagestyle{empty}
+\pagefill{navy}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[blue] ([shift={(0,-7.0cm)}]current page.north east) rectangle ([shift={(-3.1cm,-7.0cm)}]current page.north east |- current page.south east);
+  \fill[navy2] ([shift={(-3.1cm,-7.0cm)}]current page.north east) rectangle ([shift={(-4.0cm,-7.0cm)}]current page.north east |- current page.south east);
+
+  \node[anchor=north west,text=white] at ([shift={(2.05cm,-2.15cm)}]current page.north west)
+    {\semibold\fontsize{9}{9}\selectfont \textcolor{blue}{\rule[1pt]{16pt}{2.4pt}}\ \ BUSINESS BROCHURE\ \ \textbullet\ \ 2026};
+
+  \node[anchor=north west,text=white] at ([shift={(2.0cm,-3.7cm)}]current page.north west)
+    {\black\fontsize{58}{58}\selectfont AIXXEN};
+  \node[anchor=north west,text=blue] at ([shift={(2.13cm,-5.78cm)}]current page.north west)
+    {\medium\fontsize{10.5}{10.5}\selectfont A I\ \ P O R T F O L I O\ \ I N T E L L I G E N C E};
+
+  \node[anchor=west] at ([shift={(2.0cm,-12.7cm)}]current page.north west)
+    {\textcolor{blue}{\rule{54pt}{3.4pt}}};
+
+  \node[anchor=north west,text=white,text width=15.3cm] at ([shift={(2.0cm,-13.5cm)}]current page.north west)
+    {\black\fontsize{33}{39}\selectfont Measure \& maximize your AI return on investment.};
+
+  \node[anchor=north west,text width=14.4cm] at ([shift={(2.05cm,-18.4cm)}]current page.north west)
+    {\thinf\fontsize{12.5}{18}\selectfont\textcolor{linegray}{The vendor-neutral AI portfolio cockpit for CIO and CFO offices. AI spend, use-case ROI and workforce capability, all on one screen.}};
+
+  \node[anchor=south west,text=white] at ([shift={(2.05cm,2.0cm)}]current page.south west)
+    {\semibold\fontsize{9.5}{9.5}\selectfont aixxen.com};
+  \node[anchor=south west,text=linegray] at ([shift={(2.05cm,1.45cm)}]current page.south west)
+    {\fontsize{8.5}{8.5}\selectfont sales@aixxen.com\ \ \textbullet\ \ Pre-seed \textbullet\ Live demo on request};
+\end{tikzpicture}
+\newpage
+
+% ============================================================
+% PAGE 2 - CONTENTS
+% ============================================================
+\sectionhead{}{Inside this brochure}{Contents}
+
+\bodyslate{This brochure introduces AIXXEN. What it does, how it works, who it is built for. Every figure and feature described here reflects the live product. Use it as a reference when you evaluate AIXXEN against an adjacent tool, or when you brief a colleague.}
+\vspace{16pt}
+
+{\setlength{\columnsep}{34pt}
+\begin{multicols}{2}
+\newcommand{\toc}[3]{%
+  {\semibold\fontsize{8.5}{8.5}\selectfont\textcolor{blue}{#1}}\hspace{8pt}%
+  {\heavy\fontsize{10.3}{13}\selectfont\textcolor{navy}{#2}}\\[1pt]
+  {\raggedright\fontsize{8.2}{11}\selectfont\textcolor{slate}{#3}\par}
+  \vspace{4pt}{\color{linegray}\rule{\linewidth}{0.6pt}}\par\vspace{8pt}}
+\toc{01}{The Problem}{Why AI spend has outrun AI accountability.}
+\toc{02}{What We Do}{The entire AI portfolio on one screen.}
+\toc{03}{The AIXXEN Difference}{Hard savings and soft potential, never blended.}
+\toc{04}{Every Number That Matters}{The six numbers the cockpit is built around.}
+\toc{05}{Tools \& Vendors}{Every dollar paid to every AI vendor.}
+\toc{06}{Use Cases \& Business Cases}{How a use case becomes booked savings.}
+\toc{07}{The Five-Year Roadmap}{A plan of record across 60 months.}
+\toc{08}{Reports \& Capability}{Custom reporting and capability scoring.}
+\toc{09}{How It Works}{Three steps to a working cockpit.}
+\toc{10}{Who It's For}{The CFO, the CIO and the FinOps lead.}
+\toc{11}{Inside the Cockpit}{The C-suite view in under ten seconds.}
+\toc{12}{Questions \& Answers}{The sharp questions, answered.}
+\toc{13}{Why Now}{The audit gap is closing fast.}
+\toc{14}{Built on Trust}{Vendor-neutral, no compliance overhead.}
+\toc{15}{Get Started}{Book a demo and see your portfolio.}
+\end{multicols}}
+
+\vfill
+\begin{navyblock}
+{\heavy\fontsize{11}{14}\selectfont The short version}\\[3pt]
+{\bodysize AIXXEN helps enterprises evaluate, track and prove the return on every AI investment. The number leadership acts on becomes defensible, not optimistic.}
+\end{navyblock}
+\newpage
+
+% ============================================================
+% PAGE 3 - THE PROBLEM
+% ============================================================
+\sectionhead{01}{The Problem}{Your AI is optimized.\\Your employees aren't.}
+
+\begin{minipage}[t]{0.555\textwidth}
+\body{AI tools are being bought faster than any software category before them. Licenses land on departmental cards, pilots multiply, and the invoices stack up across a dozen vendors that no single person reconciles.}
+\vspace{8pt}
+\body{The benefit side stays unmeasured. Most AI budgets are still justified on projected savings. You know the line. \enquote{Five minutes per task across two hundred people.} Almost nobody checks it against the P\&L afterward.}
+\vspace{8pt}
+\body{A gap opens between what AI is assumed to deliver and what it has delivered. AIXXEN exists to close it.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.40\textwidth}
+\vspace{2pt}
+\shot{aixxen-1-businesscase-analytics.jpg}%
+\shotcap{Business case analytics in AIXXEN. Soft potential is pulled back to realized value.}
+\end{minipage}
+
+\vspace{18pt}
+{\color{linegray}\rule{\textwidth}{0.7pt}}
+\vspace{16pt}
+
+\begin{minipage}[t]{0.32\textwidth}\centering\bigstat{2017}{The year SaaS spend went unaudited}\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}\centering\bigstat{7-figure}{Budgets running unreviewed by 2020}\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}\centering\bigstat{Now}{AI is compounding on a shorter clock}\end{minipage}
+
+\vspace{20pt}
+\begin{tile}
+{\cardtitle{The same pattern, moving quicker}}
+{\bodysize\textcolor{ink}{CFOs that ignored generic SaaS spend in 2017 were running unaudited seven-figure budgets by 2020. AI is moving faster than SaaS ever did. The audit gap is closing quickly. The ROI gap is still wide open.}}
+\end{tile}
+\newpage
+
+% ============================================================
+% PAGE 4 - WHAT WE DO
+% ============================================================
+\sectionhead{02}{What We Do}{See your entire AI\\portfolio on one screen.}
+
+\lead{Every dollar paid to every AI vendor. Use-case-by-use-case ROI. A five-year plan of record. One screen, one tab.}
+\vspace{14pt}
+\body{AIXXEN is a portfolio cockpit, not a compliance tool. It is vendor-neutral by design and carries no compliance overhead. The job it does is narrow. Measure AI benefits, and show where the money works. Every screen draws from the same data model, so the dashboard, the vendor ledger and the roadmap always agree.}
+\vspace{18pt}
+
+\newcommand{\quadcard}[2]{%
+\begin{tile}
+\cardtitle{#1}
+{\fontsize{8.7}{12.4}\selectfont\textcolor{slate}{#2}}
+\end{tile}}
+
+\begin{minipage}[t]{0.485\textwidth}
+\quadcard{Portfolio dashboard}{Total AI spend, realized ROI, capability score and top use cases. The C-suite view, readable in under ten seconds.}
+\vspace{10pt}
+\quadcard{Use cases \& business cases}{Hard P\&L savings and soft potential separated at the data model, so no vendor pitch number lands untouched.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\quadcard{Vendor spend tracking}{Every AI vendor, every invoice, every renewal cliff. Sorted by lifetime spend, flagged before auto-renewal.}
+\vspace{10pt}
+\quadcard{Capability measurement}{A capability factor calibrated to your organization adjusts every soft projection to your real adoption level.}
+\end{minipage}
+
+\vspace{20pt}
+\begin{navyblock}
+{\semibold\fontsize{8}{8}\selectfont\textcolor{midblue}{WORKS WITH YOUR AI STACK}}\\[6pt]
+{\medium\fontsize{10.3}{16}\selectfont OpenAI\ \ \textbullet\ \ Microsoft Copilot\ \ \textbullet\ \ Google Gemini\ \ \textbullet\ \ Anthropic\ \ \textbullet\ \ Notion AI\ \ \textbullet\ \ Glean\ \ \textbullet\ \ Gamma\ \ \textbullet\ \ and any other vendor}
+\end{navyblock}
+\newpage
+
+% ============================================================
+% PAGE 5 - THE AIXXEN DIFFERENCE
+% ============================================================
+\sectionhead{03}{The AIXXEN Difference}{Hard savings. Soft potential.\\Never blended.}
+
+\body{AIXXEN enforces a strict separation across the entire portfolio. The number your CFO sees is defensible because it earned its way there. It was never quietly mixed with a vendor's optimistic projection.}
+\vspace{18pt}
+
+\begin{minipage}[t]{0.485\textwidth}
+\begin{navyblock}
+{\semibold\fontsize{8}{8}\selectfont\textcolor{midblue}{COLUMN ONE}}\\[5pt]
+{\heavy\fontsize{12.5}{15}\selectfont Hard P\&L savings}\\[6pt]
+{\fontsize{8.8}{13}\selectfont\textcolor{linegray}{Attested savings that have moved through your P\&L. Booked. Defensible. CFO-ready by design. This is the only number that reaches the board-pack total.}}
+\end{navyblock}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\begin{outblock}
+{\semibold\fontsize{8}{8}\selectfont\textcolor{blue}{COLUMN TWO}}\\[5pt]
+{\heavy\fontsize{12.5}{15}\selectfont\textcolor{navy}{Soft potential}}\\[6pt]
+{\fontsize{8.8}{13}\selectfont\textcolor{slate}{Capacity freed, reduced automatically by your organization's capability factor. Your number, not a vendor benchmark. Tracked, but never blended into the headline.}}
+\end{outblock}
+\end{minipage}
+
+\vspace{20pt}
+{\color{linegray}\rule{\textwidth}{0.7pt}}
+\vspace{16pt}
+
+{\heavy\fontsize{12}{15}\selectfont\textcolor{navy}{Why the separation matters}}\par
+\vspace{8pt}
+\body{Blend projected and realized savings into one figure and the losers hide behind the winners. The headline cannot then be defended in a budget review. AIXXEN keeps the two in different columns at the data-model level, so leadership always knows which part of the return is booked and which part is still potential.}
+\vspace{14pt}
+
+\begin{minipage}[t]{0.49\textwidth}
+\checkitem{Hard savings stand alone, always.}
+\checkitem{Soft potential is capability-adjusted.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\checkitem{No vendor benchmark inflates your case.}
+\checkitem{The board-pack total is auditable.}
+\end{minipage}
+\newpage
+
+% ============================================================
+% PAGE 6 - EVERY NUMBER THAT MATTERS
+% ============================================================
+\sectionhead{04}{Every Number That Matters}{Six numbers. One\\coherent answer.}
+
+\lead{AIXXEN is built around six numbers. Together they answer the question every AI program reaches sooner or later. Is this worth it?}
+\vspace{16pt}
+
+\newcommand{\sixtile}[2]{%
+\begin{tile}
+\cardtitle{#1}
+{\fontsize{8.5}{12}\selectfont\textcolor{slate}{#2}}
+\end{tile}}
+
+\begin{minipage}[t]{0.485\textwidth}
+\sixtile{Vendor lifetime spend}{Stacked spend over time, concentration risk flagged above 40\%, a renewal Gantt and a sortable invoice ledger.}
+\vspace{9pt}
+\sixtile{Soft potential (adjusted)}{Capacity freed, reduced automatically by your organization's capability factor. Not a vendor benchmark.}
+\vspace{9pt}
+\sixtile{Shadow AI signal}{Spend you do not see yet, surfaced through spend-anomaly detection rather than network monitoring.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\sixtile{Hard P\&L savings (booked)}{Attested savings that have moved through the P\&L. Their own column, always. CFO-ready by design.}
+\vspace{9pt}
+\sixtile{Five-year plan of record}{Contracted costs, planned business cases and realized savings, extending sixty months forward.}
+\vspace{9pt}
+\sixtile{Board-pack reports}{Any cross-source query as a table, bar, line, pie or KPI. Saved views, URL-shareable, CSV export.}
+\end{minipage}
+
+\vspace{18pt}
+\begin{blueblock}
+{\heavy\fontsize{11}{14}\selectfont Live product, eight surfaces}\\[3pt]
+{\bodysize\textcolor{white}{Every surface draws from the same data model, so the dashboard, the vendor ledger, the roadmap and the reports never disagree.}}
+\end{blueblock}
+\newpage
+
+% ============================================================
+% PAGE 7 - TOOLS & VENDORS
+% ============================================================
+\sectionhead{05}{Product Surface}{Tools \& Vendors}
+
+\lead{Every dollar paid to every AI vendor, on one page.}
+\vspace{14pt}
+
+\begin{minipage}[t]{0.55\textwidth}
+\body{Stacked spend over time. Top-vendor concentration. A cost-versus-utilization quadrant that makes the tools wasting money visible immediately. A renewal Gantt. An invoice ledger. Vendor lifetime totals, sortable in one click.}
+\vspace{9pt}
+\body{No procurement workflow. No PO numbers. No MSA register. This is cost controlling, full stop.}
+\vspace{12pt}
+\checkitem{Concentration risk flagged above 40\%.}
+\checkitem{Renewals surfaced 90 days before the cliff.}
+\checkitem{Invoice ledger sortable in one click.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.41\textwidth}
+\vspace{2pt}
+\shot{aixxen-5-vendors.jpg}%
+\shotcap{Vendor spend tracking. Lifetime spend, concentration and renewals on one view.}
+\end{minipage}
+
+\vspace{20pt}
+\begin{minipage}[t]{0.31\textwidth}\centering\bigstat{40\%}{Concentration risk threshold}\end{minipage}\hfill
+\begin{minipage}[t]{0.31\textwidth}\centering\bigstat{90 days}{Renewal warning window}\end{minipage}\hfill
+\begin{minipage}[t]{0.31\textwidth}\centering\bigstat{1 click}{To sort lifetime spend}\end{minipage}
+
+\vspace{20pt}
+\begin{tile}
+{\cardtitle{What it answers}}
+{\bodysize\textcolor{ink}{Which vendors are we over-exposed to? Which licenses are paid for and barely used? Which contract auto-renews next month? All of it, before the invoice does the asking.}}
+\end{tile}
+\newpage
+
+% ============================================================
+% PAGE 8 - USE CASES & BUSINESS CASES
+% ============================================================
+\sectionhead{06}{Product Surface}{Use Cases \&\\Business Cases}
+
+\lead{Hard and soft benefits, separated at the data model.}
+\vspace{14pt}
+
+\begin{minipage}[t]{0.41\textwidth}
+\vspace{2pt}
+\shot{aixxen-0-usecase-business-case-view.jpg}%
+\shotcap{The use-case and business-case view. Hard and soft benefits, typed and separated.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.55\textwidth}
+\body{Every AI use case is tracked across its whole life, idea, pilot, production, review. Each one carries a typed business case. Hard P\&L benefits, booked and attested, stay strictly separate from soft potential, the capacity freed.}
+\vspace{9pt}
+\body{The capability factor is applied automatically, and ROI-positive use cases are counted. No vendor's pitch number ever lands in your CFO's spreadsheet untouched.}
+\end{minipage}
+
+\vspace{20pt}
+{\color{linegray}\rule{\textwidth}{0.7pt}}
+\vspace{16pt}
+
+{\heavy\fontsize{12}{15}\selectfont\textcolor{navy}{The lifecycle of a use case}}\par
+\vspace{10pt}
+
+\newcommand{\stepline}[3]{%
+\begin{minipage}[t]{0.235\textwidth}
+\raggedright
+{\black\fontsize{17}{17}\selectfont\textcolor{blue}{#1}}\\[4pt]
+{\heavy\fontsize{9.3}{12}\selectfont\textcolor{navy}{#2}}\\[2pt]
+{\fontsize{8}{10.5}\selectfont\textcolor{slate}{#3}}
+\end{minipage}}
+
+\stepline{01}{Idea}{Logged with an owner and a typed business case.}\hfill
+\stepline{02}{Pilot}{Soft potential estimated, capability-adjusted.}\hfill
+\stepline{03}{Production}{Hard savings attested as they hit the P\&L.}\hfill
+\stepline{04}{Review}{Projected versus realized, side by side.}
+
+\vspace{20pt}
+\begin{navyblock}
+{\heavy\fontsize{11}{14}\selectfont Projected versus realized}\\[3pt]
+{\bodysize\textcolor{linegray}{AIXXEN holds the pre-rollout estimate and the actual result side by side. Finance sees the gap close, or fail to close, and decides where to keep investing.}}
+\end{navyblock}
+\newpage
+
+% ============================================================
+% PAGE 9 - FIVE-YEAR ROADMAP
+% ============================================================
+\sectionhead{07}{Product Surface}{The Five-Year\\Roadmap}
+
+\lead{A plan of record across the next sixty months.}
+\vspace{14pt}
+
+\begin{minipage}[t]{0.55\textwidth}
+\body{Contracted costs. Planned business cases. Realized savings, extending forward. Cluster filters by status, department, vendor, capability or value stream. Build a portfolio slice in three clicks.}
+\vspace{9pt}
+\body{It is not a forecast, not a Monte Carlo simulation, and not built on \enquote{AI uplift multipliers.} It is what is already on the books.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.41\textwidth}
+\vspace{2pt}
+\shot{aixxen-9-roadmap.jpg}%
+\shotcap{The five-year roadmap. Contracted costs, planned cases and realized savings.}
+\end{minipage}
+
+\vspace{20pt}
+\newcommand{\rmcard}[2]{%
+\begin{tile}
+\cardtitle{#1}
+{\fontsize{8.5}{12}\selectfont\textcolor{slate}{#2}}
+\end{tile}}
+\begin{minipage}[t]{0.317\textwidth}\rmcard{Contracted costs}{What is already committed across every AI vendor agreement.}\end{minipage}\hfill
+\begin{minipage}[t]{0.317\textwidth}\rmcard{Planned business cases}{Use cases lined up but not yet booked, with capability-adjusted estimates.}\end{minipage}\hfill
+\begin{minipage}[t]{0.317\textwidth}\rmcard{Realized savings}{Booked returns carried forward into the plan of record.}\end{minipage}
+
+\vspace{18pt}
+\begin{tile}
+{\cardtitle{Built for the planning conversation}}
+{\bodysize\textcolor{ink}{When leadership asks what AI costs over five years and what it returns, the roadmap answers without a spreadsheet rebuild. Filter to a department or a value stream and the plan recomposes instantly.}}
+\end{tile}
+\newpage
+
+% ============================================================
+% PAGE 10 - REPORTS & CAPABILITY
+% ============================================================
+\sectionhead{08}{Product Surface}{Reports \& Capability}
+
+\lead{Custom reports. Capability scoreboards. Board-pack ready.}
+\vspace{14pt}
+
+\begin{minipage}[t]{0.41\textwidth}
+\vspace{2pt}
+\shot{aixxen-3-reports.jpg}%
+\shotcap{Custom reports and capability scoreboards. Board-pack ready, CSV-exportable.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.55\textwidth}
+\body{Build any cross-source query as a table, bar, line, pie or KPI. Save your views. A capability score per department, adoption breadth and shadow-AI share sit alongside spend, never apart from it.}
+\vspace{9pt}
+\body{Built for the operator who lives in the data, and for the board pack that data has to feed.}
+\end{minipage}
+
+\vspace{20pt}
+{\color{linegray}\rule{\textwidth}{0.7pt}}
+\vspace{14pt}
+
+{\heavy\fontsize{12}{15}\selectfont\textcolor{navy}{The capability factor}}\par
+\vspace{8pt}
+\body{Capability is calculated from real usage data. Adoption rates, active users, workflow integration. The result is calibrated to your organization rather than a vendor benchmark. Every soft projection in the portfolio is adjusted by it, so optimistic estimates fall back to the level your teams can really reach.}
+\vspace{14pt}
+
+\begin{minipage}[t]{0.49\textwidth}
+\checkitem{Capability score per department.}
+\checkitem{Adoption breadth, surfaced with spend.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\checkitem{Saved, URL-shareable report views.}
+\checkitem{CSV export, board-ready on demand.}
+\end{minipage}
+\newpage
+
+% ============================================================
+% PAGE 11 - HOW IT WORKS
+% ============================================================
+\sectionhead{09}{How It Works}{Three steps to a\\working cockpit.}
+
+\lead{No six-month implementation. The data already sits in your spreadsheets and databases. AIXXEN turns it into a surface.}
+\vspace{20pt}
+
+\newcommand{\bigstep}[3]{%
+\begin{minipage}[t]{\textwidth}
+\begin{minipage}[t]{0.13\textwidth}
+\vspace{-3pt}{\black\fontsize{38}{38}\selectfont\textcolor{paleblue}{#1}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.85\textwidth}
+\vspace{2pt}{\heavy\fontsize{13}{15}\selectfont\textcolor{navy}{#2}}\\[4pt]
+{\bodysize\textcolor{ink}{#3}}
+\end{minipage}
+\end{minipage}}
+
+\bigstep{01}{Setup}{Bring four data sources, tools, spend, user count and use cases. CSV or Excel works today, with direct API import on the roadmap. Most enterprises already export this from procurement and HR.}
+\vspace{14pt}{\color{linegray}\rule{\textwidth}{0.7pt}}\vspace{14pt}
+
+\bigstep{02}{First capability snapshot}{AIXXEN calculates your capability factor from real usage data. Adoption rates, active users, workflow integration. The factor is calibrated to your organization, not a vendor benchmark.}
+\vspace{14pt}{\color{linegray}\rule{\textwidth}{0.7pt}}\vspace{14pt}
+
+\bigstep{03}{Reporting}{Vendor lifetime spend, hard versus soft realized savings, the five-year roadmap, department readiness. All on screen, all exportable as CSV. These are the screens a board pack draws on, ready when you need them.}
+
+\vspace{22pt}
+\begin{navyblock}
+{\heavy\fontsize{11}{14}\selectfont On timing}\\[3pt]
+{\bodysize\textcolor{linegray}{Onboarding is small and pragmatic. We will not promise a fixed number of days. We commit to a timeline once we have talked through your data sources.}}
+\end{navyblock}
+\newpage
+
+% ============================================================
+% PAGE 12 - WHO IT'S FOR
+% ============================================================
+\sectionhead{10}{Who It's For}{Built for three jobs.\\Worked around for none.}
+
+\lead{Designed for the CFO who has to defend the AI line item, the CIO who has to land the program, and the FinOps lead who lives in the data.}
+\vspace{18pt}
+
+\begin{navyblock}
+{\semibold\fontsize{8}{8}\selectfont\textcolor{midblue}{THE CFO}}\\[5pt]
+{\heavy\fontsize{13}{16}\selectfont The defensible number.}\\[6pt]
+{\fontsize{8.9}{13.4}\selectfont\textcolor{linegray}{You have heard \enquote{save five minutes per task across two hundred employees} three times this year. AIXXEN forces a separation. Hard booked savings and soft potential live in different columns, and soft potential never lands in the board-pack total. You also get vendor-by-vendor lifetime spend, concentration-risk warnings above 40\%, and renewal exposure surfaced 90 days out.}}
+\end{navyblock}
+
+\vspace{14pt}
+\begin{outblock}
+{\semibold\fontsize{8}{8}\selectfont\textcolor{blue}{THE CIO}}\\[5pt]
+{\heavy\fontsize{13}{16}\selectfont\textcolor{navy}{Spend $\times$ readiness on one screen.}}\\[6pt]
+{\fontsize{8.9}{13.4}\selectfont\textcolor{slate}{Which use cases moved into production this quarter? Which departments lead on capability, and which are stuck? Which contracts auto-renew next month? AIXXEN puts the operational view and the capability view on the same surface, so AI program decisions are informed by both spend and readiness.}}
+\end{outblock}
+\newpage
+
+% ============================================================
+% PAGE 13 - WHO IT'S FOR (FinOps) + summary
+% ============================================================
+\vspace*{2pt}
+\begin{outblock}
+{\semibold\fontsize{8}{8}\selectfont\textcolor{blue}{THE FINOPS LEAD}}\\[5pt]
+{\heavy\fontsize{13}{16}\selectfont\textcolor{navy}{The operator's data layer.}}\\[6pt]
+{\fontsize{8.9}{13.4}\selectfont\textcolor{slate}{Tool-by-tool utilization versus cost. Shadow-AI share by department. Soft-to-hard convergence, so you know whether your projections are tracking, optimistic or pessimistic. Custom reports with CSV export, URL-shareable saved views, and a drag-and-drop column manager. Built for the person who lives in the data.}}
+\end{outblock}
+
+\vspace{20pt}
+{\heavy\fontsize{13}{16}\selectfont\textcolor{navy}{One surface, three vantage points}}\par
+\vspace{10pt}
+\body{The CFO, the CIO and the FinOps lead are not given three different tools or three different numbers. They look at the same portfolio cockpit and the same data model, each filtered to the view their job needs. A decision taken in the board room and a decision taken in the spreadsheet stay consistent.}
+\vspace{18pt}
+
+\newcommand{\rolerow}[2]{%
+{\heavy\fontsize{9.6}{12}\selectfont\textcolor{navy}{#1}}\hspace{6pt}{\fontsize{8.5}{12.4}\selectfont\textcolor{slate}{#2}}\par
+\vspace{6pt}{\color{linegray}\rule{\linewidth}{0.6pt}}\par\vspace{8pt}}
+\rolerow{CFO}{Defends the AI line item with a booked, auditable number.}
+\rolerow{CIO}{Lands the program by reading spend and readiness together.}
+\rolerow{FinOps lead}{Operates the portfolio day to day, down to the column level.}
+
+\vspace{6pt}
+\begin{blueblock}
+{\bodysize\textcolor{white}{Designed for three jobs. Worked around for none. Every role draws on the same answer.}}
+\end{blueblock}
+\newpage
+
+% ============================================================
+% PAGE 14 - INSIDE THE COCKPIT
+% ============================================================
+\sectionhead{11}{Inside the Cockpit}{The C-suite view, in\\under ten seconds.}
+
+\lead{The portfolio dashboard is the first screen leadership sees. It is designed so the state of the AI portfolio reads in a glance.}
+\vspace{16pt}
+
+\newcommand{\kpi}[2]{%
+\begin{tcolorbox}[enhanced,colback=navy,colframe=navy,boxrule=0pt,arc=3pt,
+  left=11pt,right=11pt,top=10pt,bottom=11pt]
+\raggedright
+{\heavy\fontsize{10}{12}\selectfont\textcolor{white}{#1}}\\[3pt]
+{\fontsize{7.9}{10.8}\selectfont\textcolor{linegray}{#2}}
+\end{tcolorbox}}
+
+\begin{minipage}[t]{0.485\textwidth}
+\kpi{Total AI spend}{Every dollar across every vendor, stacked over time.}
+\vspace{8pt}
+\kpi{Capability score}{How ready your workforce is to realize the projections.}
+\vspace{8pt}
+\kpi{Renewal exposure}{Contracts approaching their auto-renewal cliff.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\kpi{Realized ROI}{Hard, booked return, separated from soft potential.}
+\vspace{8pt}
+\kpi{Top use cases}{The AI initiatives carrying the portfolio.}
+\vspace{8pt}
+\kpi{Shadow AI share}{Unmanaged spend, surfaced by anomaly detection.}
+\end{minipage}
+
+\vspace{16pt}
+\begin{center}
+\shotw{aixxen-10-dashboard.jpg}{12.7cm}\\[5pt]
+{\raggedright\fontsize{7.6}{9.5}\selectfont\textcolor{slate}{The AIXXEN portfolio dashboard. Total AI spend, realized ROI and capability score, in one glance.}}
+\end{center}
+
+\vspace{12pt}
+\begin{tile}
+{\cardtitle{Why ten seconds is the design target}}
+{\bodysize\textcolor{ink}{Leadership attention is the scarcest resource in any review. If the portfolio cannot be read at a glance, it will not be read at all. AIXXEN treats the ten-second scan as a hard requirement, not a nice-to-have.}}
+\end{tile}
+\newpage
+
+% ============================================================
+% PAGE 15 - FAQ
+% ============================================================
+\sectionhead{12}{Questions \& Answers}{Sharp questions,\\sharp answers.}
+
+\newcommand{\faq}[2]{%
+\needspace{4\baselineskip}
+{\heavy\fontsize{10}{13}\selectfont\textcolor{navy}{#1}}\par\vspace{3pt}
+{\fontsize{8.7}{12.6}\selectfont\textcolor{slate}{#2}}\par
+\vspace{8pt}{\color{linegray}\rule{\linewidth}{0.6pt}}\par\vspace{9pt}}
+
+\faq{How do you calculate ROI on AI investments?}{AI ROI is the realized financial benefit minus the total cost of ownership, divided by that cost. The benefit side counts hours saved at fully-loaded labor cost, revenue uplift and reduced error or rework. The cost side counts licenses, infrastructure, integration, training and oversight. AIXXEN calculates this per use case, so you see which AI tools clear the bar and which do not.}
+
+\faq{What is AI governance, and how does AIXXEN support it?}{AI governance is the set of controls that keep an organization's AI usage visible, accountable and aligned with policy. AIXXEN provides the inventory behind it. Every AI tool the organization pays for, with its spend, owner and measured ROI, on one screen. Governance then rests on current evidence rather than a stale spreadsheet.}
+
+\faq{How do you measure the benefits of AI correctly?}{By separating projected potential from realized savings. A pilot that could save 2,000 hours has saved nothing until those hours are reallocated or removed from the cost base. AIXXEN tracks benefits against a baseline, counts only realized value, and flags use cases where the business case and the actual numbers have drifted apart.}
+
+\faq{Is AIXXEN vendor-locked?}{No. AIXXEN is vendor-neutral by design. Every AI tool the organization pays for sits on the same page, regardless of category and regardless of vendor. Bring your own stack.}
+
+\faq{How quickly can we be live?}{Onboarding is small and pragmatic. Once you can hand over your tools, spend, headcount and use-case data, the screens populate. CSV and Excel import work today. Direct API import is on the roadmap.}
+
+\faq{Why measure AI ROI now?}{AI tool sprawl is accelerating. The audit gap is closing quickly. The ROI gap is still wide open, and the budgets in question are no longer small.}
+\newpage
+
+% ============================================================
+% PAGE 16 - WHY NOW
+% ============================================================
+\sectionhead{13}{Why Now}{The audit gap is\\closing fast.}
+
+\begin{minipage}[t]{0.55\textwidth}
+\body{AI tool sprawl in the mid-market and the enterprise is accelerating. What generic SaaS did over a decade, AI is doing in a few years. It spreads across departments, lands on cards, and compounds quietly into a serious line item.}
+\vspace{9pt}
+\body{Finance teams are catching up on the cost side. The discipline that took years to arrive for SaaS is arriving for AI much faster. The benefit side lags. Whether any of it returned the investment is still largely unmeasured.}
+\vspace{9pt}
+\body{That is the window AIXXEN is built for. Cost visibility is becoming table stakes. ROI visibility is about to.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.41\textwidth}
+\vspace{2pt}
+\shot{aixxen-8-roadmap-stacked.jpg}%
+\shotcap{Stacked AI cost and realized savings across the portfolio horizon.}
+\end{minipage}
+
+\vspace{20pt}
+\begin{minipage}[t]{0.485\textwidth}
+\begin{tile}
+\cardtitle{Closing fast}
+{\fontsize{8.6}{12.2}\selectfont\textcolor{slate}{The audit gap, knowing what AI costs. Procurement and finance are already moving on it.}}
+\end{tile}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\begin{tile}
+\cardtitle{Wide open}
+{\fontsize{8.6}{12.2}\selectfont\textcolor{slate}{The ROI gap, knowing what AI returns. Still unmeasured in most organizations.}}
+\end{tile}
+\end{minipage}
+
+\vspace{18pt}
+\begin{navyblock}
+{\bodysize\textcolor{white}{The organizations that measured SaaS ROI early spent the next decade with an advantage. AI is the same opportunity, on a shorter clock.}}
+\end{navyblock}
+\newpage
+
+% ============================================================
+% PAGE 17 - BUILT ON TRUST
+% ============================================================
+\sectionhead{14}{Built on Trust}{Vendor-neutral.\\No compliance overhead.}
+
+\lead{AIXXEN measures your AI portfolio. It does not police it, lock it, or sit between you and your vendors.}
+\vspace{18pt}
+
+\newcommand{\trust}[2]{%
+\begin{tile}
+\cardtitle{#1}
+{\fontsize{8.6}{12.2}\selectfont\textcolor{slate}{#2}}
+\end{tile}}
+
+\begin{minipage}[t]{0.485\textwidth}
+\trust{Vendor-neutral by design}{Every AI tool the organization pays for sits on the same page, regardless of category or vendor. AIXXEN never steers you toward a preferred stack.}
+\vspace{10pt}
+\trust{No compliance overhead}{AIXXEN is a portfolio cockpit, not a compliance regime. It adds visibility without adding process for your teams to carry.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\trust{Your data, your numbers}{The capability factor is calibrated to your organization, not a vendor benchmark. The numbers you report are yours.}
+\vspace{10pt}
+\trust{Import on your terms}{CSV and Excel import work today. Direct API import is on the roadmap. You decide how your data reaches the cockpit.}
+\end{minipage}
+
+\vspace{20pt}
+{\color{linegray}\rule{\textwidth}{0.7pt}}
+\vspace{14pt}
+
+{\heavy\fontsize{12}{15}\selectfont\textcolor{navy}{Shadow AI, surfaced the right way}}\par
+\vspace{8pt}
+\body{Unmanaged AI spend is real. It should not be hunted through network monitoring. AIXXEN surfaces shadow AI through spend-anomaly detection. That is a finance signal, not a surveillance one, so the conversation stays about budget and value.}
+\newpage
+
+% ============================================================
+% PAGE 18 - GET STARTED
+% ============================================================
+\sectionhead{15}{Get Started}{See your AI portfolio\\on one screen.}
+
+\lead{Book a 30-minute demo. Bring a sense of your AI tools, spend and use cases, and leave with a clear picture of what a portfolio cockpit would show you.}
+\vspace{20pt}
+
+\newcommand{\gs}[3]{%
+\begin{minipage}[t]{0.313\textwidth}
+\raggedright
+{\black\fontsize{20}{20}\selectfont\textcolor{paleblue}{#1}}\\[5pt]
+{\heavy\fontsize{10.3}{13}\selectfont\textcolor{navy}{#2}}\\[3pt]
+{\fontsize{8.2}{11.2}\selectfont\textcolor{slate}{#3}}
+\end{minipage}}
+
+\gs{01}{Book a demo}{Email sales@aixxen.com to arrange a 30-minute walkthrough.}\hfill
+\gs{02}{Talk through your data}{We map your tools, spend, headcount and use cases to the four data sources.}\hfill
+\gs{03}{See your cockpit}{The screens populate and we agree a realistic onboarding timeline together.}
+
+\vspace{24pt}
+\begin{tcolorbox}[enhanced,colback=navy,colframe=navy,boxrule=0pt,arc=4pt,
+  left=20pt,right=20pt,top=20pt,bottom=20pt]
+{\black\fontsize{17}{21}\selectfont\textcolor{white}{Stop confusing soft potential\\with realized savings.}}\\[8pt]
+{\bodysize\textcolor{linegray}{Book a 30-minute demo and see your AI portfolio on one screen. Vendor spend, use-case ROI and workforce capability, all in one tab.}}\\[14pt]
+{\color{blue}\rule{\linewidth}{1pt}}\\[12pt]
+\begin{minipage}[t]{0.55\textwidth}
+{\semibold\fontsize{8}{8}\selectfont\textcolor{midblue}{GET IN TOUCH}}\\[4pt]
+{\heavy\fontsize{11}{14}\selectfont\textcolor{white}{sales@aixxen.com}}\\[2pt]
+{\fontsize{8.4}{12}\selectfont\textcolor{linegray}{Same-day response during EU and US business hours.}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.4\textwidth}
+{\semibold\fontsize{8}{8}\selectfont\textcolor{midblue}{ONLINE}}\\[4pt]
+{\heavy\fontsize{11}{14}\selectfont\textcolor{white}{aixxen.com}}\\[2pt]
+{\fontsize{8.4}{12}\selectfont\textcolor{linegray}{Investor relations at aixxen.com/investors}}
+\end{minipage}
+\end{tcolorbox}
+\newpage
+
+% ============================================================
+% PAGE 19 - BACK COVER
+% ============================================================
+\thispagestyle{empty}
+\pagefill{navy}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[blue] ([shift={(0,3.2cm)}]current page.south west) rectangle ([shift={(0,2.85cm)}]current page.south east);
+
+  \node[anchor=north west,text=white] at ([shift={(2.0cm,-3.6cm)}]current page.north west)
+    {\black\fontsize{40}{40}\selectfont AIXXEN};
+  \node[anchor=north west,text=blue] at ([shift={(2.1cm,-4.25cm)}]current page.north west)
+    {\medium\fontsize{9}{9}\selectfont A I\ \ P O R T F O L I O\ \ I N T E L L I G E N C E};
+
+  \node[anchor=west] at ([shift={(2.0cm,0cm)}]current page.center -| current page.west)
+    {\textcolor{blue}{\rule{48pt}{3pt}}};
+  \node[anchor=north west,text=white,text width=15.5cm] at ([shift={(2.0cm,1.0cm)}]current page.center -| current page.west)
+    {\thinf\fontsize{20}{27}\selectfont Evaluate, track and prove the return on every AI investment. On one screen.};
+
+  \node[anchor=south west,text=white] at ([shift={(2.05cm,4.6cm)}]current page.south west)
+    {\semibold\fontsize{9.5}{13}\selectfont aixxen.com\ \ \textbullet\ \ sales@aixxen.com};
+  \node[anchor=south west,text=linegray] at ([shift={(2.05cm,4.05cm)}]current page.south west)
+    {\fontsize{8}{8}\selectfont \textcopyright\ 2026 AIXXEN. AI benefits, tracked properly.};
+\end{tikzpicture}
+\end{document}
