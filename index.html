@@ -69,6 +69,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
+    /* ── Neue Haas Grotesk Display Pro (self-hosted) ── */
+    @font-face { font-family: 'Neue Haas Grotesk Display Pro'; src: url('assets/fonts/NeueHaasGroteskDisplayPro-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Neue Haas Grotesk Display Pro'; src: url('assets/fonts/NeueHaasGroteskDisplayPro-Roman.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Neue Haas Grotesk Display Pro'; src: url('assets/fonts/NeueHaasGroteskDisplayPro-Medium.woff2') format('woff2'); font-weight: 500 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Neue Haas Grotesk Display Pro'; src: url('assets/fonts/NeueHaasGroteskDisplayPro-Bold.woff2') format('woff2'); font-weight: 700 800; font-style: normal; font-display: swap; }
+
     /* ── Tokens ── */
     :root {
       --black: #191819;
@@ -105,8 +111,8 @@
     .tb-roi { font-size: 11px; color: #555; }
     .tb-sep { width: 1px; height: 18px; background: #333; margin: 0 1rem; }
     .tb-nav { display: flex; gap: 1.25rem; }
-    .tb-nav a { font-size: 13px; color: #888; transition: color .15s; }
-    .tb-nav a:hover { color: #fff; }
+    .tb-nav a { font-size: 13px; color: #c2c2c2; transition: color .15s; }
+    .tb-nav a:hover { color: var(--blue); }
     .tb-end { margin-left: auto; }
     .btn { display: inline-flex; align-items: center; gap: .35rem; font-size: 13px; font-weight: 600; padding: .55rem 1.1rem; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
     .btn-w { background: #fff; color: #111; }
@@ -122,7 +128,7 @@
     /* ── Hero ── */
     .hero { background: #fff; padding: 6rem 0 0; }
     .hero-text { text-align: center; }
-    .hero-pill { display: inline-flex; align-items: center; gap: .5rem; font-size: 12px; font-weight: 600; color: var(--gray-500); background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 100px; padding: .3rem .85rem; margin-bottom: 2rem; letter-spacing: .2px; }
+    .hero-pill { display: inline-flex; align-items: center; gap: .5rem; font-size: 12px; font-weight: 600; color: var(--gray-500); background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 2px; padding: .3rem .85rem; margin-bottom: 2rem; letter-spacing: .2px; }
     .hero-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
     .hero-h1 { font-size: clamp(2.75rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.04; letter-spacing: -.035em; color: var(--black); }
     .hero-h1 span { color: var(--gray-400); }
@@ -132,13 +138,13 @@
     .hero-shot { margin-top: 4rem; }
 
     /* ── Browser frame ── */
-    .browser { border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 8px 32px rgba(0,0,0,.1), 0 24px 64px rgba(0,0,0,.08); background: #fff; }
+    .browser { border: 1px solid var(--gray-200); border-radius: 3px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 8px 32px rgba(0,0,0,.1), 0 24px 64px rgba(0,0,0,.08); background: #fff; }
     .browser-bar { background: #efefef; border-bottom: 1px solid var(--gray-200); height: 34px; display: flex; align-items: center; gap: 5px; padding: 0 14px; flex-shrink: 0; }
     .bdot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
     .bdot:nth-child(1) { background: #ff5f57; }
     .bdot:nth-child(2) { background: #febc2e; }
     .bdot:nth-child(3) { background: #28c840; }
-    .burl { flex: 1; max-width: 240px; height: 15px; background: #ddd; border-radius: 4px; margin-left: 10px; }
+    .burl { flex: 1; max-width: 240px; height: 15px; background: #ddd; border-radius: 2px; margin-left: 10px; }
     .bscreen { position: relative; line-height: 0; }
     .bscreen img { width: 100%; display: block; }
     .bscreen img.slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity .5s ease; }
@@ -162,7 +168,16 @@
     /* ── Sections ── */
     .sec { border-top: 1px solid var(--gray-200); padding: 6rem 0; }
     .sec-w { background: #fff; }
-    .sec-g { background: var(--gray-50); }
+    .sec-g { background: var(--gray-100); }
+
+    /* ── Mission (dark) ── */
+    .mission { position: relative; background: var(--topbar); color: #fff; overflow: hidden; padding: 7rem 0; }
+    .mission-lines { position: absolute; top: 50%; right: -3%; transform: translateY(-50%); height: 132%; width: auto; opacity: .55; pointer-events: none; user-select: none; }
+    .mission .c-md { position: relative; z-index: 1; margin: 0; max-width: 820px; padding-left: max(2rem, calc((100vw - 1080px) / 2)); }
+    .mission .kicker { color: var(--blue); }
+    .mission-statement { font-size: clamp(1.75rem, 3.6vw, 3rem); font-weight: 300; line-height: 1.22; letter-spacing: -.02em; }
+    .mission-statement b { font-weight: 500; }
+    @media (max-width: 760px) { .mission { padding: 4.5rem 0; } .mission-lines { opacity: .2; right: -45%; height: 115%; } }
 
     /* ── Section header (centered) ── */
     .sh { text-align: center; margin-bottom: 4rem; }
@@ -172,7 +187,7 @@
 
     /* ── Product overview cards (Campsite "Visibility" style) ── */
     .overview-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .ocard { background: #fff; border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden; }
+    .ocard { background: #fff; border: 1px solid var(--gray-200); border-radius: 3px; overflow: hidden; }
     .ocard-shot { background: var(--gray-100); border-bottom: 1px solid var(--gray-200); }
     .ocard-shot .browser { border: none; border-radius: 0; box-shadow: none; }
     .ocard-shot .browser-bar { border-radius: 0; background: #e8e8e8; border-bottom-color: var(--gray-200); }
@@ -182,8 +197,8 @@
 
     /* ── Feature tiles (Campsite "Share anything" style) ── */
     .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .ftile { padding: 1.75rem; background: #fff; border: 1px solid var(--gray-200); border-radius: 10px; }
-    .ftile-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--gray-100); border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; color: var(--gray-600); flex-shrink: 0; }
+    .ftile { padding: 1.75rem; background: #fff; border: 1px solid var(--gray-200); border-radius: 3px; }
+    .ftile-icon { width: 36px; height: 36px; border-radius: 2px; background: var(--gray-100); border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; color: var(--gray-600); flex-shrink: 0; }
     .ftile-icon svg { width: 18px; height: 18px; }
     .ftile-title { font-size: .9375rem; font-weight: 700; margin-bottom: .5rem; }
     .ftile-body { font-size: .875rem; color: var(--gray-500); line-height: 1.65; }
@@ -202,20 +217,20 @@
 
     /* ── How it works (numbered) ── */
     .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .step { background: #fff; border: 1px solid var(--gray-200); border-radius: 10px; padding: 2rem 1.75rem; }
+    .step { background: #fff; border: 1px solid var(--gray-200); border-radius: 3px; padding: 2rem 1.75rem; }
     .step-n { font-family: var(--mono); font-size: 2.25rem; font-weight: 700; color: var(--gray-200); line-height: 1; margin-bottom: 1.25rem; }
     .step-t { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
     .step-b { font-size: .875rem; color: var(--gray-500); line-height: 1.7; }
 
     /* ── Personas ── */
     .persona-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .persona { background: #fff; border: 1px solid var(--gray-200); border-radius: 10px; padding: 2rem; }
+    .persona { background: #fff; border: 1px solid var(--gray-200); border-radius: 3px; padding: 2rem; }
     .persona-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: var(--gray-100); color: var(--gray-500); padding: .25rem .65rem; border-radius: 3px; margin-bottom: .85rem; }
     .persona h3 { font-size: 1rem; font-weight: 700; margin-bottom: .65rem; }
     .persona p { font-size: .875rem; color: var(--gray-500); line-height: 1.7; }
 
     /* ── Tour ── */
-    .tour-shell { border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden; background: var(--gray-50); }
+    .tour-shell { border: 1px solid var(--gray-200); border-radius: 3px; overflow: hidden; background: var(--gray-50); }
     .tslide { display: none; grid-template-columns: 5fr 7fr; }
     .tslide.on { display: grid; }
     .tslide-text { padding: 2.5rem 2.25rem; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--gray-200); background: var(--gray-50); }
@@ -228,11 +243,11 @@
     .tslide-shot .bscreen { height: calc(100% - 34px); }
     .tslide-shot .bscreen img { height: 100%; object-fit: cover; object-position: top; }
     .tctrl { display: flex; align-items: center; padding: .85rem 1.25rem; border-top: 1px solid var(--gray-200); background: #fff; gap: .4rem; }
-    .ttab { font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; padding: .45rem .85rem; border: 1px solid var(--gray-200); color: var(--gray-500); background: #fff; border-radius: 4px; transition: all .15s; }
+    .ttab { font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; padding: .45rem .85rem; border: 1px solid var(--gray-200); color: var(--gray-500); background: #fff; border-radius: 2px; transition: all .15s; }
     .ttab.on { background: var(--black); color: #fff; border-color: var(--black); }
 
     /* ── FAQ ── */
-    .faq-list { border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden; background: #fff; }
+    .faq-list { border: 1px solid var(--gray-200); border-radius: 3px; overflow: hidden; background: #fff; }
     .faq-item { border-bottom: 1px solid var(--gray-200); }
     .faq-item:last-child { border-bottom: none; }
     .faq-q { width: 100%; text-align: left; padding: 1.25rem 1.5rem; font-size: .9375rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
@@ -244,23 +259,23 @@
     .faq-item.open .faq-a { display: block; }
 
     /* ── CTA ── */
-    .cta-card { background: #191819; border-radius: 20px; padding: 4rem 3rem; text-align: center; color: #fff; max-width: 900px; margin: 0 auto; }
+    .cta-card { background: #191819; border-radius: 4px; padding: 4rem 3rem; text-align: center; color: #fff; max-width: 900px; margin: 0 auto; }
     .cta-card h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.12; margin-bottom: 1rem; max-width: 620px; margin-left: auto; margin-right: auto; }
     .cta-card .sub { font-size: .9375rem; color: #888; margin-bottom: 2rem; }
     .cta-btns { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
-    .btn-cw { background: var(--blue); color: #191819; font-size: 13px; font-weight: 600; padding: .75rem 1.5rem; display: inline-flex; align-items: center; gap: .4rem; border-radius: 4px; }
+    .btn-cw { background: var(--blue); color: #191819; font-size: 13px; font-weight: 600; padding: .75rem 1.5rem; display: inline-flex; align-items: center; gap: .4rem; border-radius: 2px; }
     .btn-cw:hover { background: #f0f0f0; }
-    .btn-cg { font-size: 13px; font-weight: 600; padding: .75rem 1.5rem; border: 1px solid #333; color: #fff; display: inline-flex; align-items: center; gap: .4rem; border-radius: 4px; }
+    .btn-cg { font-size: 13px; font-weight: 600; padding: .75rem 1.5rem; border: 1px solid #333; color: #fff; display: inline-flex; align-items: center; gap: .4rem; border-radius: 2px; }
     .btn-cg:hover { border-color: #888; }
     .cta-mail { margin-top: 1.5rem; font-size: 13px; color: #555; }
     .cta-mail a { color: #fff; }
 
     /* ── Footer ── */
     footer { background: var(--topbar); border-top: 1px solid #222; padding: 2rem 0; }
-    .foot-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 12px; color: #666; }
+    .foot-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 12px; color: #9a9a9a; }
     .foot-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-    .foot-links a { color: #666; }
-    .foot-links a:hover { color: #fff; }
+    .foot-links a { color: #b0b0b0; transition: color .15s; }
+    .foot-links a:hover { color: var(--blue); }
     .foot-brand { display: flex; align-items: center; gap: .4rem; }
     .foot-brand img { height: 18px; }
 
@@ -286,7 +301,7 @@
       .sh-h2 { font-size: 1.75rem; }
       .sec { padding: 3rem 0; }
       .hero { padding-top: 3rem; }
-      .cta-card { padding: 2.5rem 1.5rem; border-radius: 14px; }
+      .cta-card { padding: 2.5rem 1.5rem; border-radius: 4px; }
       .foot-row { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -297,7 +312,6 @@
   <header class="topbar">
     <a class="tb-brand" href="/">
       <img src="assets/img/logo_w.svg" alt="AIXXEN" />
-      <span class="tb-roi">ROI</span>
     </a>
     <span class="tb-sep" aria-hidden="true"></span>
     <nav class="tb-nav" aria-label="Main">
@@ -318,7 +332,7 @@
         <span class="hero-pill-dot"></span>
         Pre-seed · Live demo on request
       </div>
-      <h1 class="hero-h1">Your AI is optimized.<br/><span>Your employees aren't.</span></h1>
+      <h1 class="hero-h1">Your AI is optimized.<br/><span>Your workforce isn't.</span></h1>
       <p class="hero-sub">AIXXEN measures the capability gap alongside every dollar of AI spend so organizations can fix both. Vendor-neutral. No compliance overhead. Built for measuring AI benefits and optimizing for efficiency.</p>
       <div class="hero-actions">
         <a class="btn btn-d btn-lg" href="mailto:sales@aixxen.com?subject=AIXXEN%20demo%20request">
@@ -331,7 +345,7 @@
 
     <div class="hero-shot">
       <div class="c">
-        <div class="browser" style="border-radius:10px 10px 0 0; border-bottom:none;">
+        <div class="browser" style="border-radius:3px 3px 0 0; border-bottom:none;">
           <div class="browser-bar">
             <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
             <span class="burl"></span>
@@ -368,6 +382,15 @@
       <span class="v-name">+ any vendor</span>
     </div>
   </div>
+
+  <!-- ── Mission (dark) ── -->
+  <section class="mission">
+    <img class="mission-lines" src="assets/img/lines_w.png" alt="" aria-hidden="true" />
+    <div class="c-md">
+      <span class="kicker">Why we exist</span>
+      <p class="mission-statement">AIXXEN exists so every AI dollar an enterprise spends can be <b>weighed against the value it returns</b>.</p>
+    </div>
+  </section>
 
   <!-- ── Product overview (Campsite "Visibility") ── -->
   <section class="sec sec-w" id="overview">
@@ -614,7 +637,7 @@
 
 
   <!-- ── How it works ── -->
-  <section class="sec sec-w" id="how">
+  <section class="sec sec-g" id="how">
     <div class="c">
       <div class="sh">
         <span class="kicker">How it works</span>

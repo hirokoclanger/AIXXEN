@@ -53,6 +53,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
+    /* ── Neue Haas Grotesk Display Pro (self-hosted) ── */
+    @font-face { font-family: 'Neue Haas Grotesk Display Pro'; src: url('assets/fonts/NeueHaasGroteskDisplayPro-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Neue Haas Grotesk Display Pro'; src: url('assets/fonts/NeueHaasGroteskDisplayPro-Roman.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Neue Haas Grotesk Display Pro'; src: url('assets/fonts/NeueHaasGroteskDisplayPro-Medium.woff2') format('woff2'); font-weight: 500 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Neue Haas Grotesk Display Pro'; src: url('assets/fonts/NeueHaasGroteskDisplayPro-Bold.woff2') format('woff2'); font-weight: 700 800; font-style: normal; font-display: swap; }
+
     :root {
       --ax-topbar-bg: #191819;
       --ax-bg: #f1f1f1;
@@ -88,8 +94,9 @@
     .topbar-roi { font-size: 11px; color: #6b727f; }
     .topbar-div { width: 1px; height: 18px; background: #333; }
     .topbar-nav { display: flex; gap: 1.25rem; }
-    .topbar-nav a { font-size: 13px; color: #aaa; transition: color .15s; }
-    .topbar-nav a:hover, .topbar-nav a.active { color: #fff; }
+    .topbar-nav a { font-size: 13px; color: #c2c2c2; transition: color .15s; }
+    .topbar-nav a:hover { color: #fff; }
+    .topbar-nav a.active { color: var(--ax-blue); }
     .topbar-end { margin-left: auto; }
     .btn-solid { display: inline-flex; align-items: center; gap: .4rem; font-size: 13px; font-weight: 600; padding: .55rem 1.1rem; transition: background .15s; }
     .btn-solid--white { background: #fff; color: #111; }
@@ -127,7 +134,7 @@
     .ir-tag-blue { background: var(--ax-blue-bg); color: var(--ax-blue); }
 
     /* ── Fact card ── */
-    .ir-card { background: var(--ax-surface); border: 1px solid var(--ax-border); border-radius: 8px; overflow: hidden; }
+    .ir-card { background: var(--ax-surface); border: 1px solid var(--ax-border); border-radius: 3px; overflow: hidden; }
     .ir-card-header { background: var(--ax-text); color: #fff; padding: 1rem 1.5rem; }
     .ir-card-header span { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; }
     .ir-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .9rem 1.5rem; border-bottom: 1px solid var(--ax-border); }
@@ -137,7 +144,7 @@
     .ir-val small { display: block; font-family: var(--ax-font); font-size: 11px; font-weight: 400; color: var(--ax-faint); margin-top: .15rem; }
 
     /* ── Stat grid ── */
-    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--ax-border); border-radius: 8px; overflow: hidden; }
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--ax-border); border-radius: 3px; overflow: hidden; }
     .stat-cell { padding: 1.75rem 1.5rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); }
     .stat-cell:last-child { border-right: none; }
     .stat-num { font-family: var(--ax-mono); font-size: 1rem; line-height: 1.45; font-weight: 500; margin-bottom: .35rem; }
@@ -151,7 +158,7 @@
     .body-col strong { color: var(--ax-text); font-weight: 600; }
 
     /* ── Competitive matrix ── */
-    .matrix { width: 100%; border-collapse: collapse; border: 1px solid var(--ax-border); border-radius: 8px; overflow: hidden; background: var(--ax-surface); margin-top: 2.5rem; }
+    .matrix { width: 100%; border-collapse: collapse; border: 1px solid var(--ax-border); border-radius: 3px; overflow: hidden; background: var(--ax-surface); margin-top: 2.5rem; }
     .matrix th, .matrix td { padding: .85rem 1.1rem; text-align: left; border-bottom: 1px solid var(--ax-border); border-right: 1px solid var(--ax-border); font-size: .875rem; vertical-align: top; }
     .matrix th { background: var(--ax-gray-bg); color: var(--ax-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
     .matrix td:first-child { font-weight: 600; }
@@ -162,7 +169,7 @@
     .no { color: var(--ax-faint); }
 
     /* ── Roadmap rail ── */
-    .rail-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--ax-border); border-radius: 8px; overflow: hidden; }
+    .rail-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--ax-border); border-radius: 3px; overflow: hidden; }
     .rail-cell { padding: 2rem; background: var(--ax-surface); border-right: 1px solid var(--ax-border); }
     .rail-cell:last-child { border-right: none; }
     .rail-when { font-family: var(--ax-mono); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ax-faint); margin-bottom: .35rem; }
@@ -173,7 +180,7 @@
     .rail-list li::before { content: '→  '; color: var(--ax-faint); }
 
     /* ── Founder ── */
-    .founder { background: var(--ax-surface); border: 1px solid var(--ax-border); border-radius: 8px; padding: 2.5rem; display: grid; grid-template-columns: 1fr 2fr; gap: 2.5rem; align-items: start; }
+    .founder { background: var(--ax-surface); border: 1px solid var(--ax-border); border-radius: 3px; padding: 2.5rem; display: grid; grid-template-columns: 1fr 2fr; gap: 2.5rem; align-items: start; }
     .founder-name { font-size: 1.25rem; font-weight: 700; margin-bottom: .3rem; }
     .founder-role { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ax-faint); margin-bottom: 1.25rem; }
     .founder-links { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 1rem; }
@@ -193,8 +200,8 @@
     footer { background: var(--ax-topbar-bg); border-top: 1px solid #2a2a2a; padding: 2rem 0; color: #888; }
     .footer-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 12px; }
     .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-    .footer-links a { color: #888; }
-    .footer-links a:hover { color: #fff; }
+    .footer-links a { color: #b0b0b0; transition: color .15s; }
+    .footer-links a:hover { color: var(--ax-blue); }
 
     /* ── Responsive ── */
     @media (max-width: 960px) {
@@ -227,7 +234,6 @@
   <header class="topbar">
     <a class="topbar-brand" href="/">
       <img src="assets/img/logo_w.svg" alt="AIXXEN" />
-      <span class="topbar-roi">ROI</span>
     </a>
     <span class="topbar-div" aria-hidden="true"></span>
     <nav class="topbar-nav" aria-label="Main">
